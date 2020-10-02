@@ -1,0 +1,76 @@
+{
+  "name": "@mirror-protocol/mirror.js",
+  "version": "0.0.1",
+  "description": "The JavaScript SDK for Mirror Protocol",
+  "license": "MIT",
+  "author": "Terraform Labs, PTE.",
+  "keywords": [
+    "terra",
+    "crypto",
+    "blockchain",
+    "smart-contracts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Mirror-Protocol/mirror.js"
+  },
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "browser": "dist/bundle.js",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "build": "tsc --module commonjs && webpack --mode production",
+    "test": "jest",
+    "prettier": "prettier --write ./src/**/*.ts",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
+    "doc": "typedoc",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {},
+  "lint-staged": {
+    "./src/**/*.ts": [
+      "prettier --write",
+      "eslint"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "post-checkout": "npm i"
+    }
+  },
+  "prettier": {
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "arrowParens": "avoid"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.14",
+    "@types/node": "^14.11.2",
+    "@typescript-eslint/eslint-plugin": "^2.29.0",
+    "@typescript-eslint/parser": "^2.29.0",
+    "eslint": "^6",
+    "husky": "^4.3.0",
+    "jest": "^26.4.2",
+    "lint-staged": "^10.4.0",
+    "prettier": "^2.1.2",
+    "ts-jest": "^26.4.0",
+    "ts-loader": "^8.0.4",
+    "ts-node": "^9.0.0",
+    "tsconfig-paths-webpack-plugin": "^3.3.0",
+    "typedoc": "^0.19.2",
+    "typescript": "^4.0.3",
+    "webpack": "^4.44.2",
+    "webpack-bundle-analyzer": "^3.9.0",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "@terra-money/terra.js": "^0.5.4"
+  }
+}
