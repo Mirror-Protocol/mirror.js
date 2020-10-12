@@ -1,5 +1,6 @@
-export class MirrorCollector {
-  public async convert(): Promise<void> {}
-  public async send(): Promise<void> {}
+import { ContractClient } from './ContractClient';
+export class MirrorCollector extends ContractClient {
+  public async convert() {}
+  public async send() {}
   public async getConfig(): Promise<Config> {}
 }

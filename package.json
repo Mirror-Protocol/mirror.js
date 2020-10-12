@@ -71,6 +71,6 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
-    "@terra-money/terra.js": "^0.5.4"
+    "@terra-money/terra.js": "^0.5.8"
   }
 }

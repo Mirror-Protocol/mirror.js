@@ -1,7 +1,6 @@
 import {
   isTxError,
   LocalTerra,
-  MnemonicKey,
   MsgInstantiateContract,
   MsgStoreCode,
 } from '@terra-money/terra.js';
