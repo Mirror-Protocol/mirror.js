@@ -231,6 +231,8 @@ export class MirrorFactory extends ContractClient {
     });
   }
 
+  // Typed overloads
+
   protected async query<T>(query_msg: MirrorFactory.QueryMsg): Promise<T> {
     return super.query(query_msg);
   }
@@ -241,7 +243,4 @@ export class MirrorFactory extends ContractClient {
   ): Promise<BlockTxBroadcastResult> {
     return super.broadcastExecute(execute_msg, coins);
   }
-
-  // public async getConfig(): Promise<Config> {}
-  // public async getDistribtionInfo(): Promise<DistributionInfo> {}
 }
