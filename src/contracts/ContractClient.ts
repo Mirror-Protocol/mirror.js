@@ -44,8 +44,15 @@ export class ContractClient {
     return this.lcd.wallet(this.key);
   }
 
+  protected async query<T>(query_msg: any): Promise<T> {
+    return this.wallet.lcd.wasm.contractQuery<T>(
+      this.contractAddress,
+      query_msg
+    );
+  }
+
   protected async broadcastExecute(
-    execute_msg: object,
+    execute_msg: any,
     coins: Coins.Input = {}
   ): Promise<BlockTxBroadcastResult> {
     const tx = await this.createTx(execute_msg, coins);
@@ -53,7 +60,7 @@ export class ContractClient {
   }
 
   protected async createTx(
-    execute_msg: object,
+    execute_msg: any,
     coins: Coins.Input = {}
   ): Promise<StdTx> {
     const executeMsg = this.createExecuteMsg(execute_msg, coins);
@@ -63,7 +70,7 @@ export class ContractClient {
   }
 
   protected createExecuteMsg(
-    execute_msg: object,
+    execute_msg: any,
     coins: Coins.Input = {}
   ): MsgExecuteContract {
     return new MsgExecuteContract(
