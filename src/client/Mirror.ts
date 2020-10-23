@@ -1,5 +1,5 @@
 import { AccAddress, Key, LCDClient, Coin } from '@terra-money/terra.js';
-import EmptyKey from '../utils/EmptyKey';
+import { EmptyKey } from '../utils/EmptyKey';
 import {
   MirrorCollector,
   MirrorFactory,

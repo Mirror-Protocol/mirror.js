@@ -8,7 +8,7 @@ import {
 } from '@terra-money/terra.js';
 import { EmptyObject } from '../utils/EmptyObject';
 import { AssetInfo } from '../utils/Asset';
-import ContractClient from './ContractClient';
+import { ContractClient } from './ContractClient';
 
 export namespace TerraswapFactory {
   export interface InitHook {
@@ -68,7 +68,7 @@ export namespace TerraswapFactory {
   export type QueryMsg = QueryConfig | QueryPair;
 }
 
-export default class TerraswapFactory extends ContractClient {
+export class TerraswapFactory extends ContractClient {
   public init(
     init_msg: TerraswapFactory.InitMsg,
     migratable: boolean

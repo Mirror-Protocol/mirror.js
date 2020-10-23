@@ -7,8 +7,8 @@ import {
   Int
 } from '@terra-money/terra.js';
 import { EmptyObject } from '../utils/EmptyObject';
-import ContractClient from './ContractClient';
-import TerraswapToken from './TerraswapToken';
+import { ContractClient } from './ContractClient';
+import { TerraswapToken } from './TerraswapToken';
 
 export namespace MirrorGov {
   export interface InitMsg {
@@ -196,7 +196,7 @@ function createHookMsg(msg: MirrorGov.HookMsg): string {
   return Buffer.from(JSON.stringify(msg)).toString('base64');
 }
 
-export default class MirrorGov extends ContractClient {
+export class MirrorGov extends ContractClient {
   public init(
     init_msg: MirrorGov.InitMsg,
     migratable: boolean

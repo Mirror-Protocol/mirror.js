@@ -8,9 +8,9 @@ import {
   MsgInstantiateContract
 } from '@terra-money/terra.js';
 
-import EmptyKey from '../utils/EmptyKey';
+import { EmptyKey } from '../utils/EmptyKey';
 
-export default class ContractClient {
+export class ContractClient {
   public contractAddress: AccAddress;
 
   public codeID?: number;
@@ -80,5 +80,3 @@ export default class ContractClient {
     );
   }
 }
-
-module.exports = ContractClient;

@@ -6,7 +6,7 @@ import {
   MsgInstantiateContract,
   Int
 } from '@terra-money/terra.js';
-import ContractClient from './ContractClient';
+import { ContractClient } from './ContractClient';
 import { EmptyObject } from '../utils/EmptyObject';
 
 export namespace TerraswapToken {
@@ -237,7 +237,7 @@ function createHookMsg(msg: TerraswapToken.HookMsg): string {
   return Buffer.from(JSON.stringify(msg)).toString('base64');
 }
 
-export default class TerraswapToken extends ContractClient {
+export class TerraswapToken extends ContractClient {
   public init(
     init_msg: TerraswapToken.InitMsg,
     migratable: boolean

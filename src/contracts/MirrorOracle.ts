@@ -7,7 +7,7 @@ import {
   MsgExecuteContract
 } from '@terra-money/terra.js';
 import { AssetInfo } from '../utils/Asset';
-import ContractClient from './ContractClient';
+import { ContractClient } from './ContractClient';
 import { EmptyObject } from '../utils/EmptyObject';
 
 export namespace MirrorOracle {
@@ -92,7 +92,7 @@ export namespace MirrorOracle {
   export type QueryMsg = QueryConfig | QueryAsset | QueryPrice | QueryPrices;
 }
 
-export default class MirrorOracle extends ContractClient {
+export class MirrorOracle extends ContractClient {
   public init(
     init_msg: MirrorOracle.InitMsg,
     migratable: boolean

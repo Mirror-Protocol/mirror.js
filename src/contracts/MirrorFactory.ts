@@ -7,7 +7,7 @@ import {
   MsgInstantiateContract
 } from '@terra-money/terra.js';
 import { EmptyObject } from '../utils/EmptyObject';
-import ContractClient from './ContractClient';
+import { ContractClient } from './ContractClient';
 
 export namespace MirrorFactory {
   export interface InitMsg {
@@ -120,7 +120,7 @@ export namespace MirrorFactory {
   export type QueryMsg = QueryConfig | QueryDistributionInfo;
 }
 
-export default class MirrorFactory extends ContractClient {
+export class MirrorFactory extends ContractClient {
   public init(
     init_msg: MirrorFactory.InitMsg,
     migratable: boolean

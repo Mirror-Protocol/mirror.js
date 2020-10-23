@@ -1,6 +1,6 @@
 import { Key } from '@terra-money/terra.js';
 
-export default class EmptyKey extends Key {
+export class EmptyKey extends Key {
   constructor() {
     super(Buffer.from(''));
   }

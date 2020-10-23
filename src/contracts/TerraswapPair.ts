@@ -9,8 +9,8 @@ import {
 } from '@terra-money/terra.js';
 import { EmptyObject } from '../utils/EmptyObject';
 import { AssetInfo, Asset, isNativeToken } from '../utils/Asset';
-import ContractClient from './ContractClient';
-import TerraswapToken from './TerraswapToken';
+import { ContractClient } from './ContractClient';
+import { TerraswapToken } from './TerraswapToken';
 
 export namespace TerraswapPair {
   export interface InitHook {
@@ -141,7 +141,7 @@ function createHookMsg(msg: TerraswapPair.HookMsg): string {
   return Buffer.from(JSON.stringify(msg)).toString('base64');
 }
 
-export default class TerraswapPair extends ContractClient {
+export class TerraswapPair extends ContractClient {
   public init(
     init_msg: TerraswapPair.InitMsg,
     migratable: boolean

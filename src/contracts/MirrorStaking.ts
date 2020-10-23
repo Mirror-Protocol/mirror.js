@@ -7,9 +7,9 @@ import {
   MsgExecuteContract,
   Int
 } from '@terra-money/terra.js';
-import ContractClient from './ContractClient';
+import { ContractClient } from './ContractClient';
 import { EmptyObject } from '../utils/EmptyObject';
-import TerraswapToken from './TerraswapToken';
+import { TerraswapToken } from './TerraswapToken';
 
 export namespace MirrorStaking {
   export interface InitMsg {
@@ -142,7 +142,7 @@ function createHookMsg(msg: MirrorStaking.HookMsg): string {
   return Buffer.from(JSON.stringify(msg)).toString('base64');
 }
 
-export default class MirrorStaking extends ContractClient {
+export class MirrorStaking extends ContractClient {
   public init(
     init_msg: MirrorStaking.InitMsg,
     migratable: boolean
