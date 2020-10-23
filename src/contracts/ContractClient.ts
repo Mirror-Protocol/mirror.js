@@ -1,34 +1,34 @@
 import {
   AccAddress,
-  BlockTxBroadcastResult,
   Coins,
   Key,
   LCDClient,
   MsgExecuteContract,
-  StdTx,
   Wallet,
+  MsgInstantiateContract
 } from '@terra-money/terra.js';
 
-class EmptyKey extends Key {
-  constructor() {
-    super(Buffer.from(''));
-  }
+import EmptyKey from '../utils/EmptyKey';
 
-  public sign(): Promise<Buffer> {
-    throw new Error(
-      'Key is empty - provide a Key when creating ContractClient to sign transactions.'
-    );
-  }
-}
+export default class ContractClient {
+  public contractAddress: AccAddress;
 
-export class ContractClient {
+  public codeID?: number;
+
+  public lcd?: LCDClient;
+
   public key: Key;
 
   constructor(
-    public contractAddress: AccAddress,
-    public lcd?: LCDClient,
+    contractAddress: AccAddress,
+    codeID?: number,
+    lcd?: LCDClient,
     key?: Key
   ) {
+    this.contractAddress = contractAddress;
+    this.codeID = codeID;
+    this.lcd = lcd;
+
     if (key === undefined) {
       this.key = new EmptyKey();
     } else {
@@ -44,40 +44,41 @@ export class ContractClient {
     return this.lcd.wallet(this.key);
   }
 
-  protected async query<T>(query_msg: any): Promise<T> {
+  protected async query<T>(queryMmsg: any): Promise<T> {
     return this.wallet.lcd.wasm.contractQuery<T>(
       this.contractAddress,
-      query_msg
+      queryMmsg
     );
   }
 
-  protected async broadcastExecute(
-    execute_msg: any,
-    coins: Coins.Input = {}
-  ): Promise<BlockTxBroadcastResult> {
-    const tx = await this.createTx(execute_msg, coins);
-    return this.wallet.lcd.tx.broadcast(tx);
-  }
-
-  protected async createTx(
-    execute_msg: any,
-    coins: Coins.Input = {}
-  ): Promise<StdTx> {
-    const executeMsg = this.createExecuteMsg(execute_msg, coins);
-    return this.wallet.createAndSignTx({
-      msgs: [executeMsg],
-    });
-  }
-
   protected createExecuteMsg(
-    execute_msg: any,
+    executeMsg: any,
     coins: Coins.Input = {}
   ): MsgExecuteContract {
     return new MsgExecuteContract(
       this.key.accAddress,
       this.contractAddress,
-      execute_msg,
+      executeMsg,
       coins
     );
   }
+
+  protected createInstantiateMsg(
+    initMsg: any,
+    initCoins: Coins.Input = {},
+    migratable: boolean
+  ): MsgInstantiateContract {
+    if (!this.codeID) {
+      throw new Error('codeID not provided - unable to instantiate contract');
+    }
+    return new MsgInstantiateContract(
+      this.key.accAddress,
+      this.codeID,
+      initMsg,
+      initCoins,
+      migratable
+    );
+  }
 }
+
+module.exports = ContractClient;

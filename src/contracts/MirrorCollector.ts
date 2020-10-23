@@ -1,23 +1,31 @@
-import { EmptyObject } from 'utilTypes';
-import { ContractClient } from './ContractClient';
 import {
   AccAddress,
-  BlockTxBroadcastResult,
   Coins,
+  MsgExecuteContract,
+  MsgInstantiateContract
 } from '@terra-money/terra.js';
+import { EmptyObject } from '../utils/EmptyObject';
+import ContractClient from './ContractClient';
 
 export namespace MirrorCollector {
-  export interface Convert {
+  export interface InitMsg {
+    distribution_contract: AccAddress;
+    terraswap_factory: AccAddress;
+    mirror_token: AccAddress;
+    base_denom: string;
+  }
+
+  export interface HandleConvert {
     convert: {
       asset_token: AccAddress;
     };
   }
 
-  export interface Send {
+  export interface HandleSend {
     send: EmptyObject;
   }
 
-  export interface Config {
+  export interface QueryConfig {
     config: EmptyObject;
   }
 
@@ -28,29 +36,35 @@ export namespace MirrorCollector {
     base_denom: string;
   }
 
-  export type HandleMsg = Convert | Send;
-  export type QueryMsg = Config;
+  export type HandleMsg = HandleConvert | HandleSend;
+  export type QueryMsg = QueryConfig;
 }
-export class MirrorCollector extends ContractClient {
-  public async convert(
-    asset_token: AccAddress
-  ): Promise<BlockTxBroadcastResult> {
-    return this.broadcastExecute({
+
+export default class MirrorCollector extends ContractClient {
+  public init(
+    init_msg: MirrorCollector.InitMsg,
+    migratable: boolean
+  ): MsgInstantiateContract {
+    return this.createInstantiateMsg(init_msg, {}, migratable);
+  }
+
+  public convert(asset_token: AccAddress): MsgExecuteContract {
+    return this.createExecuteMsg({
       convert: {
-        asset_token,
-      },
+        asset_token
+      }
     });
   }
 
-  public async send(): Promise<BlockTxBroadcastResult> {
-    return this.broadcastExecute({
-      send: {},
+  public send(): MsgExecuteContract {
+    return this.createExecuteMsg({
+      send: {}
     });
   }
 
   public async getConfig(): Promise<MirrorCollector.ConfigResponse> {
     return this.query({
-      config: {},
+      config: {}
     });
   }
 
@@ -60,10 +74,10 @@ export class MirrorCollector extends ContractClient {
     return super.query(query_msg);
   }
 
-  protected async broadcastExecute(
-    execute_msg: MirrorCollector.HandleMsg,
+  protected createExecuteMsg(
+    executeMsg: MirrorCollector.HandleMsg,
     coins: Coins.Input = {}
-  ): Promise<BlockTxBroadcastResult> {
-    return super.broadcastExecute(execute_msg, coins);
+  ): MsgExecuteContract {
+    return super.createExecuteMsg(executeMsg, coins);
   }
 }

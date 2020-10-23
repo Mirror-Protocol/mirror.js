@@ -1,58 +1,71 @@
-import { ContractClient } from './ContractClient';
 import {
   AccAddress,
-  BlockTxBroadcastResult,
   Coins,
   Dec,
   Numeric,
+  MsgInstantiateContract,
+  MsgExecuteContract
 } from '@terra-money/terra.js';
-import { EmptyObject } from 'utilTypes';
+import { AssetInfo } from '../utils/Asset';
+import ContractClient from './ContractClient';
+import { EmptyObject } from '../utils/EmptyObject';
 
 export namespace MirrorOracle {
-  export interface UpdateConfig {
+  export interface InitMsg {
+    owner: AccAddress;
+    base_asset_info: AssetInfo;
+  }
+
+  export interface HandleUpdateConfig {
     update_config: {
       owner?: AccAddress;
     };
   }
 
-  export interface RegisterAsset {
+  export interface HandleRegisterAsset {
     register_asset: {
       asset_token: AccAddress;
       feeder: AccAddress;
     };
   }
 
+  export interface HandleMigrateAsset {
+    migrate_asset: {
+      from_token: AccAddress;
+      to_token: AccAddress;
+    };
+  }
+
   export interface PriceInfo {
     asset_token: AccAddress;
     price: string;
-    price_multiplier?: string;
   }
 
-  export interface FeedPrice {
+  export interface HandleFeedPrice {
     feed_price: {
       price_infos: Array<PriceInfo>;
     };
   }
 
-  export interface Config {
+  export interface QueryConfig {
     config: EmptyObject;
   }
 
-  export interface Asset {
+  export interface QueryAsset {
     asset: { asset_token: AccAddress };
   }
 
-  export interface Price {
+  export interface QueryPrice {
     price: { asset_token: AccAddress };
   }
 
-  export interface Prices {
+  export interface QueryPrices {
     prices: EmptyObject;
   }
 
   export interface ConfigResponse {
     owner: AccAddress;
-    base_asset_info: AccAddress;
+    base_asset_info: AssetInfo;
   }
 
   export interface AssetResponse {
@@ -62,62 +75,87 @@ export namespace MirrorOracle {
 
   export interface PriceResponse {
     price: string;
-    price_multipler: string;
     last_update_time: number;
     asset_token: AccAddress;
   }
 
-  export interface PricesResponse {}
+  export interface PricesResponse {
+    prices: Array<PriceResponse>;
+  }
 
-  export type HandleMsg = UpdateConfig | RegisterAsset | FeedPrice;
-  export type QueryMsg = Config | Asset | Price | Prices;
+  export type HandleMsg =
+    | HandleUpdateConfig
+    | HandleRegisterAsset
+    | HandleMigrateAsset
+    | HandleFeedPrice;
+
+  export type QueryMsg = QueryConfig | QueryAsset | QueryPrice | QueryPrices;
 }
 
-export class MirrorOracle extends ContractClient {
-  public async updateConfig(
-    config: MirrorOracle.UpdateConfig['update_config']
-  ): Promise<BlockTxBroadcastResult> {
-    return this.broadcastExecute({
-      update_config: config,
+export default class MirrorOracle extends ContractClient {
+  public init(
+    init_msg: MirrorOracle.InitMsg,
+    migratable: boolean
+  ): MsgInstantiateContract {
+    return this.createInstantiateMsg(init_msg, {}, migratable);
+  }
+
+  public updateConfig(
+    config: MirrorOracle.HandleUpdateConfig['update_config']
+  ): MsgExecuteContract {
+    return this.createExecuteMsg({
+      update_config: config
     });
   }
 
-  public async registerAsset(
+  public registerAsset(
     asset_token: AccAddress,
     feeder: AccAddress
-  ): Promise<BlockTxBroadcastResult> {
-    return this.broadcastExecute({
+  ): MsgExecuteContract {
+    return this.createExecuteMsg({
       register_asset: {
         asset_token,
-        feeder,
-      },
+        feeder
+      }
     });
   }
 
-  public async feedPrice(
+  public migrateAsset(
+    from_token: AccAddress,
+    to_token: AccAddress
+  ): MsgExecuteContract {
+    return this.createExecuteMsg({
+      migrate_asset: {
+        from_token,
+        to_token
+      }
+    });
+  }
+
+  public feedPrice(
     price_infos: Array<{
       asset_token: AccAddress;
       price: Numeric.Input;
       price_multiplier?: Numeric.Input;
     }>
-  ): Promise<BlockTxBroadcastResult> {
-    return this.broadcastExecute({
+  ): MsgExecuteContract {
+    return this.createExecuteMsg({
       feed_price: {
-        price_infos: price_infos.map(pi => ({
+        price_infos: price_infos.map((pi) => ({
           asset_token: pi.asset_token,
           price: new Dec(pi.price).toFixed(),
           price_multiplier:
             pi.price_multiplier !== undefined
               ? new Dec(pi.price_multiplier).toFixed()
-              : undefined,
-        })),
-      },
+              : undefined
+        }))
+      }
     });
   }
 
   public async getConfig(): Promise<MirrorOracle.ConfigResponse> {
     return this.query({
-      config: {},
+      config: {}
     });
   }
 
@@ -125,7 +163,7 @@ export class MirrorOracle extends ContractClient {
     asset_token: AccAddress
   ): Promise<MirrorOracle.AssetResponse> {
     return this.query({
-      asset: { asset_token },
+      asset: { asset_token }
     });
   }
 
@@ -133,12 +171,13 @@ export class MirrorOracle extends ContractClient {
     asset_token: AccAddress
   ): Promise<MirrorOracle.PriceResponse> {
     return this.query({
-      price: { asset_token },
+      price: { asset_token }
     });
   }
+
   public async getPrices(): Promise<MirrorOracle.PricesResponse> {
     return this.query({
-      prices: {},
+      prices: {}
     });
   }
 
@@ -148,10 +187,10 @@ export class MirrorOracle extends ContractClient {
     return super.query(query_msg);
   }
 
-  protected async broadcastExecute(
+  protected createExecuteMsg(
     execute_msg: MirrorOracle.HandleMsg,
     coins: Coins.Input = {}
-  ): Promise<BlockTxBroadcastResult> {
-    return super.broadcastExecute(execute_msg, coins);
+  ): MsgExecuteContract {
+    return super.createExecuteMsg(execute_msg, coins);
   }
 }

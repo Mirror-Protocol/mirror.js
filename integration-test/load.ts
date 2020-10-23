@@ -1,16 +1,12 @@
 import {
-  Block,
   BlockTxBroadcastResult,
   Coins,
-  Dec,
   isTxError,
   LocalTerra,
-  Msg,
   MsgExecuteContract,
   MsgInstantiateContract,
   MsgStoreCode,
   StdFee,
-  TxBroadcastResult,
   TxSuccess,
 } from '@terra-money/terra.js';
 import * as fs from 'fs';

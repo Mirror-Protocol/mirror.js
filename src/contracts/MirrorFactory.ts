@@ -1,14 +1,21 @@
 import {
   AccAddress,
-  BlockTxBroadcastResult,
   Coins,
   Dec,
   Numeric,
+  MsgExecuteContract,
+  MsgInstantiateContract
 } from '@terra-money/terra.js';
-import { EmptyObject } from '../utilTypes';
-import { ContractClient } from './ContractClient';
+import { EmptyObject } from '../utils/EmptyObject';
+import ContractClient from './ContractClient';
 
 export namespace MirrorFactory {
+  export interface InitMsg {
+    mint_per_block: string;
+    token_code_id: number;
+    base_denom: string;
+  }
+
   export interface Params {
     weight: string;
     lp_commission: string;
@@ -17,7 +24,7 @@ export namespace MirrorFactory {
     min_collateral_ratio: string;
   }
 
-  export interface PostInitialize {
+  export interface HandlePostInitialize {
     post_initialize: {
       owner: AccAddress;
       terraswap_factory: AccAddress;
@@ -29,14 +36,7 @@ export namespace MirrorFactory {
     };
   }
 
-  export interface UpdateWeight {
-    update_weight: {
-      asset_token: AccAddress;
-      weight: string;
-    };
-  }
-
-  export interface UpdateConfig {
+  export interface HandleUpdateConfig {
     update_config: {
       owner?: AccAddress;
       mint_per_block?: string;
@@ -44,7 +44,14 @@ export namespace MirrorFactory {
     };
   }
 
-  export interface Whitelist {
+  export interface HandleUpdateWeight {
+    update_weight: {
+      asset_token: AccAddress;
+      weight: string;
+    };
+  }
+
+  export interface HandleWhitelist {
     whitelist: {
       name: string;
       symbol: string;
@@ -53,40 +60,48 @@ export namespace MirrorFactory {
     };
   }
 
-  export interface TokenCreationHook {
-    token_creation_hook: {
-      oracle_feeder: AccAddress;
-    };
-  }
-
-  export interface TerraswapCreationHook {
-    terraswap_creation_hook: {
-      asset_token: AccAddress;
-    };
-  }
-
-  export interface PassCommand {
+  export interface HandlePassCommand {
     pass_command: {
       contract_addr: AccAddress;
       msg: string;
     };
   }
-  export interface Mint {
+
+  export interface HandleMint {
     mint: {
       asset_token: AccAddress;
     };
   }
 
-  export interface Config {
+  export interface HandleMigrateAsset {
+    migrate_asset: {
+      name: string;
+      symbol: string;
+      from_token: AccAddress;
+      conversion_rate: string;
+    };
+  }
+
+  export interface QueryConfig {
     config: EmptyObject;
   }
 
-  export interface DistributionInfo {
+  export interface QueryDistributionInfo {
     distribution_info: { asset_token: AccAddress };
   }
 
-  export type ConfigResponse = PostInitialize['post_initialize'] &
-    Required<UpdateConfig['update_config']>;
+  export interface ConfigResponse {
+    owner: AccAddress;
+    mirror_token: AccAddress;
+    mint_contract: AccAddress;
+    staking_contract: AccAddress;
+    commission_collector: AccAddress;
+    oracle_contract: AccAddress;
+    terraswap_factory: AccAddress;
+    mint_per_block: string;
+    token_code_id: number;
+    base_denom: string;
+  }
 
   export interface DistributionInfoResponse {
     weight: string;
@@ -94,20 +109,26 @@ export namespace MirrorFactory {
   }
 
   export type HandleMsg =
-    | PostInitialize
-    | UpdateWeight
-    | UpdateConfig
-    | Whitelist
-    | TokenCreationHook
-    | TerraswapCreationHook
-    | PassCommand
-    | Mint;
+    | HandlePostInitialize
+    | HandleUpdateWeight
+    | HandleUpdateConfig
+    | HandleWhitelist
+    | HandlePassCommand
+    | HandleMint
+    | HandleMigrateAsset;
 
-  export type QueryMsg = Config | DistributionInfo;
+  export type QueryMsg = QueryConfig | QueryDistributionInfo;
 }
 
-export class MirrorFactory extends ContractClient {
-  public async postInitialize(
+export default class MirrorFactory extends ContractClient {
+  public init(
+    init_msg: MirrorFactory.InitMsg,
+    migratable: boolean
+  ): MsgInstantiateContract {
+    return this.createInstantiateMsg(init_msg, {}, migratable);
+  }
+
+  public postInitialize(
     owner: AccAddress,
     terraswap_factory: AccAddress,
     mirror_token: AccAddress,
@@ -115,8 +136,8 @@ export class MirrorFactory extends ContractClient {
     oracle_contract: AccAddress,
     mint_contract: AccAddress,
     commission_collector: AccAddress
-  ): Promise<BlockTxBroadcastResult> {
-    return this.broadcastExecute({
+  ): MsgExecuteContract {
+    return this.createExecuteMsg({
       post_initialize: {
         owner,
         terraswap_factory,
@@ -124,32 +145,32 @@ export class MirrorFactory extends ContractClient {
         staking_contract,
         oracle_contract,
         mint_contract,
-        commission_collector,
-      },
+        commission_collector
+      }
     });
   }
 
-  public async updateWeight(
+  public updateWeight(
     asset_token: AccAddress,
     weight: Dec
-  ): Promise<BlockTxBroadcastResult> {
-    return this.broadcastExecute({
+  ): MsgExecuteContract {
+    return this.createExecuteMsg({
       update_weight: {
         asset_token,
-        weight: weight.toFixed(),
-      },
+        weight: weight.toFixed()
+      }
     });
   }
 
-  public async updateConfig(
-    config: MirrorFactory.UpdateConfig['update_config']
-  ): Promise<BlockTxBroadcastResult> {
-    return this.broadcastExecute({
-      update_config: config,
+  public updateConfig(
+    config: MirrorFactory.HandleUpdateConfig['update_config']
+  ): MsgExecuteContract {
+    return this.createExecuteMsg({
+      update_config: config
     });
   }
 
-  public async whitelist(
+  public whitelist(
     name: string,
     symbol: string,
     oracle_feeder: AccAddress,
@@ -160,8 +181,8 @@ export class MirrorFactory extends ContractClient {
       auction_discount: Numeric.Input;
       min_collateral_ratio: Numeric.Input;
     }
-  ): Promise<BlockTxBroadcastResult> {
-    return this.broadcastExecute({
+  ): MsgExecuteContract {
+    return this.createExecuteMsg({
       whitelist: {
         name,
         symbol,
@@ -171,55 +192,48 @@ export class MirrorFactory extends ContractClient {
           lp_commission: new Dec(params.lp_commission).toFixed(),
           owner_commission: new Dec(params.owner_commission).toFixed(),
           auction_discount: new Dec(params.auction_discount).toFixed(),
-          min_collateral_ratio: new Dec(params.min_collateral_ratio).toFixed(),
-        },
-      },
+          min_collateral_ratio: new Dec(params.min_collateral_ratio).toFixed()
+        }
+      }
     });
   }
 
-  public async tokenCreationHook(
-    oracle_feeder: AccAddress
-  ): Promise<BlockTxBroadcastResult> {
-    return this.broadcastExecute({
-      token_creation_hook: {
-        oracle_feeder,
-      },
+  public migrateAsset(
+    name: string,
+    symbol: string,
+    from_token: AccAddress,
+    conversion_rate: Numeric.Input
+  ): MsgExecuteContract {
+    return this.createExecuteMsg({
+      migrate_asset: {
+        name,
+        symbol,
+        from_token,
+        conversion_rate: new Dec(conversion_rate).toString()
+      }
     });
   }
 
-  public async terraswapCreationHook(
-    asset_token: AccAddress
-  ): Promise<BlockTxBroadcastResult> {
-    return this.broadcastExecute({
-      terraswap_creation_hook: {
-        asset_token,
-      },
-    });
-  }
-
-  public async passCommand(
-    contract_addr: AccAddress,
-    msg: any
-  ): Promise<BlockTxBroadcastResult> {
-    return this.broadcastExecute({
+  public passCommand(contract_addr: AccAddress, msg: any): MsgExecuteContract {
+    return this.createExecuteMsg({
       pass_command: {
         contract_addr,
-        msg: Buffer.from(JSON.stringify(msg)).toString('base64'),
-      },
+        msg: Buffer.from(JSON.stringify(msg)).toString('base64')
+      }
     });
   }
 
-  public async mint(asset_token: AccAddress): Promise<BlockTxBroadcastResult> {
-    return this.broadcastExecute({
+  public mint(asset_token: AccAddress): MsgExecuteContract {
+    return this.createExecuteMsg({
       mint: {
-        asset_token,
-      },
+        asset_token
+      }
     });
   }
 
   public async getConfig(): Promise<MirrorFactory.ConfigResponse> {
     return this.query({
-      config: {},
+      config: {}
     });
   }
 
@@ -227,7 +241,7 @@ export class MirrorFactory extends ContractClient {
     asset_token: AccAddress
   ): Promise<MirrorFactory.DistributionInfoResponse> {
     return this.query({
-      distribution_info: { asset_token },
+      distribution_info: { asset_token }
     });
   }
 
@@ -237,10 +251,10 @@ export class MirrorFactory extends ContractClient {
     return super.query(query_msg);
   }
 
-  protected async broadcastExecute(
-    execute_msg: MirrorFactory.HandleMsg,
+  protected createExecuteMsg(
+    executeMsg: MirrorFactory.HandleMsg,
     coins: Coins.Input = {}
-  ): Promise<BlockTxBroadcastResult> {
-    return super.broadcastExecute(execute_msg, coins);
+  ): MsgExecuteContract {
+    return super.createExecuteMsg(executeMsg, coins);
   }
 }
