@@ -97,7 +97,7 @@ export namespace TerraswapToken {
 
   export interface IncreaseAllowance {
     increase_allowance: {
-      sender: AccAddress;
+      spender: AccAddress;
       amount: string;
       expires?: Expiration;
     };
@@ -105,7 +105,7 @@ export namespace TerraswapToken {
 
   export interface DecreaseAllowance {
     decrease_allowance: {
-      sender: AccAddress;
+      spender: AccAddress;
       amount: string;
       expires?: Expiration;
     };
@@ -274,15 +274,13 @@ export class TerraswapToken extends ContractClient {
   public send(
     contract: AccAddress,
     amount: Numeric.Input,
-    msg?: any
+    msg?: string
   ): MsgExecuteContract {
     return this.createExecuteMsg({
       send: {
         contract,
         amount: new Int(amount).toString(),
-        msg: msg
-          ? Buffer.from(JSON.stringify(msg)).toString('base64')
-          : undefined
+        msg
       }
     });
   }
@@ -338,13 +336,13 @@ export class TerraswapToken extends ContractClient {
   }
 
   public increaseAllowance(
-    sender: AccAddress,
+    spender: AccAddress,
     amount: Numeric.Input,
     expires?: TerraswapToken.Expiration
   ): MsgExecuteContract {
     return this.createExecuteMsg({
       increase_allowance: {
-        sender,
+        spender,
         amount: new Int(amount).toString(),
         expires
       }
@@ -352,13 +350,13 @@ export class TerraswapToken extends ContractClient {
   }
 
   public decreaseAllowance(
-    sender: AccAddress,
+    spender: AccAddress,
     amount: Numeric.Input,
     expires?: TerraswapToken.Expiration
   ): MsgExecuteContract {
     return this.createExecuteMsg({
       decrease_allowance: {
-        sender,
+        spender,
         amount: new Int(amount).toString(),
         expires
       }
@@ -379,11 +377,11 @@ export class TerraswapToken extends ContractClient {
   }
 
   public async getBalance(
-    address: AccAddress
+    address?: AccAddress
   ): Promise<TerraswapToken.BalanceResponse> {
     return this.query({
       balance: {
-        address
+        address: address ? address : this.wallet.key.accAddress
       }
     });
   }

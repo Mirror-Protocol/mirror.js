@@ -284,7 +284,14 @@ export class MirrorMint extends ContractClient {
       );
     }
 
-    return collateral_token.send(
+    if (!this.contractAddress) {
+      throw new Error(
+        'contractAddress not provided - unable to execute message'
+      );
+    }
+
+    return collateral_token.send.call(
+      this,
       this.contractAddress,
       collateral.amount,
       createHookMsg({
@@ -319,7 +326,14 @@ export class MirrorMint extends ContractClient {
       );
     }
 
-    return collateral_token.send(
+    if (!this.contractAddress) {
+      throw new Error(
+        'contractAddress not provided - unable to execute message'
+      );
+    }
+
+    return collateral_token.send.call(
+      this,
       this.contractAddress,
       collateral.amount,
       createHookMsg({
@@ -356,7 +370,14 @@ export class MirrorMint extends ContractClient {
     asset: Asset,
     asset_token: TerraswapToken
   ): MsgExecuteContract {
-    return asset_token.send(
+    if (!this.contractAddress) {
+      throw new Error(
+        'contractAddress not provided - unable to execute message'
+      );
+    }
+
+    return asset_token.send.call(
+      this,
       this.contractAddress,
       asset.amount,
       createHookMsg({
@@ -372,6 +393,12 @@ export class MirrorMint extends ContractClient {
     asset: Asset,
     asset_token: TerraswapToken
   ): MsgExecuteContract {
+    if (!this.contractAddress) {
+      throw new Error(
+        'contractAddress not provided - unable to execute message'
+      );
+    }
+
     return asset_token.send(
       this.contractAddress,
       asset.amount,
@@ -428,13 +455,13 @@ export class MirrorMint extends ContractClient {
   }
 
   public async getPositions(
-    owner_addr: AccAddress,
+    owner_addr?: AccAddress,
     start_after?: Numeric.Input,
     limit?: number
   ): Promise<MirrorMint.PositionsResponse> {
     return this.query({
       positions: {
-        owner_addr,
+        owner_addr: owner_addr ? owner_addr : this.wallet.key.accAddress,
         start_after: start_after ? new Int(start_after).toString() : undefined,
         limit
       }

@@ -215,6 +215,16 @@ export class MirrorStaking extends ContractClient {
     amount: Numeric.Input,
     lp_token: TerraswapToken
   ): MsgExecuteContract {
+    if (!this.contractAddress) {
+      throw new Error(
+        'contractAddress not provided - unable to execute message'
+      );
+    }
+
+    if (this.wallet.key.accAddress !== lp_token.wallet.key.accAddress) {
+      throw new Error('two contract instance is not from the same key');
+    }
+
     return lp_token.send(
       this.contractAddress,
       amount,
@@ -231,6 +241,12 @@ export class MirrorStaking extends ContractClient {
     amount: Numeric.Input,
     mirror_token: TerraswapToken
   ): MsgExecuteContract {
+    if (!this.contractAddress) {
+      throw new Error(
+        'contractAddress not provided - unable to execute message'
+      );
+    }
+
     return mirror_token.send(
       this.contractAddress,
       amount,

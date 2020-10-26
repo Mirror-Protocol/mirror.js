@@ -11,7 +11,7 @@ import {
 import { EmptyKey } from '../utils/EmptyKey';
 
 export class ContractClient {
-  public contractAddress: AccAddress;
+  public contractAddress?: AccAddress;
 
   public codeID?: number;
 
@@ -20,20 +20,18 @@ export class ContractClient {
   public key: Key;
 
   constructor(
-    contractAddress: AccAddress,
-    codeID?: number,
-    lcd?: LCDClient,
-    key?: Key
+    options: Partial<{
+      contractAddress: AccAddress;
+      codeID: number;
+      lcd: LCDClient;
+      key: Key;
+    }>
   ) {
-    this.contractAddress = contractAddress;
-    this.codeID = codeID;
-    this.lcd = lcd;
+    this.contractAddress = options.contractAddress;
+    this.codeID = options.codeID;
+    this.lcd = options.lcd;
 
-    if (key === undefined) {
-      this.key = new EmptyKey();
-    } else {
-      this.key = key;
-    }
+    this.key = options.key ? options.key : new EmptyKey();
   }
 
   public get wallet(): Wallet {
@@ -45,6 +43,10 @@ export class ContractClient {
   }
 
   protected async query<T>(queryMmsg: any): Promise<T> {
+    if (!this.contractAddress) {
+      throw new Error('contractAddress not provided - unable to query');
+    }
+
     return this.wallet.lcd.wasm.contractQuery<T>(
       this.contractAddress,
       queryMmsg
@@ -55,6 +57,12 @@ export class ContractClient {
     executeMsg: any,
     coins: Coins.Input = {}
   ): MsgExecuteContract {
+    if (!this.contractAddress) {
+      throw new Error(
+        'contractAddress not provided - unable to execute message'
+      );
+    }
+
     return new MsgExecuteContract(
       this.key.accAddress,
       this.contractAddress,
@@ -71,6 +79,7 @@ export class ContractClient {
     if (!this.codeID) {
       throw new Error('codeID not provided - unable to instantiate contract');
     }
+
     return new MsgInstantiateContract(
       this.key.accAddress,
       this.codeID,

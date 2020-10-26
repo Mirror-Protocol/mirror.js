@@ -16,10 +16,16 @@ export interface NativeToken {
 export type AssetInfo = Token | NativeToken;
 
 export function isNativeToken(assetInfo: AssetInfo): assetInfo is NativeToken {
-  return 'denom' in assetInfo;
+  return 'native_token' in assetInfo;
 }
 
 export interface Asset {
   info: AssetInfo;
   amount: string;
 }
+
+export const UST: NativeToken = {
+  native_token: {
+    denom: 'uusd'
+  }
+};

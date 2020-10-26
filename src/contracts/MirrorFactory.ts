@@ -51,6 +51,12 @@ export namespace MirrorFactory {
     };
   }
 
+  export interface HandleTerraswapCreationHook {
+    terraswap_creation_hook: {
+      asset_token: AccAddress;
+    };
+  }
+
   export interface HandleWhitelist {
     whitelist: {
       name: string;
@@ -112,6 +118,7 @@ export namespace MirrorFactory {
     | HandlePostInitialize
     | HandleUpdateWeight
     | HandleUpdateConfig
+    | HandleTerraswapCreationHook
     | HandleWhitelist
     | HandlePassCommand
     | HandleMint
@@ -167,6 +174,14 @@ export class MirrorFactory extends ContractClient {
   ): MsgExecuteContract {
     return this.createExecuteMsg({
       update_config: config
+    });
+  }
+
+  public terraswapCreationHook(asset_token: AccAddress): MsgExecuteContract {
+    return this.createExecuteMsg({
+      terraswap_creation_hook: {
+        asset_token
+      }
     });
   }
 

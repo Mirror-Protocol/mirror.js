@@ -1,4 +1,4 @@
-import Mirror from './Mirror';
+import { Mirror } from './Mirror';
 
 describe('Mirror', () => {
   it('tokens', async () => {

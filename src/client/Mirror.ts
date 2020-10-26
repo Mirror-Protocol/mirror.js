@@ -32,16 +32,6 @@ export interface MirrorOptions {
   mirrorToken: AccAddress;
   terraswapFactory: AccAddress;
   assets: Array<AssetOptions>;
-
-  collectorCodeID: number;
-  factoryCodeID: number;
-  govCodeID: number;
-  mintCodeID: number;
-  oracleCodeID: number;
-  stakingCodeID: number;
-  terraswapFactoryCodeID: number;
-  terraswapPairCodeID: number;
-  terraswapTokenCodeID: number;
 }
 
 export const DEFAULT_MIRROR_OPTIONS: MirrorOptions = {
@@ -145,20 +135,10 @@ export const DEFAULT_MIRROR_OPTIONS: MirrorOptions = {
       pair: 'terra195fcntnznx4f676gf383g02yguhync2fsuk03x',
       lpToken: 'terra1svhet09r7ulhyr4vs4fl6j6lnam94q6natumck'
     }
-  ],
-
-  collectorCodeID: 59,
-  factoryCodeID: 60,
-  govCodeID: 71,
-  mintCodeID: 70,
-  oracleCodeID: 63,
-  stakingCodeID: 64,
-  terraswapFactoryCodeID: 65,
-  terraswapPairCodeID: 66,
-  terraswapTokenCodeID: 67
+  ]
 };
 
-export default class Mirror {
+export class Mirror {
   public collector: MirrorCollector;
 
   public factory: MirrorFactory;
@@ -171,6 +151,8 @@ export default class Mirror {
 
   public staking: MirrorStaking;
 
+  public mirrorToken: TerraswapToken;
+
   public terraswapFactory: TerraswapFactory;
 
   public assets: Array<{
@@ -182,7 +164,7 @@ export default class Mirror {
   }>;
 
   constructor(options: Partial<MirrorOptions> = DEFAULT_MIRROR_OPTIONS) {
-    const mirrorOptions = { ...options, ...DEFAULT_MIRROR_OPTIONS };
+    const mirrorOptions = { ...DEFAULT_MIRROR_OPTIONS, ...options };
     const {
       lcd,
       key,
@@ -192,31 +174,52 @@ export default class Mirror {
       mint,
       oracle,
       staking,
+      mirrorToken,
       terraswapFactory,
-      assets,
-      collectorCodeID,
-      factoryCodeID,
-      govCodeID,
-      mintCodeID,
-      oracleCodeID,
-      stakingCodeID,
-      terraswapFactoryCodeID,
-      terraswapPairCodeID,
-      terraswapTokenCodeID
+      assets
     } = mirrorOptions;
 
-    this.collector = new MirrorCollector(collector, collectorCodeID, lcd, key);
-    this.factory = new MirrorFactory(factory, factoryCodeID, lcd, key);
-    this.gov = new MirrorGov(gov, govCodeID, lcd, key);
-    this.mint = new MirrorMint(mint, mintCodeID, lcd, key);
-    this.oracle = new MirrorOracle(oracle, oracleCodeID, lcd, key);
-    this.staking = new MirrorStaking(staking, stakingCodeID, lcd, key);
-    this.terraswapFactory = new TerraswapFactory(
-      terraswapFactory,
-      terraswapFactoryCodeID,
+    this.collector = new MirrorCollector({
+      contractAddress: collector,
       lcd,
       key
-    );
+    });
+    this.factory = new MirrorFactory({
+      contractAddress: factory,
+      lcd,
+      key
+    });
+    this.gov = new MirrorGov({
+      contractAddress: gov,
+      lcd,
+      key
+    });
+    this.mint = new MirrorMint({
+      contractAddress: mint,
+      lcd,
+      key
+    });
+    this.oracle = new MirrorOracle({
+      contractAddress: oracle,
+      lcd,
+      key
+    });
+    this.staking = new MirrorStaking({
+      contractAddress: staking,
+      lcd,
+      key
+    });
+    this.mirrorToken = new TerraswapToken({
+      contractAddress: mirrorToken,
+      lcd,
+      key
+    });
+
+    this.terraswapFactory = new TerraswapFactory({
+      contractAddress: terraswapFactory,
+      lcd,
+      key
+    });
 
     this.assets = [];
 
@@ -224,14 +227,21 @@ export default class Mirror {
       this.assets.push({
         name: asset.name,
         symbol: asset.symbol,
-        token: new TerraswapToken(asset.token, terraswapTokenCodeID, lcd, key),
-        lpToken: new TerraswapToken(
-          asset.lpToken,
-          terraswapTokenCodeID,
+        token: new TerraswapToken({
+          contractAddress: asset.token,
           lcd,
           key
-        ),
-        pair: new TerraswapPair(asset.pair, terraswapPairCodeID, lcd, key)
+        }),
+        lpToken: new TerraswapToken({
+          contractAddress: asset.lpToken,
+          lcd,
+          key
+        }),
+        pair: new TerraswapPair({
+          contractAddress: asset.pair,
+          lcd,
+          key
+        })
       });
     });
   }

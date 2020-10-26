@@ -37,7 +37,7 @@ export namespace TerraswapPair {
   }
 
   export interface HandleProvideLiquidity {
-    provide_liqudity: {
+    provide_liquidity: {
       assets: [Asset, Asset];
     };
   }
@@ -171,7 +171,7 @@ export class TerraswapPair extends ContractClient {
 
     return this.createExecuteMsg(
       {
-        provide_liqudity: {
+        provide_liquidity: {
           assets
         }
       },
@@ -204,6 +204,12 @@ export class TerraswapPair extends ContractClient {
       );
     }
 
+    if (!this.contractAddress) {
+      throw new Error(
+        'contractAddress not provided - unable to execute message'
+      );
+    }
+
     return offer_token.send(
       this.contractAddress,
       offer_asset.amount,
@@ -222,7 +228,14 @@ export class TerraswapPair extends ContractClient {
     amount: Numeric.Input,
     lp_token: TerraswapToken
   ): MsgExecuteContract {
-    return lp_token.send(
+    if (!this.contractAddress) {
+      throw new Error(
+        'contractAddress not provided - unable to execute message'
+      );
+    }
+
+    return lp_token.send.call(
+      this,
       this.contractAddress,
       amount,
       createHookMsg({

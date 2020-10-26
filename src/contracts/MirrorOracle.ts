@@ -136,18 +136,13 @@ export class MirrorOracle extends ContractClient {
     price_infos: Array<{
       asset_token: AccAddress;
       price: Numeric.Input;
-      price_multiplier?: Numeric.Input;
     }>
   ): MsgExecuteContract {
     return this.createExecuteMsg({
       feed_price: {
         price_infos: price_infos.map((pi) => ({
           asset_token: pi.asset_token,
-          price: new Dec(pi.price).toFixed(),
-          price_multiplier:
-            pi.price_multiplier !== undefined
-              ? new Dec(pi.price_multiplier).toFixed()
-              : undefined
+          price: new Dec(pi.price).toFixed()
         }))
       }
     });

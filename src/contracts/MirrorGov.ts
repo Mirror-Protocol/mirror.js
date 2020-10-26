@@ -254,6 +254,12 @@ export class MirrorGov extends ContractClient {
     terraswap_token: TerraswapToken,
     amount: Numeric.Input
   ): MsgExecuteContract {
+    if (!this.contractAddress) {
+      throw new Error(
+        'contractAddress not provided - unable to execute message'
+      );
+    }
+
     return terraswap_token.send(
       this.contractAddress,
       amount,
@@ -271,6 +277,12 @@ export class MirrorGov extends ContractClient {
     link?: string,
     execute_msg?: MirrorGov.ExecuteMsg
   ): MsgExecuteContract {
+    if (!this.contractAddress) {
+      throw new Error(
+        'contractAddress not provided - unable to execute message'
+      );
+    }
+
     return terraswap_token.send(
       this.contractAddress,
       deposit_amount,
