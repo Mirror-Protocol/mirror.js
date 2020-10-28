@@ -15,11 +15,6 @@ export namespace TerraswapToken {
     contract_addr: AccAddress;
   }
 
-  export interface MigrationResponse {
-    token: AccAddress;
-    conversion_rate: string;
-  }
-
   export interface MinterResponse {
     minter: AccAddress;
     cap?: string;
@@ -37,7 +32,6 @@ export namespace TerraswapToken {
     initial_balances: Array<TokenCoin>;
     mint?: MinterResponse;
     init_hook?: InitHook;
-    migration?: MigrationResponse;
   }
 
   export interface Cw20ReceiveMsg {
@@ -171,14 +165,6 @@ export namespace TerraswapToken {
     };
   }
 
-  export interface Migration {
-    migration: EmptyObject;
-  }
-
-  export interface Migrate {
-    migrate: EmptyObject;
-  }
-
   export interface BalanceResponse {
     balance: string;
   }
@@ -209,8 +195,6 @@ export namespace TerraswapToken {
     accounts: Array<AccAddress>;
   }
 
-  export type HookMsg = Migrate;
-
   export type HandleMsg =
     | Receive
     | Transfer
@@ -229,12 +213,7 @@ export namespace TerraswapToken {
     | Minter
     | Allownace
     | AllAllowances
-    | AllAccounts
-    | Migration;
-}
-
-function createHookMsg(msg: TerraswapToken.HookMsg): string {
-  return Buffer.from(JSON.stringify(msg)).toString('base64');
+    | AllAccounts;
 }
 
 export class TerraswapToken extends ContractClient {
@@ -361,19 +340,6 @@ export class TerraswapToken extends ContractClient {
         expires
       }
     });
-  }
-
-  public migrate(
-    targetToken: AccAddress,
-    amount: Numeric.Input
-  ): MsgExecuteContract {
-    return this.send(
-      targetToken,
-      amount,
-      createHookMsg({
-        migrate: {}
-      })
-    );
   }
 
   public async getBalance(

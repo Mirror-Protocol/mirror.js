@@ -31,13 +31,6 @@ export namespace MirrorStaking {
     };
   }
 
-  export interface HandleRegisterMigration {
-    register_migration: {
-      from_token: AccAddress;
-      to_token: AccAddress;
-    };
-  }
-
   export interface HandleUnbond {
     unbond: {
       asset_token: AccAddress;
@@ -48,12 +41,6 @@ export namespace MirrorStaking {
   export interface HandleWithdraw {
     withdraw: {
       asset_token?: AccAddress;
-    };
-  }
-
-  export interface HandleMigrateBonding {
-    migrate_bonding: {
-      asset_token: AccAddress;
     };
   }
 
@@ -86,12 +73,6 @@ export namespace MirrorStaking {
     };
   }
 
-  export interface QueryMigration {
-    migration: {
-      asset_token: AccAddress;
-    };
-  }
-
   export interface ConfigResponse {
     owner: AccAddress;
     mirror_token: AccAddress;
@@ -116,26 +97,15 @@ export namespace MirrorStaking {
     reward_infos: Array<RewardInfoResponseItem>;
   }
 
-  export interface MigrationResponse {
-    from_token: AccAddress;
-    to_token: AccAddress;
-  }
-
   export type HandleMsg =
     | HandleUpdateConfig
     | HandleRegisterAsset
-    | HandleRegisterMigration
     | HandleUnbond
-    | HandleWithdraw
-    | HandleMigrateBonding;
+    | HandleWithdraw;
 
   export type HookMsg = HookBond | HookDepositReward;
 
-  export type QueryMsg =
-    | QueryConfig
-    | QueryPoolInfo
-    | QueryRewardInfo
-    | QueryMigration;
+  export type QueryMsg = QueryConfig | QueryPoolInfo | QueryRewardInfo;
 }
 
 function createHookMsg(msg: MirrorStaking.HookMsg): string {
@@ -170,18 +140,6 @@ export class MirrorStaking extends ContractClient {
     });
   }
 
-  public registerMigration(
-    from_token: AccAddress,
-    to_token: AccAddress
-  ): MsgExecuteContract {
-    return this.createExecuteMsg({
-      register_migration: {
-        from_token,
-        to_token
-      }
-    });
-  }
-
   public unbond(
     asset_token: AccAddress,
     amount: Numeric.Input
@@ -197,14 +155,6 @@ export class MirrorStaking extends ContractClient {
   public withdraw(asset_token?: AccAddress): MsgExecuteContract {
     return this.createExecuteMsg({
       withdraw: {
-        asset_token
-      }
-    });
-  }
-
-  public migrateBonding(asset_token: AccAddress): MsgExecuteContract {
-    return this.createExecuteMsg({
-      migrate_bonding: {
         asset_token
       }
     });
@@ -281,16 +231,6 @@ export class MirrorStaking extends ContractClient {
     return this.query({
       reward_info: {
         staker,
-        asset_token
-      }
-    });
-  }
-
-  public async getMigration(
-    asset_token: AccAddress
-  ): Promise<MirrorStaking.MigrationResponse> {
-    return this.query({
-      migration: {
         asset_token
       }
     });

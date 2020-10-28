@@ -29,13 +29,6 @@ export namespace MirrorOracle {
     };
   }
 
-  export interface HandleMigrateAsset {
-    migrate_asset: {
-      from_token: AccAddress;
-      to_token: AccAddress;
-    };
-  }
-
   export interface PriceInfo {
     asset_token: AccAddress;
     price: string;
@@ -86,7 +79,6 @@ export namespace MirrorOracle {
   export type HandleMsg =
     | HandleUpdateConfig
     | HandleRegisterAsset
-    | HandleMigrateAsset
     | HandleFeedPrice;
 
   export type QueryMsg = QueryConfig | QueryAsset | QueryPrice | QueryPrices;
@@ -116,18 +108,6 @@ export class MirrorOracle extends ContractClient {
       register_asset: {
         asset_token,
         feeder
-      }
-    });
-  }
-
-  public migrateAsset(
-    from_token: AccAddress,
-    to_token: AccAddress
-  ): MsgExecuteContract {
-    return this.createExecuteMsg({
-      migrate_asset: {
-        from_token,
-        to_token
       }
     });
   }

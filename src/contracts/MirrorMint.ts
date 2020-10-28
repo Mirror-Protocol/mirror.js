@@ -46,9 +46,8 @@ export namespace MirrorMint {
 
   export interface HandleRegisterMigration {
     register_migration: {
-      from_token: AccAddress;
-      to_token: AccAddress;
-      conversion_rate: string;
+      asset_token: AccAddress;
+      end_price: string;
     };
   }
 
@@ -78,12 +77,6 @@ export namespace MirrorMint {
     mint: {
       position_idx: string;
       asset: Asset;
-    };
-  }
-
-  export interface HandleMigratePosition {
-    migrate_position: {
-      position_idx: string;
     };
   }
 
@@ -136,12 +129,6 @@ export namespace MirrorMint {
     };
   }
 
-  export interface QueryMigration {
-    migration: {
-      asset_token: AccAddress;
-    };
-  }
-
   export interface ConfigResponse {
     owner: AccAddress;
     oracle: AccAddress;
@@ -153,12 +140,7 @@ export namespace MirrorMint {
     token: AccAddress;
     auction_discount: string;
     min_collateral_ratio: string;
-  }
-
-  export interface MigrationResponse {
-    from_token: AccAddress;
-    to_token: AccAddress;
-    conversion_rate: string;
+    end_price?: string;
   }
 
   export interface PositionResponse {
@@ -180,8 +162,7 @@ export namespace MirrorMint {
     | HandleOpenPosition
     | HandleDeposit
     | HandleWithdraw
-    | HandleMint
-    | HandleMigratePosition;
+    | HandleMint;
 
   export type HookMsg = HookAuction | HookBurn | HookDeposit | HookOpenPosition;
 
@@ -189,8 +170,7 @@ export namespace MirrorMint {
     | QueryConfig
     | QueryAssetConfig
     | QueryPosition
-    | QueryPositions
-    | QueryMigration;
+    | QueryPositions;
 }
 
 function createHookMsg(msg: MirrorMint.HookMsg): string {
@@ -246,15 +226,13 @@ export class MirrorMint extends ContractClient {
   }
 
   public registerMigration(
-    from_token: AccAddress,
-    to_token: AccAddress,
-    conversion_rate: Numeric.Input
+    asset_token: AccAddress,
+    end_price: Numeric.Input
   ): MsgExecuteContract {
     return this.createExecuteMsg({
       register_migration: {
-        from_token,
-        to_token,
-        conversion_rate: new Dec(conversion_rate).toFixed()
+        asset_token,
+        end_price: new Dec(end_price).toFixed()
       }
     });
   }
@@ -410,14 +388,6 @@ export class MirrorMint extends ContractClient {
     );
   }
 
-  public migratePosition(position_idx: Numeric.Input): MsgExecuteContract {
-    return this.createExecuteMsg({
-      migrate_position: {
-        position_idx: new Int(position_idx).toString()
-      }
-    });
-  }
-
   public async getConfig(): Promise<MirrorMint.ConfigResponse> {
     return this.query({
       config: {}
@@ -429,16 +399,6 @@ export class MirrorMint extends ContractClient {
   ): Promise<MirrorMint.AssetConfigResponse> {
     return this.query({
       asset_config: {
-        asset_token
-      }
-    });
-  }
-
-  public async getMigration(
-    asset_token: AccAddress
-  ): Promise<MirrorMint.MigrationResponse> {
-    return this.query({
-      migration: {
         asset_token
       }
     });

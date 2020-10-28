@@ -84,7 +84,7 @@ export namespace MirrorFactory {
       name: string;
       symbol: string;
       from_token: AccAddress;
-      conversion_rate: string;
+      end_price: string;
     };
   }
 
@@ -217,14 +217,14 @@ export class MirrorFactory extends ContractClient {
     name: string,
     symbol: string,
     from_token: AccAddress,
-    conversion_rate: Numeric.Input
+    end_price: Numeric.Input
   ): MsgExecuteContract {
     return this.createExecuteMsg({
       migrate_asset: {
         name,
         symbol,
         from_token,
-        conversion_rate: new Dec(conversion_rate).toString()
+        end_price: new Dec(end_price).toString()
       }
     });
   }
