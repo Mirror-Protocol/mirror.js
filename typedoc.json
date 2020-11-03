@@ -6,7 +6,7 @@
   "excludeExternals": true,
   "exclude": "**/*+(index|.spec|.e2e).ts",
   "theme": "default",
-  "name": "Terra.js",
+  "name": "Mirror.js",
   "excludeNotExported": true,
   "excludePrivate": true,
   "excludeProtected": true,

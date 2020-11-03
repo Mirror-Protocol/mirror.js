@@ -1,5 +1,5 @@
 {
-  "include": ["src", "types", "integration-test/deploy.ts"],
+  "include": ["src"],
   "exclude": ["/node_modules/", "./src/**/*.spec.ts"],
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
