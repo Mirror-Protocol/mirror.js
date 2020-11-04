@@ -1,6 +1,6 @@
 {
   "name": "@mirror-protocol/mirror.js",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "The JavaScript SDK for Mirror Protocol",
   "license": "MIT",
   "author": "Mirror Protocol",

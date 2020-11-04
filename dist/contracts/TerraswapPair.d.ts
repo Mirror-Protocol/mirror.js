@@ -34,12 +34,14 @@ export declare namespace TerraswapPair {
             offer_asset: Asset;
             belief_price?: string;
             max_spread?: string;
+            to?: AccAddress;
         };
     }
     interface HookSwap {
         swap: {
             belief_price?: string;
             max_spread?: string;
+            to?: AccAddress;
         };
     }
     interface HookWithdrawLiquidity {
@@ -101,7 +103,12 @@ export declare class TerraswapPair extends ContractClient {
     init(init_msg: TerraswapPair.InitMsg, migratable: boolean): MsgInstantiateContract;
     updateConfig(config: TerraswapPair.HandleUpdateConfig['update_config']): MsgExecuteContract;
     provideLiquidity(assets: [Asset, Asset]): MsgExecuteContract;
-    swap(offer_asset: Asset, belief_price?: Numeric.Input, max_spread?: Numeric.Input, offer_token?: TerraswapToken): MsgExecuteContract;
+    swap(offer_asset: Asset, params: {
+        belief_price?: Numeric.Input;
+        max_spread?: Numeric.Input;
+        offer_token?: TerraswapToken;
+        to?: AccAddress;
+    }): MsgExecuteContract;
     withdrawLiquidity(amount: Numeric.Input, lp_token: TerraswapToken): MsgExecuteContract;
     getConfigGeneral(): Promise<TerraswapPair.ConfigGeneralResponse>;
     getConfigAsset(): Promise<TerraswapPair.ConfigAssetResponse>;

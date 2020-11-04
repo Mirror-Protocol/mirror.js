@@ -84,30 +84,36 @@ var TerraswapPair = /** @class */ (function (_super) {
             }
         }, coins);
     };
-    TerraswapPair.prototype.swap = function (offer_asset, belief_price, max_spread, offer_token) {
-        if (!offer_token) {
+    TerraswapPair.prototype.swap = function (offer_asset, params) {
+        if (!params.offer_token) {
             if (!Asset_1.isNativeToken(offer_asset.info)) {
                 throw new Error('OfferToken must be provided - unable to swap');
             }
             return this.createExecuteMsg({
                 swap: {
                     offer_asset: offer_asset,
-                    belief_price: belief_price
-                        ? new terra_js_1.Dec(belief_price).toString()
+                    belief_price: params.belief_price
+                        ? new terra_js_1.Dec(params.belief_price).toString()
                         : undefined,
-                    max_spread: max_spread ? new terra_js_1.Dec(max_spread).toString() : undefined
+                    max_spread: params.max_spread
+                        ? new terra_js_1.Dec(params.max_spread).toString()
+                        : undefined,
+                    to: params.to
                 }
             }, [new terra_js_1.Coin(offer_asset.info.native_token.denom, offer_asset.amount)]);
         }
         if (!this.contractAddress) {
             throw new Error('contractAddress not provided - unable to execute message');
         }
-        return offer_token.send(this.contractAddress, offer_asset.amount, createHookMsg({
+        return params.offer_token.send(this.contractAddress, offer_asset.amount, createHookMsg({
             swap: {
-                belief_price: belief_price
-                    ? new terra_js_1.Dec(belief_price).toString()
+                belief_price: params.belief_price
+                    ? new terra_js_1.Dec(params.belief_price).toString()
                     : undefined,
-                max_spread: max_spread ? new terra_js_1.Dec(max_spread).toString() : undefined
+                max_spread: params.max_spread
+                    ? new terra_js_1.Dec(params.max_spread).toString()
+                    : undefined,
+                to: params.to
             }
         }));
     };
