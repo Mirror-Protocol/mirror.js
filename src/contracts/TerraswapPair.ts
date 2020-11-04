@@ -47,6 +47,7 @@ export namespace TerraswapPair {
       offer_asset: Asset;
       belief_price?: string;
       max_spread?: string;
+      to?: AccAddress;
     };
   }
 
@@ -54,6 +55,7 @@ export namespace TerraswapPair {
     swap: {
       belief_price?: string;
       max_spread?: string;
+      to?: AccAddress;
     };
   }
 
@@ -181,11 +183,14 @@ export class TerraswapPair extends ContractClient {
 
   public swap(
     offer_asset: Asset,
-    belief_price?: Numeric.Input,
-    max_spread?: Numeric.Input,
-    offer_token?: TerraswapToken
+    params: {
+      belief_price?: Numeric.Input;
+      max_spread?: Numeric.Input;
+      offer_token?: TerraswapToken;
+      to?: AccAddress;
+    }
   ): MsgExecuteContract {
-    if (!offer_token) {
+    if (!params.offer_token) {
       if (!isNativeToken(offer_asset.info)) {
         throw new Error('OfferToken must be provided - unable to swap');
       }
@@ -194,10 +199,13 @@ export class TerraswapPair extends ContractClient {
         {
           swap: {
             offer_asset,
-            belief_price: belief_price
-              ? new Dec(belief_price).toString()
+            belief_price: params.belief_price
+              ? new Dec(params.belief_price).toString()
               : undefined,
-            max_spread: max_spread ? new Dec(max_spread).toString() : undefined
+            max_spread: params.max_spread
+              ? new Dec(params.max_spread).toString()
+              : undefined,
+            to: params.to
           }
         },
         [new Coin(offer_asset.info.native_token.denom, offer_asset.amount)]
@@ -210,15 +218,18 @@ export class TerraswapPair extends ContractClient {
       );
     }
 
-    return offer_token.send(
+    return params.offer_token.send(
       this.contractAddress,
       offer_asset.amount,
       createHookMsg({
         swap: {
-          belief_price: belief_price
-            ? new Dec(belief_price).toString()
+          belief_price: params.belief_price
+            ? new Dec(params.belief_price).toString()
             : undefined,
-          max_spread: max_spread ? new Dec(max_spread).toString() : undefined
+          max_spread: params.max_spread
+            ? new Dec(params.max_spread).toString()
+            : undefined,
+          to: params.to
         }
       })
     );

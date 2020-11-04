@@ -230,7 +230,7 @@ async function main() {
     mirror2.assets[AAPL_INDEX].pair.swap({
       info: { native_token: { denom: 'uusd' } },
       amount: int`1000000000`.toString()
-    })
+    }, {})
   );
 
   const balanceRes2 = await mirror2.assets[AAPL_INDEX].token.getBalance();
