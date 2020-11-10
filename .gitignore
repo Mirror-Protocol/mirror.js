@@ -1,1 +1,9 @@
-node_modules
+*.log
+.DS_Store
+
+.idea/
+.vscode/
+coverage/
+
+node_modules/
+dist/
