@@ -9,9 +9,8 @@ import {
   Coin
 } from '@terra-money/terra.js';
 import { EmptyObject } from '../utils/EmptyObject';
-import { AssetInfo, Asset, isNativeToken } from '../utils/Asset';
+import { AssetInfo, Asset, Token, isNativeToken } from '../utils/Asset';
 import { ContractClient } from './ContractClient';
-import { TerraswapToken } from './TerraswapToken';
 
 export namespace MirrorMint {
   export interface InitMsg {
@@ -53,7 +52,7 @@ export namespace MirrorMint {
 
   export interface HandleOpenPosition {
     open_position: {
-      collateral: Asset;
+      collateral: Asset<AssetInfo>;
       asset_info: AssetInfo;
       collateral_ratio: string;
     };
@@ -62,21 +61,21 @@ export namespace MirrorMint {
   export interface HandleDeposit {
     deposit: {
       position_idx: string;
-      collateral: Asset;
+      collateral: Asset<AssetInfo>;
     };
   }
 
   export interface HandleWithdraw {
     withdraw: {
       position_idx: string;
-      collateral: Asset;
+      collateral: Asset<AssetInfo>;
     };
   }
 
   export interface HandleMint {
     mint: {
       position_idx: string;
-      asset: Asset;
+      asset: Asset<Token>;
     };
   }
 
@@ -146,8 +145,8 @@ export namespace MirrorMint {
   export interface PositionResponse {
     idx: string;
     owner: AccAddress;
-    collateral: Asset;
-    asset: Asset;
+    collateral: Asset<AssetInfo>;
+    asset: Asset<Token>;
   }
 
   export interface PositionsResponse {
@@ -238,18 +237,11 @@ export class MirrorMint extends ContractClient {
   }
 
   public openPosition(
-    collateral: Asset,
+    collateral: Asset<AssetInfo>,
     asset_info: AssetInfo,
-    collateral_ratio: Numeric.Input,
-    collateral_token?: TerraswapToken
+    collateral_ratio: Numeric.Input
   ): MsgExecuteContract {
-    if (!collateral_token) {
-      if (!isNativeToken(collateral.info)) {
-        throw new Error(
-          'CollateralToken must be provided - unable to open position'
-        );
-      }
-
+    if (isNativeToken(collateral.info)) {
       return this.createExecuteMsg(
         {
           open_position: {
@@ -260,39 +252,36 @@ export class MirrorMint extends ContractClient {
         },
         [new Coin(collateral.info.native_token.denom, collateral.amount)]
       );
-    }
+    } else {
+      if (!this.contractAddress) {
+        throw new Error(
+          'Mirror Mint contractAddress not provided - needed for openPosition()'
+        );
+      }
 
-    if (!this.contractAddress) {
-      throw new Error(
-        'contractAddress not provided - unable to execute message'
+      const collateral_token = this.getTerraswapToken(
+        collateral.info.token.contract_addr
+      );
+
+      return collateral_token.send.call(
+        this,
+        this.contractAddress,
+        collateral.amount,
+        createHookMsg({
+          open_position: {
+            asset_info,
+            collateral_ratio: new Dec(collateral_ratio).toFixed()
+          }
+        })
       );
     }
-
-    return collateral_token.send.call(
-      this,
-      this.contractAddress,
-      collateral.amount,
-      createHookMsg({
-        open_position: {
-          asset_info,
-          collateral_ratio: new Dec(collateral_ratio).toFixed()
-        }
-      })
-    );
   }
 
   public deposit(
     position_idx: Numeric.Input,
-    collateral: Asset,
-    collateral_token?: TerraswapToken
+    collateral: Asset<AssetInfo>
   ): MsgExecuteContract {
-    if (!collateral_token) {
-      if (!isNativeToken(collateral.info)) {
-        throw new Error(
-          'CollateralToken must be provided - unable to open position'
-        );
-      }
-
+    if (isNativeToken(collateral.info)) {
       return this.createExecuteMsg(
         {
           deposit: {
@@ -302,29 +291,33 @@ export class MirrorMint extends ContractClient {
         },
         [new Coin(collateral.info.native_token.denom, collateral.amount)]
       );
-    }
+    } else {
+      if (!this.contractAddress) {
+        throw new Error(
+          'Mirror Mint contractAddress not provided - needed for deposit()'
+        );
+      }
 
-    if (!this.contractAddress) {
-      throw new Error(
-        'contractAddress not provided - unable to execute message'
+      const collateral_token = this.getTerraswapToken(
+        collateral.info.token.contract_addr
+      );
+
+      return collateral_token.send.call(
+        this,
+        this.contractAddress,
+        collateral.amount,
+        createHookMsg({
+          deposit: {
+            position_idx: new Int(position_idx).toString()
+          }
+        })
       );
     }
-
-    return collateral_token.send.call(
-      this,
-      this.contractAddress,
-      collateral.amount,
-      createHookMsg({
-        deposit: {
-          position_idx: new Int(position_idx).toString()
-        }
-      })
-    );
   }
 
   public withdraw(
     position_idx: Numeric.Input,
-    collateral: Asset
+    collateral: Asset<AssetInfo>
   ): MsgExecuteContract {
     return this.createExecuteMsg({
       withdraw: {
@@ -334,7 +327,10 @@ export class MirrorMint extends ContractClient {
     });
   }
 
-  public mint(position_idx: Numeric.Input, asset: Asset): MsgExecuteContract {
+  public mint(
+    position_idx: Numeric.Input,
+    asset: Asset<Token>
+  ): MsgExecuteContract {
     return this.createExecuteMsg({
       mint: {
         position_idx: new Int(position_idx).toString(),
@@ -345,14 +341,15 @@ export class MirrorMint extends ContractClient {
 
   public burn(
     position_idx: Numeric.Input,
-    asset: Asset,
-    asset_token: TerraswapToken
+    asset: Asset<Token>
   ): MsgExecuteContract {
     if (!this.contractAddress) {
       throw new Error(
-        'contractAddress not provided - unable to execute message'
+        'Mirror Mint contractAddress not provided - needed for burn()'
       );
     }
+
+    const asset_token = this.getTerraswapToken(asset.info.token.contract_addr);
 
     return asset_token.send.call(
       this,
@@ -368,14 +365,15 @@ export class MirrorMint extends ContractClient {
 
   public auction(
     position_idx: Numeric.Input,
-    asset: Asset,
-    asset_token: TerraswapToken
+    asset: Asset<Token>
   ): MsgExecuteContract {
     if (!this.contractAddress) {
       throw new Error(
-        'contractAddress not provided - unable to execute message'
+        'Mirror Mint contractAddress not provided - needed for auction()'
       );
     }
+
+    const asset_token = this.getTerraswapToken(asset.info.token.contract_addr);
 
     return asset_token.send(
       this.contractAddress,

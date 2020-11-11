@@ -19,8 +19,8 @@ export function isNativeToken(assetInfo: AssetInfo): assetInfo is NativeToken {
   return 'native_token' in assetInfo;
 }
 
-export interface Asset {
-  info: AssetInfo;
+export interface Asset<T extends AssetInfo> {
+  info: T;
   amount: string;
 }
 

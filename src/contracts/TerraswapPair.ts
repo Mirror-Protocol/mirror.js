@@ -38,13 +38,13 @@ export namespace TerraswapPair {
 
   export interface HandleProvideLiquidity {
     provide_liquidity: {
-      assets: [Asset, Asset];
+      assets: [Asset<AssetInfo>, Asset<AssetInfo>];
     };
   }
 
   export interface HandleSwap {
     swap: {
-      offer_asset: Asset;
+      offer_asset: Asset<AssetInfo>;
       belief_price?: string;
       max_spread?: string;
       to?: AccAddress;
@@ -81,13 +81,13 @@ export namespace TerraswapPair {
 
   export interface QuerySimulation {
     simulation: {
-      offer_asset: Asset;
+      offer_asset: Asset<AssetInfo>;
     };
   }
 
   export interface QueryReverseSimulation {
     reverse_simulation: {
-      ask_asset: Asset;
+      ask_asset: Asset<AssetInfo>;
     };
   }
 
@@ -107,7 +107,7 @@ export namespace TerraswapPair {
   }
 
   export interface PoolResponse {
-    assets: [Asset, Asset];
+    assets: [Asset<AssetInfo>, Asset<AssetInfo>];
     total_share: string;
   }
 
@@ -161,7 +161,9 @@ export class TerraswapPair extends ContractClient {
 
   /// CONTRACT - If providing asset is not native token,
   /// must increase allowance first before using it
-  public provideLiquidity(assets: [Asset, Asset]): MsgExecuteContract {
+  public provideLiquidity(
+    assets: [Asset<AssetInfo>, Asset<AssetInfo>]
+  ): MsgExecuteContract {
     let coins: Coins = new Coins([]);
     assets.forEach((asset) => {
       if (isNativeToken(asset.info)) {
@@ -182,7 +184,7 @@ export class TerraswapPair extends ContractClient {
   }
 
   public swap(
-    offer_asset: Asset,
+    offer_asset: Asset<AssetInfo>,
     params: {
       belief_price?: Numeric.Input;
       max_spread?: Numeric.Input;
@@ -282,7 +284,7 @@ export class TerraswapPair extends ContractClient {
   }
 
   public async getSimulation(
-    offer_asset: Asset
+    offer_asset: Asset<AssetInfo>
   ): Promise<TerraswapPair.SimulationResponse> {
     return this.query({
       simulation: {
@@ -292,7 +294,7 @@ export class TerraswapPair extends ContractClient {
   }
 
   public async getReverseSimulation(
-    ask_asset: Asset
+    ask_asset: Asset<AssetInfo>
   ): Promise<TerraswapPair.ReverseSimulationResponse> {
     return this.query({
       reverse_simulation: {
