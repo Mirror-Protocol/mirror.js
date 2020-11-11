@@ -86,12 +86,12 @@ export async function deployContracts(): Promise<{
   const mirrorToken = await instantiate(createMirrorToken(factory));
   const gov = await instantiate(createGov(mirrorToken));
   const oracle = await instantiate(createOracle(factory));
-  const mint = await instantiate(createMint(factory, oracle));
-  const staking = await instantiate(createStaking(factory, mirrorToken));
   const terraswapFactory = await instantiate(createTerraswapFactory());
   const collector = await instantiate(
     createCollector(gov, terraswapFactory, mirrorToken)
   );
+  const mint = await instantiate(createMint(factory, oracle, collector));
+  const staking = await instantiate(createStaking(factory, mirrorToken));
 
   const mirror = new Mirror({
     factory,
@@ -108,7 +108,7 @@ export async function deployContracts(): Promise<{
   // Create MIR-UST pair
   console.log('CREATE TERRASWAP_PAIR for MIR-UST');
   const mirrorPairCreationLogs = await execute(
-    mirror.terraswapFactory.createPair(factory, collector, '0.0025', '0.005', [
+    mirror.terraswapFactory.createPair([
       UST,
       {
         token: {
@@ -156,9 +156,6 @@ export async function deployContracts(): Promise<{
   console.log('WHITELIST AAPL');
   const whitelistAAPLLogs = await execute(
     mirror.factory.whitelist('APPLE Derivative', 'AAPL', test1.key.accAddress, {
-      weight: '1.0',
-      lp_commission: '0.0025',
-      owner_commission: '0.005',
       auction_discount: '0.2',
       min_collateral_ratio: '1.5'
     })
@@ -194,9 +191,12 @@ export async function deployContracts(): Promise<{
 const createFactory = () =>
   new MirrorFactory({ codeID: codeIDs['mirror_factory'], key: test1.key }).init(
     {
-      mint_per_block: '10000000',
       token_code_id: codeIDs['terraswap_token'],
-      base_denom: UST.native_token.denom
+      base_denom: UST.native_token.denom,
+      distribution_schedule: [
+        [0, 10, '10000000000'],
+        [10, 20, '20000000000']
+      ]
     },
     false
   );
@@ -210,10 +210,7 @@ const createMirrorToken = (factory: string) =>
       name: 'Mirror Token',
       symbol: 'MIR',
       decimals: 6,
-      initial_balances: [],
-      mint: {
-        minter: factory
-      }
+      initial_balances: [{ address: factory, amount: '30000000000' }]
     },
     false
   );
@@ -241,12 +238,12 @@ const createOracle = (factory: string) =>
   }).init(
     {
       owner: factory,
-      base_asset_info: UST
+      base_asset: UST.native_token.denom
     },
     false
   );
 
-const createMint = (factory: string, oracle: string) =>
+const createMint = (factory: string, oracle: string, collector: string) =>
   new MirrorMint({
     codeID: codeIDs['mirror_mint'],
     key: test1.key
@@ -254,8 +251,10 @@ const createMint = (factory: string, oracle: string) =>
     {
       owner: factory,
       oracle: oracle,
-      base_asset_info: UST,
-      token_code_id: codeIDs['terraswap_token']
+      collector: collector,
+      base_denom: UST.native_token.denom,
+      token_code_id: codeIDs['terraswap_token'],
+      protocol_fee_rate: '0.015'
     },
     false
   );

@@ -2,10 +2,12 @@ import {
   AccAddress,
   Coins,
   MsgExecuteContract,
-  MsgInstantiateContract
+  MsgInstantiateContract,
+  Numeric
 } from '@terra-money/terra.js';
 import { EmptyObject } from '../utils/EmptyObject';
 import { ContractClient } from './ContractClient';
+import { TerraswapToken } from './TerraswapToken';
 
 export namespace MirrorCollector {
   export interface InitMsg {
@@ -25,6 +27,10 @@ export namespace MirrorCollector {
     send: EmptyObject;
   }
 
+  export interface HookDepositReward {
+    deposit_reward: EmptyObject;
+  }
+
   export interface QueryConfig {
     config: EmptyObject;
   }
@@ -37,7 +43,12 @@ export namespace MirrorCollector {
   }
 
   export type HandleMsg = HandleConvert | HandleSend;
+  export type HookMsg = HookDepositReward;
   export type QueryMsg = QueryConfig;
+}
+
+function createHookMsg(msg: MirrorCollector.HookMsg): string {
+  return Buffer.from(JSON.stringify(msg)).toString('base64');
 }
 
 export class MirrorCollector extends ContractClient {
@@ -60,6 +71,26 @@ export class MirrorCollector extends ContractClient {
     return this.createExecuteMsg({
       send: {}
     });
+  }
+
+  public depositReward(
+    asset_token: TerraswapToken,
+    amount: Numeric.Input
+  ): MsgExecuteContract {
+    if (!this.contractAddress) {
+      throw new Error(
+        'contractAddress not provided - unable to execute message'
+      );
+    }
+
+    return asset_token.send.call(
+      this,
+      this.contractAddress,
+      amount,
+      createHookMsg({
+        deposit_reward: {}
+      })
+    );
   }
 
   public async getConfig(): Promise<MirrorCollector.ConfigResponse> {

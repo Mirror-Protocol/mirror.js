@@ -8,6 +8,7 @@ import {
 import { deployContracts } from './deploy';
 import { Mirror } from '../src/client';
 import { strict as assert } from 'assert';
+import { UST } from '../src/utils/Asset';
 
 const terra = new LocalTerra();
 const { test1, test2 } = terra.wallets;
@@ -47,35 +48,35 @@ async function main() {
     })
   );
 
-  //   const {
-  //     collector,
-  //     factory,
-  //     gov,
-  //     mint,
-  //     staking,
-  //     oracle,
-  //     terraswapFactory,
-  //     mirrorToken,
-  //     mirrorLpToken,
-  //     mirrorPair,
-  //     appleLpToken,
-  //     applePair,
-  //     appleToken
-  //   } = {
-  //     collector: 'terra1ysfj3mgr2msdj60vvssdvydlqfm2sstt3zev3m',
-  //     factory: 'terra15rpmhyw0072r7yd5q7zk2ftrq8wzgj9kvl6geh',
-  //     gov: 'terra1r7sw6swq5r0xnzerwk69wv8wyqaqvqrf7qjgsj',
-  //     mint: 'terra1xkaw6uxscqd0taujn97atjjuc8ualdanz8lz0a',
-  //     staking: 'terra1yhh7ya8jfj7zpjdmkppka38njjft9yqxwd52zy',
-  //     oracle: 'terra1w6sh8y6zydjxfmasw5dwdt9feertwd36z9lt4z',
-  //     terraswapFactory: 'terra1d3jmemtx7jjww2nlleklaadlvgrsd26st9e33g',
-  //     mirrorToken: 'terra192rdskzvdxrkwdve2l7pe46aw45ejz7qlexx3p',
-  //     mirrorLpToken: 'terra1x3he4dae9guz2xasq7vlahe4h65fw6z8anu2v7',
-  //     mirrorPair: 'terra1nhwldz5sjg3svf4kancnhzt4l9h2h9yuf8jrfj',
-  //     appleLpToken: 'terra1xw0ch3mugaypkx3lal9cha85jqn3hsl3udy97c',
-  //     applePair: 'terra1qhdl2u7xa54x0dn3jfy5dmjmpl2ec8zlm9mtzp',
-  //     appleToken: 'terra1qgtjkmq43xumzu63q6tvfhyn7yganv2xeuttgz'
-  //   };
+  // const {
+  //   collector,
+  //   factory,
+  //   gov,
+  //   mint,
+  //   staking,
+  //   oracle,
+  //   terraswapFactory,
+  //   mirrorToken,
+  //   mirrorLpToken,
+  //   mirrorPair,
+  //   appleLpToken,
+  //   applePair,
+  //   appleToken
+  // } = {
+  //   collector: 'terra1prccergxz635x00knr57r3cvkxxfp2gzzzn5rf',
+  //   factory: 'terra1ydzv3lktgxn800wn9w5d0nv6kmuxrgmcrm0qne',
+  //   gov: 'terra1mswnp32ve3pfpxhx8lvgsxpqxp3y455n5kaers',
+  //   mint: 'terra1f8hczm8knayrx08rkr62c9ndl7d3sjzvc58hhw',
+  //   staking: 'terra12sa7ytya28f9d20szv6awk6ck5puzhcdrtqvcz',
+  //   oracle: 'terra17ye528kgrvluz85djktmy3fnz7mpjlrdstvjs0',
+  //   terraswapFactory: 'terra1sj33zc8v60tl58rgds9d8m8xg72aglxvqdr5d9',
+  //   mirrorToken: 'terra137qrrar7q4a0n3n5czv2l0efr35utjjxd8v8vz',
+  //   mirrorLpToken: 'terra1grh8tvd2nu02dq7shkz85senkpxfvaewsmcq7h',
+  //   mirrorPair: 'terra18c797089mg4rwatfnga2ypkc6ukj0kah3hvat9',
+  //   appleLpToken: 'terra1my765x5ymqh4xrn2228lv34d00ph5qh8jmw73z',
+  //   applePair: 'terra1rkqtl95rgsrh3xq95u9382ww5x0rxvh4gvc8ag',
+  //   appleToken: 'terra1gmqjyzdr447uehg8k27g6unyd4jfn5n0zsu5x2'
+  // };
 
   const MIR_INDEX = 0;
   const AAPL_INDEX = 1;
@@ -227,14 +228,17 @@ async function main() {
   console.log('Buy APPL');
   await execute(
     test2,
-    mirror2.assets[AAPL_INDEX].pair.swap({
-      info: { native_token: { denom: 'uusd' } },
-      amount: int`1000000000`.toString()
-    }, {})
+    mirror2.assets[AAPL_INDEX].pair.swap(
+      {
+        info: { native_token: { denom: 'uusd' } },
+        amount: int`1000000000`.toString()
+      },
+      {}
+    )
   );
 
   const balanceRes2 = await mirror2.assets[AAPL_INDEX].token.getBalance();
-  assert(balanceRes2.balance === '850716');
+  assert(balanceRes2.balance === '854572');
 
   // Update Oracle price to hold an auction
   console.log('Update oracle price');
@@ -248,8 +252,11 @@ async function main() {
     ])
   );
 
-  const priceRes = await mirror.oracle.getPrice(appleToken);
-  assert(priceRes.price === '1200');
+  const priceRes = await mirror.oracle.getPrice(
+    appleToken,
+    UST.native_token.denom
+  );
+  assert(priceRes.rate === '1200');
 
   // Liquidiate auction with 0.854573 APPL
   console.log('Liquidiate Auction');
@@ -259,7 +266,7 @@ async function main() {
       1,
       {
         info: { token: { contract_addr: appleToken } },
-        amount: int`850716`.toString()
+        amount: int`854572`.toString()
       },
       mirror2.assets[AAPL_INDEX].token
     )
@@ -270,7 +277,7 @@ async function main() {
   console.log('Mint mirror token & claim reward');
   await execute(
     test1,
-    mirror.factory.mint(appleToken),
+    mirror.factory.distribute(),
     mirror.staking.withdraw(appleToken)
   );
 
@@ -313,7 +320,7 @@ async function main() {
   console.log('Mint mirror token & claim reward');
   await execute(
     test1,
-    mirror.factory.mint(mirrorToken),
+    mirror.factory.distribute(),
     mirror.staking.withdraw(mirrorToken)
   );
 }

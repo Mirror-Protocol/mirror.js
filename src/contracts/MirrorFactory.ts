@@ -11,15 +11,13 @@ import { ContractClient } from './ContractClient';
 
 export namespace MirrorFactory {
   export interface InitMsg {
-    mint_per_block: string;
     token_code_id: number;
     base_denom: string;
+    // [start_elapsed, end_elapsed, distribution_amount]
+    distribution_schedule: Array<[number, number, string]>;
   }
 
   export interface Params {
-    weight: string;
-    lp_commission: string;
-    owner_commission: string;
     auction_discount: string;
     min_collateral_ratio: string;
   }
@@ -39,15 +37,9 @@ export namespace MirrorFactory {
   export interface HandleUpdateConfig {
     update_config: {
       owner?: AccAddress;
-      mint_per_block?: string;
       token_code_id?: number;
-    };
-  }
-
-  export interface HandleUpdateWeight {
-    update_weight: {
-      asset_token: AccAddress;
-      weight: string;
+      // [start_elapsed, end_elapsed, distribution_amount]
+      distribution_schedule?: Array<[number, number, string]>;
     };
   }
 
@@ -73,10 +65,8 @@ export namespace MirrorFactory {
     };
   }
 
-  export interface HandleMint {
-    mint: {
-      asset_token: AccAddress;
-    };
+  export interface HandleDistribute {
+    distribute: EmptyObject;
   }
 
   export interface HandleMigrateAsset {
@@ -93,7 +83,7 @@ export namespace MirrorFactory {
   }
 
   export interface QueryDistributionInfo {
-    distribution_info: { asset_token: AccAddress };
+    distribution_info: EmptyObject;
   }
 
   export interface ConfigResponse {
@@ -104,24 +94,24 @@ export namespace MirrorFactory {
     commission_collector: AccAddress;
     oracle_contract: AccAddress;
     terraswap_factory: AccAddress;
-    mint_per_block: string;
     token_code_id: number;
     base_denom: string;
+    // [start_elapsed, end_elapsed, distribution_amount]
+    distribution_schedule: Array<[number, number, string]>;
   }
 
   export interface DistributionInfoResponse {
-    weight: string;
-    last_height: number;
+    weight: Array<[AccAddress, number]>;
+    last_distributed: number;
   }
 
   export type HandleMsg =
     | HandlePostInitialize
-    | HandleUpdateWeight
     | HandleUpdateConfig
     | HandleTerraswapCreationHook
     | HandleWhitelist
     | HandlePassCommand
-    | HandleMint
+    | HandleDistribute
     | HandleMigrateAsset;
 
   export type QueryMsg = QueryConfig | QueryDistributionInfo;
@@ -157,18 +147,6 @@ export class MirrorFactory extends ContractClient {
     });
   }
 
-  public updateWeight(
-    asset_token: AccAddress,
-    weight: Dec
-  ): MsgExecuteContract {
-    return this.createExecuteMsg({
-      update_weight: {
-        asset_token,
-        weight: weight.toFixed()
-      }
-    });
-  }
-
   public updateConfig(
     config: MirrorFactory.HandleUpdateConfig['update_config']
   ): MsgExecuteContract {
@@ -190,9 +168,6 @@ export class MirrorFactory extends ContractClient {
     symbol: string,
     oracle_feeder: AccAddress,
     params: {
-      weight: Numeric.Input;
-      lp_commission: Numeric.Input;
-      owner_commission: Numeric.Input;
       auction_discount: Numeric.Input;
       min_collateral_ratio: Numeric.Input;
     }
@@ -203,9 +178,6 @@ export class MirrorFactory extends ContractClient {
         symbol,
         oracle_feeder,
         params: {
-          weight: new Dec(params.weight).toFixed(),
-          lp_commission: new Dec(params.lp_commission).toFixed(),
-          owner_commission: new Dec(params.owner_commission).toFixed(),
           auction_discount: new Dec(params.auction_discount).toFixed(),
           min_collateral_ratio: new Dec(params.min_collateral_ratio).toFixed()
         }
@@ -238,11 +210,9 @@ export class MirrorFactory extends ContractClient {
     });
   }
 
-  public mint(asset_token: AccAddress): MsgExecuteContract {
+  public distribute(): MsgExecuteContract {
     return this.createExecuteMsg({
-      mint: {
-        asset_token
-      }
+      distribute: {}
     });
   }
 
@@ -252,11 +222,11 @@ export class MirrorFactory extends ContractClient {
     });
   }
 
-  public async getDistributionInfo(
-    asset_token: AccAddress
-  ): Promise<MirrorFactory.DistributionInfoResponse> {
+  public async getDistributionInfo(): Promise<
+    MirrorFactory.DistributionInfoResponse
+  > {
     return this.query({
-      distribution_info: { asset_token }
+      distribution_info: {}
     });
   }
 

@@ -13,7 +13,7 @@ import { EmptyObject } from '../utils/EmptyObject';
 export namespace MirrorOracle {
   export interface InitMsg {
     owner: AccAddress;
-    base_asset_info: AssetInfo;
+    base_asset: string;
   }
 
   export interface HandleUpdateConfig {
@@ -29,14 +29,9 @@ export namespace MirrorOracle {
     };
   }
 
-  export interface PriceInfo {
-    asset_token: AccAddress;
-    price: string;
-  }
-
   export interface HandleFeedPrice {
     feed_price: {
-      price_infos: Array<PriceInfo>;
+      prices: Array<[AccAddress, string]>;
     };
   }
 
@@ -44,36 +39,50 @@ export namespace MirrorOracle {
     config: EmptyObject;
   }
 
-  export interface QueryAsset {
-    asset: { asset_token: AccAddress };
+  export interface QueryFeeder {
+    feeder: {
+      asset_token: AccAddress;
+    };
   }
 
   export interface QueryPrice {
-    price: { asset_token: AccAddress };
+    price: {
+      base_asset: string;
+      quote_asset: string;
+    };
   }
 
   export interface QueryPrices {
-    prices: EmptyObject;
+    prices: {
+      start_after?: AccAddress;
+      limit?: number;
+    };
   }
 
   export interface ConfigResponse {
     owner: AccAddress;
-    base_asset_info: AssetInfo;
+    base_asset: string;
   }
 
-  export interface AssetResponse {
+  export interface FeederResponse {
     asset_token: AccAddress;
     feeder: AccAddress;
   }
 
   export interface PriceResponse {
+    rate: string;
+    last_updated_base: number;
+    last_updated_quote: number;
+  }
+
+  export interface PricesResponseElem {
     price: string;
-    last_update_time: number;
     asset_token: AccAddress;
+    last_updated_time: number;
   }
 
   export interface PricesResponse {
-    prices: Array<PriceResponse>;
+    prices: Array<PricesResponseElem>;
   }
 
   export type HandleMsg =
@@ -81,7 +90,7 @@ export namespace MirrorOracle {
     | HandleRegisterAsset
     | HandleFeedPrice;
 
-  export type QueryMsg = QueryConfig | QueryAsset | QueryPrice | QueryPrices;
+  export type QueryMsg = QueryConfig | QueryFeeder | QueryPrice | QueryPrices;
 }
 
 export class MirrorOracle extends ContractClient {
@@ -113,17 +122,14 @@ export class MirrorOracle extends ContractClient {
   }
 
   public feedPrice(
-    price_infos: Array<{
+    prices: Array<{
       asset_token: AccAddress;
       price: Numeric.Input;
     }>
   ): MsgExecuteContract {
     return this.createExecuteMsg({
       feed_price: {
-        price_infos: price_infos.map((pi) => ({
-          asset_token: pi.asset_token,
-          price: new Dec(pi.price).toFixed()
-        }))
+        prices: prices.map((p) => [p.asset_token, new Dec(p.price).toFixed()])
       }
     });
   }
@@ -134,25 +140,29 @@ export class MirrorOracle extends ContractClient {
     });
   }
 
-  public async getAsset(
+  public async getFeeder(
     asset_token: AccAddress
-  ): Promise<MirrorOracle.AssetResponse> {
+  ): Promise<MirrorOracle.FeederResponse> {
     return this.query({
-      asset: { asset_token }
+      feeder: { asset_token }
     });
   }
 
   public async getPrice(
-    asset_token: AccAddress
+    base_asset: string,
+    quote_asset: string
   ): Promise<MirrorOracle.PriceResponse> {
     return this.query({
-      price: { asset_token }
+      price: { base_asset, quote_asset }
     });
   }
 
-  public async getPrices(): Promise<MirrorOracle.PricesResponse> {
+  public async getPrices(
+    start_after?: AccAddress,
+    limit?: number
+  ): Promise<MirrorOracle.PricesResponse> {
     return this.query({
-      prices: {}
+      prices: { start_after, limit }
     });
   }
 
