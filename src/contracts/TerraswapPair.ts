@@ -19,26 +19,15 @@ export namespace TerraswapPair {
   }
 
   export interface InitMsg {
-    owner: AccAddress;
-    commission_collector: AccAddress;
     asset_infos: [AssetInfo, AssetInfo];
-    lp_commission: string;
-    owner_commission: string;
     token_code_id: number;
     init_hook?: InitHook;
-  }
-
-  export interface HandleUpdateConfig {
-    update_config: {
-      owner?: AccAddress;
-      lp_commission?: string;
-      owner_commission?: string;
-    };
   }
 
   export interface HandleProvideLiquidity {
     provide_liquidity: {
       assets: [Asset<AssetInfo>, Asset<AssetInfo>];
+      slippage_tolerance?: string;
     };
   }
 
@@ -63,16 +52,8 @@ export namespace TerraswapPair {
     withdraw_liquidity: EmptyObject;
   }
 
-  export interface QueryConfigGeneral {
-    config_general: EmptyObject;
-  }
-
-  export interface QueryConfigAsset {
-    config_asset: EmptyObject;
-  }
-
-  export interface QueryConfigSwap {
-    config_swap: EmptyObject;
+  export interface QueryPair {
+    pair: EmptyObject;
   }
 
   export interface QueryPool {
@@ -91,19 +72,10 @@ export namespace TerraswapPair {
     };
   }
 
-  export interface ConfigGeneralResponse {
-    owner: AccAddress;
+  export interface PairResponse {
+    asset_infos: [AssetInfo, AssetInfo];
+    contract_addr: AccAddress;
     liquidity_token: AccAddress;
-    commission_collector: AccAddress;
-  }
-
-  export interface ConfigSwapResponse {
-    lp_commission: string;
-    owner_commission: string;
-  }
-
-  export interface ConfigAssetResponse {
-    infos: [AssetInfo, AssetInfo];
   }
 
   export interface PoolResponse {
@@ -123,17 +95,12 @@ export namespace TerraswapPair {
     commission_amount: string;
   }
 
-  export type HandleMsg =
-    | HandleUpdateConfig
-    | HandleProvideLiquidity
-    | HandleSwap;
+  export type HandleMsg = HandleProvideLiquidity | HandleSwap;
 
   export type HookMsg = HookSwap | HookWithdrawLiquidity;
 
   export type QueryMsg =
-    | QueryConfigGeneral
-    | QueryConfigAsset
-    | QueryConfigSwap
+    | QueryPair
     | QueryPool
     | QuerySimulation
     | QueryReverseSimulation;
@@ -149,14 +116,6 @@ export class TerraswapPair extends ContractClient {
     migratable: boolean
   ): MsgInstantiateContract {
     return this.createInstantiateMsg(init_msg, {}, migratable);
-  }
-
-  public updateConfig(
-    config: TerraswapPair.HandleUpdateConfig['update_config']
-  ): MsgExecuteContract {
-    return this.createExecuteMsg({
-      update_config: config
-    });
   }
 
   /// CONTRACT - If providing asset is not native token,
@@ -257,23 +216,9 @@ export class TerraswapPair extends ContractClient {
     );
   }
 
-  public async getConfigGeneral(): Promise<
-    TerraswapPair.ConfigGeneralResponse
-  > {
+  public async getPair(): Promise<TerraswapPair.PairResponse> {
     return this.query({
-      config_general: {}
-    });
-  }
-
-  public async getConfigAsset(): Promise<TerraswapPair.ConfigAssetResponse> {
-    return this.query({
-      config_asset: {}
-    });
-  }
-
-  public async getConfigSwap(): Promise<TerraswapPair.ConfigSwapResponse> {
-    return this.query({
-      config_swap: {}
+      pair: {}
     });
   }
 

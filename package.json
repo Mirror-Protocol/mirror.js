@@ -1,6 +1,6 @@
 {
   "name": "@mirror-protocol/mirror.js",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "The JavaScript SDK for Mirror Protocol",
   "license": "MIT",
   "author": "Mirror Protocol",
@@ -16,7 +16,6 @@
   },
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "browser": "dist/bundle.js",
   "files": [
     "dist"
   ],
@@ -32,7 +31,9 @@
     "prepublishOnly": "npm run build",
     "integration-test": "ts-node ./integration-test/index.ts"
   },
-  "peerDependencies": {},
+  "peerDependencies": {
+    "@terra-money/terra.js": "^1"
+  },
   "lint-staged": {
     "./src/**/*.ts": [
       "prettier --write",
@@ -52,6 +53,7 @@
     "arrowParens": "always"
   },
   "devDependencies": {
+    "@terra-money/terra.js": "^1.0.1",
     "@types/jest": "^26.0.15",
     "@types/node": "^14.14.7",
     "@typescript-eslint/eslint-plugin": "^4.7.0",
@@ -73,11 +75,8 @@
     "tsconfig-paths-webpack-plugin": "^3.3.0",
     "typedoc": "^0.19.2",
     "typescript": "^4.0.5",
-    "webpack": "^5.4.0",
+    "webpack": "^4",
     "webpack-bundle-analyzer": "^4.1.0",
     "webpack-cli": "^4.2.0"
-  },
-  "dependencies": {
-    "@terra-money/terra.js": "^0.5.13"
   }
 }

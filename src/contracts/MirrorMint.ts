@@ -17,14 +17,19 @@ export namespace MirrorMint {
   export interface InitMsg {
     owner: AccAddress;
     oracle: AccAddress;
-    base_asset_info: AssetInfo;
+    collector: AccAddress;
+    base_denom: string;
     token_code_id: number;
+    protocol_fee_rate: string;
   }
 
   export interface HandleUpdateConfig {
     update_config: {
       owner?: AccAddress;
+      oracle?: AccAddress;
+      collector?: AccAddress;
       token_code_id?: number;
+      protocol_fee_rate?: string;
     };
   }
 
@@ -123,7 +128,8 @@ export namespace MirrorMint {
 
   export interface QueryPositions {
     positions: {
-      owner_addr: AccAddress;
+      owner_addr?: AccAddress;
+      asset_token?: AccAddress;
       start_after?: string;
       limit?: number;
     };
@@ -132,8 +138,10 @@ export namespace MirrorMint {
   export interface ConfigResponse {
     owner: AccAddress;
     oracle: AccAddress;
-    base_asset_info: AssetInfo;
+    collector: AccAddress;
+    base_denom: string;
     token_code_id: number;
+    protocol_fee_rate: string;
   }
 
   export interface AssetConfigResponse {

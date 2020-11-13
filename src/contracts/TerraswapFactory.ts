@@ -32,10 +32,6 @@ export namespace TerraswapFactory {
 
   export interface HandleCreatePair {
     create_pair: {
-      pair_owner: AccAddress;
-      commission_collector: AccAddress;
-      lp_commission: string;
-      owner_commission: string;
       asset_infos: [AssetInfo, AssetInfo];
       init_hook?: InitHook;
     };
@@ -51,6 +47,13 @@ export namespace TerraswapFactory {
     };
   }
 
+  export interface QueryPairs {
+    pairs: {
+      start_after?: [AssetInfo, AssetInfo];
+      limit?: number;
+    };
+  }
+
   export interface ConfigResponse {
     owner: AccAddress;
     pair_code_id: number;
@@ -58,14 +61,18 @@ export namespace TerraswapFactory {
   }
 
   export interface PairResponse {
-    owner: AccAddress;
-    contract_addr: AccAddress;
     asset_infos: [AssetInfo, AssetInfo];
+    contract_addr: AccAddress;
+    liquidity_token: AccAddress;
+  }
+
+  export interface PairsResponse {
+    pairs: Array<PairResponse>;
   }
 
   export type HandleMsg = HandleUpdateConfig | HandleCreatePair;
 
-  export type QueryMsg = QueryConfig | QueryPair;
+  export type QueryMsg = QueryConfig | QueryPair | QueryPairs;
 }
 
 export class TerraswapFactory extends ContractClient {
@@ -85,19 +92,11 @@ export class TerraswapFactory extends ContractClient {
   }
 
   public createPair(
-    pair_owner: AccAddress,
-    commission_collector: AccAddress,
-    lp_commission: Numeric.Input,
-    owner_commission: Numeric.Input,
     asset_infos: [AssetInfo, AssetInfo],
     init_hook?: TerraswapFactory.InitHook
   ): MsgExecuteContract {
     return this.createExecuteMsg({
       create_pair: {
-        pair_owner,
-        commission_collector,
-        lp_commission: new Dec(lp_commission).toString(),
-        owner_commission: new Dec(owner_commission).toString(),
         asset_infos,
         init_hook
       }
@@ -115,6 +114,15 @@ export class TerraswapFactory extends ContractClient {
   ): Promise<TerraswapFactory.PairResponse> {
     return this.query({
       pair: { asset_infos }
+    });
+  }
+
+  public async getPairs(
+    start_after?: [AssetInfo, AssetInfo],
+    limit?: number
+  ): Promise<TerraswapFactory.PairsResponse> {
+    return this.query({
+      pairs: { start_after, limit }
     });
   }
 
