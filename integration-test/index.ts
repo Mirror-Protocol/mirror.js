@@ -262,14 +262,10 @@ async function main() {
   console.log('Liquidiate Auction');
   await execute(
     test2,
-    mirror2.mint.auction(
-      1,
-      {
-        info: { token: { contract_addr: appleToken } },
-        amount: int`854572`.toString()
-      },
-      mirror2.assets[AAPL_INDEX].token
-    )
+    mirror2.mint.auction(1, {
+      info: { token: { contract_addr: appleToken } },
+      amount: int`854572`.toString()
+    })
   );
 
   // Mint mirror token to generate staking rewards for APPL staking pool
