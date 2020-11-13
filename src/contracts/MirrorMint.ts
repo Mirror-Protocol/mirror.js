@@ -11,6 +11,7 @@ import {
 import { EmptyObject } from '../utils/EmptyObject';
 import { AssetInfo, Asset, Token, isNativeToken } from '../utils/Asset';
 import { ContractClient } from './ContractClient';
+import { TerraswapToken } from './TerraswapToken';
 
 export namespace MirrorMint {
   export interface InitMsg {
@@ -177,6 +178,14 @@ function createHookMsg(msg: MirrorMint.HookMsg): string {
 }
 
 export class MirrorMint extends ContractClient {
+  protected getTerraswapToken(contractAddress: AccAddress): TerraswapToken {
+    return new TerraswapToken({
+      contractAddress: contractAddress,
+      lcd: this.lcd,
+      key: this.key
+    });
+  }
+
   public init(
     init_msg: MirrorMint.InitMsg,
     migratable: boolean

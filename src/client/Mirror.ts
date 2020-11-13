@@ -139,6 +139,10 @@ export const DEFAULT_MIRROR_OPTIONS: MirrorOptions = {
 };
 
 export class Mirror {
+  public lcd?: LCDClient;
+
+  public key: Key;
+
   public collector: MirrorCollector;
 
   public factory: MirrorFactory;
@@ -178,6 +182,9 @@ export class Mirror {
       terraswapFactory,
       assets
     } = mirrorOptions;
+
+    this.lcd = lcd;
+    this.key = key;
 
     this.collector = new MirrorCollector({
       contractAddress: collector,

@@ -9,7 +9,6 @@ import {
 } from '@terra-money/terra.js';
 
 import { EmptyKey } from '../utils/EmptyKey';
-import { TerraswapToken } from './TerraswapToken';
 
 export class ContractClient {
   public contractAddress?: AccAddress;
@@ -88,13 +87,5 @@ export class ContractClient {
       initCoins,
       migratable
     );
-  }
-
-  protected getTerraswapToken(contractAddress: AccAddress): TerraswapToken {
-    return new TerraswapToken({
-      contractAddress: contractAddress,
-      lcd: this.lcd,
-      key: this.key
-    });
   }
 }
