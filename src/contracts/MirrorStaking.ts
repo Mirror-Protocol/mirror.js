@@ -19,7 +19,7 @@ export namespace MirrorStaking {
 
   export interface HandleUpdateConfig {
     update_config: {
-      asset_token?: AccAddress;
+      owner?: AccAddress;
     };
   }
 

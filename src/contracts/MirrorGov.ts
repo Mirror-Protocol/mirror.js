@@ -17,6 +17,7 @@ export namespace MirrorGov {
     threshold: string;
     voting_period: number;
     effective_delay: number;
+    expiration_period: number;
     proposal_deposit: string;
   }
 
@@ -27,6 +28,7 @@ export namespace MirrorGov {
       threshold?: string;
       voting_period?: number;
       effective_delay?: number;
+      expiration_period?: number;
       proposal_deposit?: string;
     };
   }
@@ -121,6 +123,7 @@ export namespace MirrorGov {
     threshold: string;
     voting_period: number;
     effective_delay: number;
+    expiration_period: number;
     proposal_deposit: string;
   }
 

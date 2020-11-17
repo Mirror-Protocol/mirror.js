@@ -226,6 +226,7 @@ const createGov = (mirrorToken: string) =>
       threshold: '0.5',
       voting_period: 1000,
       effective_delay: 1000,
+      expiration_period: 2000,
       proposal_deposit: '1000000'
     },
     false
