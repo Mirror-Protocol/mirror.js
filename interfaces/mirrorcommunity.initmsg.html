@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>HookDepositReward | Mirror.js</title>
+	<title>InitMsg | Mirror.js</title>
 	<meta name="description" content="Documentation for Mirror.js">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -52,13 +52,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../classes/mirrorcollector.html">MirrorCollector</a>
+					<a href="../classes/mirrorcommunity.html">MirrorCommunity</a>
 				</li>
 				<li>
-					<a href="mirrorcollector.hookdepositreward.html">HookDepositReward</a>
+					<a href="mirrorcommunity.initmsg.html">InitMsg</a>
 				</li>
 			</ul>
-			<h1>Interface HookDepositReward</h1>
+			<h1>Interface InitMsg</h1>
 		</div>
 	</div>
 </header>
@@ -69,7 +69,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">HookDepositReward</span>
+						<span class="target">InitMsg</span>
 					</li>
 				</ul>
 			</section>
@@ -80,7 +80,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="mirrorcollector.hookdepositreward.html#deposit_reward" class="tsd-kind-icon">deposit_<wbr>reward</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="mirrorcommunity.initmsg.html#mirror_token" class="tsd-kind-icon">mirror_<wbr>token</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="mirrorcommunity.initmsg.html#owner" class="tsd-kind-icon">owner</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="mirrorcommunity.initmsg.html#spend_limit" class="tsd-kind-icon">spend_<wbr>limit</a></li>
 							</ul>
 						</section>
 					</div>
@@ -89,12 +91,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="deposit_reward" class="tsd-anchor"></a>
-					<h3>deposit_<wbr>reward</h3>
-					<div class="tsd-signature tsd-kind-icon">deposit_<wbr>reward<span class="tsd-signature-symbol">:</span> <a href="../globals.html#emptyobject" class="tsd-signature-type">EmptyObject</a></div>
+					<a name="mirror_token" class="tsd-anchor"></a>
+					<h3>mirror_<wbr>token</h3>
+					<div class="tsd-signature tsd-kind-icon">mirror_<wbr>token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AccAddress</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/6b11401/src/contracts/MirrorCollector.ts#L31">src/contracts/MirrorCollector.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/6b11401/src/contracts/MirrorCommunity.ts#L15">src/contracts/MirrorCommunity.ts:15</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="owner" class="tsd-anchor"></a>
+					<h3>owner</h3>
+					<div class="tsd-signature tsd-kind-icon">owner<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AccAddress</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/6b11401/src/contracts/MirrorCommunity.ts#L14">src/contracts/MirrorCommunity.ts:14</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="spend_limit" class="tsd-anchor"></a>
+					<h3>spend_<wbr>limit</h3>
+					<div class="tsd-signature tsd-kind-icon">spend_<wbr>limit<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/6b11401/src/contracts/MirrorCommunity.ts#L16">src/contracts/MirrorCommunity.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -119,83 +141,80 @@
 					<li class=" tsd-kind-class">
 						<a href="../classes/mirror.html" class="tsd-kind-icon">Mirror</a>
 					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/mirrorcollector.html" class="tsd-kind-icon">Mirror<wbr>Collector</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
-						<a href="../classes/mirrorcollector.html" class="tsd-kind-icon">Mirror<wbr>Collector</a>
+						<a href="../classes/mirrorcommunity.html" class="tsd-kind-icon">Mirror<wbr>Community</a>
 						<ul>
 							<li class=" tsd-kind-interface tsd-parent-kind-class">
-								<a href="mirrorcollector.configresponse.html" class="tsd-kind-icon">Config<wbr>Response</a>
+								<a href="mirrorcommunity.configresponse.html" class="tsd-kind-icon">Config<wbr>Response</a>
 							</li>
 							<li class=" tsd-kind-interface tsd-parent-kind-class">
-								<a href="mirrorcollector.handleconvert.html" class="tsd-kind-icon">Handle<wbr>Convert</a>
+								<a href="mirrorcommunity.handlespend.html" class="tsd-kind-icon">Handle<wbr>Spend</a>
 							</li>
 							<li class=" tsd-kind-interface tsd-parent-kind-class">
-								<a href="mirrorcollector.handlesend.html" class="tsd-kind-icon">Handle<wbr>Send</a>
+								<a href="mirrorcommunity.handleupdateconfig.html" class="tsd-kind-icon">Handle<wbr>Update<wbr>Config</a>
 							</li>
 							<li class="current tsd-kind-interface tsd-parent-kind-class">
-								<a href="mirrorcollector.hookdepositreward.html" class="tsd-kind-icon">Hook<wbr>Deposit<wbr>Reward</a>
+								<a href="mirrorcommunity.initmsg.html" class="tsd-kind-icon">Init<wbr>Msg</a>
 								<ul>
 									<li class=" tsd-kind-property tsd-parent-kind-interface">
-										<a href="mirrorcollector.hookdepositreward.html#deposit_reward" class="tsd-kind-icon">deposit_<wbr>reward</a>
+										<a href="mirrorcommunity.initmsg.html#mirror_token" class="tsd-kind-icon">mirror_<wbr>token</a>
+									</li>
+									<li class=" tsd-kind-property tsd-parent-kind-interface">
+										<a href="mirrorcommunity.initmsg.html#owner" class="tsd-kind-icon">owner</a>
+									</li>
+									<li class=" tsd-kind-property tsd-parent-kind-interface">
+										<a href="mirrorcommunity.initmsg.html#spend_limit" class="tsd-kind-icon">spend_<wbr>limit</a>
 									</li>
 								</ul>
 							</li>
 							<li class=" tsd-kind-interface tsd-parent-kind-class">
-								<a href="mirrorcollector.initmsg.html" class="tsd-kind-icon">Init<wbr>Msg</a>
-							</li>
-							<li class=" tsd-kind-interface tsd-parent-kind-class">
-								<a href="mirrorcollector.queryconfig.html" class="tsd-kind-icon">Query<wbr>Config</a>
+								<a href="mirrorcommunity.queryconfig.html" class="tsd-kind-icon">Query<wbr>Config</a>
 							</li>
 							<li class=" tsd-kind-type-alias tsd-parent-kind-class tsd-is-static">
-								<a href="../classes/mirrorcollector.html#handlemsg" class="tsd-kind-icon">Handle<wbr>Msg</a>
+								<a href="../classes/mirrorcommunity.html#handlemsg" class="tsd-kind-icon">Handle<wbr>Msg</a>
 							</li>
 							<li class=" tsd-kind-type-alias tsd-parent-kind-class tsd-is-static">
-								<a href="../classes/mirrorcollector.html#hookmsg" class="tsd-kind-icon">Hook<wbr>Msg</a>
-							</li>
-							<li class=" tsd-kind-type-alias tsd-parent-kind-class tsd-is-static">
-								<a href="../classes/mirrorcollector.html#querymsg" class="tsd-kind-icon">Query<wbr>Msg</a>
+								<a href="../classes/mirrorcommunity.html#querymsg" class="tsd-kind-icon">Query<wbr>Msg</a>
 							</li>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
-								<a href="../classes/mirrorcollector.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="../classes/mirrorcommunity.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="../classes/mirrorcollector.html#codeid" class="tsd-kind-icon">codeID</a>
+								<a href="../classes/mirrorcommunity.html#codeid" class="tsd-kind-icon">codeID</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="../classes/mirrorcollector.html#contractaddress" class="tsd-kind-icon">contract<wbr>Address</a>
+								<a href="../classes/mirrorcommunity.html#contractaddress" class="tsd-kind-icon">contract<wbr>Address</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="../classes/mirrorcollector.html#key" class="tsd-kind-icon">key</a>
+								<a href="../classes/mirrorcommunity.html#key" class="tsd-kind-icon">key</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="../classes/mirrorcollector.html#lcd" class="tsd-kind-icon">lcd</a>
+								<a href="../classes/mirrorcommunity.html#lcd" class="tsd-kind-icon">lcd</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
-								<a href="../classes/mirrorcollector.html#wallet" class="tsd-kind-icon">wallet</a>
+								<a href="../classes/mirrorcommunity.html#wallet" class="tsd-kind-icon">wallet</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="../classes/mirrorcollector.html#convert" class="tsd-kind-icon">convert</a>
+								<a href="../classes/mirrorcommunity.html#getconfig" class="tsd-kind-icon">get<wbr>Config</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="../classes/mirrorcollector.html#depositreward" class="tsd-kind-icon">deposit<wbr>Reward</a>
+								<a href="../classes/mirrorcommunity.html#init" class="tsd-kind-icon">init</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="../classes/mirrorcollector.html#getconfig" class="tsd-kind-icon">get<wbr>Config</a>
+								<a href="../classes/mirrorcommunity.html#spend" class="tsd-kind-icon">spend</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="../classes/mirrorcollector.html#init" class="tsd-kind-icon">init</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="../classes/mirrorcollector.html#send" class="tsd-kind-icon">send</a>
+								<a href="../classes/mirrorcommunity.html#updateconfig" class="tsd-kind-icon">update<wbr>Config</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class">
-						<a href="../classes/mirrorcommunity.html" class="tsd-kind-icon">Mirror<wbr>Community</a>
-					</li>
 					<li class=" tsd-kind-class">
 						<a href="../classes/mirrorfactory.html" class="tsd-kind-icon">Mirror<wbr>Factory</a>
 					</li>
