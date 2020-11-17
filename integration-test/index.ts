@@ -16,6 +16,7 @@ const { test1, test2 } = terra.wallets;
 async function main() {
   const {
     collector,
+    community,
     factory,
     gov,
     mint,
@@ -33,6 +34,7 @@ async function main() {
   console.log(
     JSON.stringify({
       collector,
+      community,
       factory,
       gov,
       mint,
@@ -50,6 +52,7 @@ async function main() {
 
   // const {
   //   collector,
+  //   community,
   //   factory,
   //   gov,
   //   mint,
@@ -63,19 +66,20 @@ async function main() {
   //   applePair,
   //   appleToken
   // } = {
-  //   collector: 'terra1prccergxz635x00knr57r3cvkxxfp2gzzzn5rf',
-  //   factory: 'terra1ydzv3lktgxn800wn9w5d0nv6kmuxrgmcrm0qne',
-  //   gov: 'terra1mswnp32ve3pfpxhx8lvgsxpqxp3y455n5kaers',
-  //   mint: 'terra1f8hczm8knayrx08rkr62c9ndl7d3sjzvc58hhw',
-  //   staking: 'terra12sa7ytya28f9d20szv6awk6ck5puzhcdrtqvcz',
-  //   oracle: 'terra17ye528kgrvluz85djktmy3fnz7mpjlrdstvjs0',
-  //   terraswapFactory: 'terra1sj33zc8v60tl58rgds9d8m8xg72aglxvqdr5d9',
-  //   mirrorToken: 'terra137qrrar7q4a0n3n5czv2l0efr35utjjxd8v8vz',
-  //   mirrorLpToken: 'terra1grh8tvd2nu02dq7shkz85senkpxfvaewsmcq7h',
-  //   mirrorPair: 'terra18c797089mg4rwatfnga2ypkc6ukj0kah3hvat9',
-  //   appleLpToken: 'terra1my765x5ymqh4xrn2228lv34d00ph5qh8jmw73z',
-  //   applePair: 'terra1rkqtl95rgsrh3xq95u9382ww5x0rxvh4gvc8ag',
-  //   appleToken: 'terra1gmqjyzdr447uehg8k27g6unyd4jfn5n0zsu5x2'
+  //   collector: 'terra13hr68gqphentukncdeteusg7wje5r8uldjq9zz',
+  //   community: 'terra170wypsqm0r9fhhcahmqekcm6002u3g0lvs4esz',
+  //   factory: 'terra1nky8gam28qywfnuzu2ums3d8udz436h4s93qj5',
+  //   gov: 'terra1l0v3e30wh3sc3vczd54cveaspccfdrf7840s4x',
+  //   mint: 'terra1turhz7qjdktmyzm8nl9pxjvssdhpyfqlcndel3',
+  //   staking: 'terra1vnw6t6z808zw3kkkn70hae24nmwzzv84zll0g4',
+  //   oracle: 'terra15jwj8txx2uxewctt8a8s8hffpmusxardrm5r2p',
+  //   terraswapFactory: 'terra1zexrt4r8gzjrpcfq584p0m2qh4g59nsetmedp8',
+  //   mirrorToken: 'terra1nz3gs5a965hshztxwnqfud04en6tpy5tq8f6me',
+  //   mirrorLpToken: 'terra1j4y5xtj7a63yzd0uj48larv0k7ejfrjry2pwse',
+  //   mirrorPair: 'terra1847g0quusvtshhs6tf4zcm73hj0jkel8tw6vl9',
+  //   appleLpToken: 'terra19z0ld5rhds3enqt0qfkh604856t6qfmsuv6dyz',
+  //   applePair: 'terra1ykaf4san445tter6a4ht3wj8mt65zx5pyt6mcv',
+  //   appleToken: 'terra1t6y44c88yt3kp682e7f8vjejzm4qcldz9evm9v'
   // };
 
   const MIR_INDEX = 0;
@@ -84,6 +88,7 @@ async function main() {
     lcd: terra,
     key: test1.key,
     collector,
+    community,
     factory,
     gov,
     mint,
@@ -113,6 +118,7 @@ async function main() {
     lcd: terra,
     key: test2.key,
     collector,
+    community,
     factory,
     gov,
     mint,

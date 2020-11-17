@@ -1,4 +1,5 @@
 export * from './MirrorCollector';
+export * from './MirrorCommunity';
 export * from './MirrorFactory';
 export * from './MirrorGov';
 export * from './MirrorMint';

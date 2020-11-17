@@ -21,12 +21,14 @@ import {
   TerraswapPair
 } from '../src/contracts';
 import { UST } from '../src/utils/Asset';
+import { MirrorCommunity } from '../src/contracts/MirrorCommunity';
 
 const terra = new LocalTerra();
 const { test1 } = terra.wallets;
 
 const contractFiles: { [k: string]: string } = {
   mirror_collector: 'integration-test/artifacts/mirror_collector.wasm',
+  mirror_community: 'integration-test/artifacts/mirror_community.wasm',
   mirror_factory: 'integration-test/artifacts/mirror_factory.wasm',
   mirror_gov: 'integration-test/artifacts/mirror_gov.wasm',
   mirror_mint: 'integration-test/artifacts/mirror_mint.wasm',
@@ -49,6 +51,7 @@ export async function deployContracts(): Promise<{
   oracle: AccAddress;
   mint: AccAddress;
   collector: AccAddress;
+  community: AccAddress;
   mirrorToken: AccAddress;
   mirrorLpToken: AccAddress;
   mirrorPair: AccAddress;
@@ -92,6 +95,7 @@ export async function deployContracts(): Promise<{
   );
   const mint = await instantiate(createMint(factory, oracle, collector));
   const staking = await instantiate(createStaking(factory, mirrorToken));
+  const community = await instantiate(createCommunity(gov, mirrorToken));
 
   const mirror = new Mirror({
     factory,
@@ -180,6 +184,7 @@ export async function deployContracts(): Promise<{
     oracle,
     mint,
     collector,
+    community,
     mirrorLpToken,
     mirrorPair,
     appleToken,
@@ -228,6 +233,19 @@ const createGov = (mirrorToken: string) =>
       effective_delay: 1000,
       expiration_period: 2000,
       proposal_deposit: '1000000'
+    },
+    false
+  );
+
+const createCommunity = (gov: string, mirrorToken: string) =>
+  new MirrorCommunity({
+    codeID: codeIDs['mirror_community'],
+    key: test1.key
+  }).init(
+    {
+      owner: gov,
+      mirror_token: mirrorToken,
+      spend_limit: '10000000000'
     },
     false
   );

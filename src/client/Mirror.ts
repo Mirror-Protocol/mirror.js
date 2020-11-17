@@ -2,6 +2,7 @@ import { AccAddress, Key, LCDClient, Coin } from '@terra-money/terra.js';
 import { EmptyKey } from '../utils/EmptyKey';
 import {
   MirrorCollector,
+  MirrorCommunity,
   MirrorFactory,
   MirrorGov,
   MirrorMint,
@@ -24,6 +25,7 @@ export interface MirrorOptions {
   lcd: LCDClient;
   key: Key;
   collector: AccAddress;
+  community: AccAddress;
   factory: AccAddress;
   gov: AccAddress;
   mint: AccAddress;
@@ -43,6 +45,7 @@ export const DEFAULT_MIRROR_OPTIONS: MirrorOptions = {
   }),
   key: new EmptyKey(),
   collector: 'terra1jmj39n0tfg6qu852fx0kr46gn4sewq6uyqyu8t',
+  community: 'terra1jmj39n0tfg6qu852fx0kr46gn4sewq6uyqyu8t', // dummy
   factory: 'terra1ndzjhjszw4pp8dkkt864drgmwhc59padjfccxg',
   gov: 'terra12pf2c9k7m2ag2893aa6sv75nmytr9uuxzv8vgx',
   mint: 'terra1ycsd7mlffq2ksmqdr20y4drtf6ctw3n8fmup5g',
@@ -145,6 +148,8 @@ export class Mirror {
 
   public collector: MirrorCollector;
 
+  public community: MirrorCommunity;
+
   public factory: MirrorFactory;
 
   public gov: MirrorGov;
@@ -173,6 +178,7 @@ export class Mirror {
       lcd,
       key,
       collector,
+      community,
       factory,
       gov,
       mint,
@@ -188,6 +194,11 @@ export class Mirror {
 
     this.collector = new MirrorCollector({
       contractAddress: collector,
+      lcd,
+      key
+    });
+    this.community = new MirrorCommunity({
+      contractAddress: community,
       lcd,
       key
     });
