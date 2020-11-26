@@ -200,7 +200,8 @@ const createFactory = () =>
       base_denom: UST.native_token.denom,
       distribution_schedule: [
         [0, 10, '10000000000'],
-        [10, 20, '20000000000']
+        [10, 20, '20000000000'],
+        [20, 300, '30000000000'],
       ]
     },
     false
@@ -215,7 +216,7 @@ const createMirrorToken = (factory: string) =>
       name: 'Mirror Token',
       symbol: 'MIR',
       decimals: 6,
-      initial_balances: [{ address: factory, amount: '30000000000' }]
+      initial_balances: [{ address: factory, amount: '60000000000' }]
     },
     false
   );
