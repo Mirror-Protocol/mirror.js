@@ -34,7 +34,6 @@ export interface MirrorOptions {
   mirrorToken: AccAddress;
   terraswapFactory: AccAddress;
   assets: {
-    MIR: AssetOptions;
     [symbol: string]: AssetOptions;
   };
 }
