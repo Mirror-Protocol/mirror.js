@@ -125,10 +125,13 @@ export async function deployContracts(): Promise<{
   // Register MIR LP Token & MIR-UST pair contract
   const mirrorLpToken = mirrorPairCreationLogs.liquidity_token_addr[0];
   const mirrorPair = mirrorPairCreationLogs.pair_contract_addr[0];
-  mirror.assets.push({
+  mirror.assets['MIR'] = {
     name: 'Mirror Token',
     symbol: 'MIR',
-    token: new TerraswapToken({ contractAddress: mirrorToken, key: test1.key }),
+    token: new TerraswapToken({
+      contractAddress: mirrorToken,
+      key: test1.key
+    }),
     lpToken: new TerraswapToken({
       contractAddress: mirrorLpToken,
       key: test1.key
@@ -137,7 +140,7 @@ export async function deployContracts(): Promise<{
       contractAddress: mirrorPair,
       key: test1.key
     })
-  });
+  };
 
   // PostInitailize factory
   console.log('POST_INITIALZE FACTORY');
@@ -201,7 +204,7 @@ const createFactory = () =>
       distribution_schedule: [
         [0, 10, '10000000000'],
         [10, 20, '20000000000'],
-        [20, 300, '30000000000'],
+        [20, 300, '30000000000']
       ]
     },
     false

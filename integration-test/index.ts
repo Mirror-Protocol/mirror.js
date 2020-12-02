@@ -82,8 +82,6 @@ async function main() {
   //   appleToken: 'terra1t6y44c88yt3kp682e7f8vjejzm4qcldz9evm9v'
   // };
 
-  const MIR_INDEX = 0;
-  const AAPL_INDEX = 1;
   const mirror = new Mirror({
     lcd: terra,
     key: test1.key,
@@ -96,22 +94,22 @@ async function main() {
     oracle,
     terraswapFactory,
     mirrorToken,
-    assets: [
-      {
+    assets: {
+      MIR: {
         name: 'Mirror Token',
         symbol: 'MIR',
         token: mirrorToken,
         lpToken: mirrorLpToken,
         pair: mirrorPair
       },
-      {
+      mAPPL: {
         name: 'APPLE Derivative',
-        symbol: 'AAPL',
+        symbol: 'mAAPL',
         token: appleToken,
         lpToken: appleLpToken,
         pair: applePair
       }
-    ]
+    }
   });
 
   const mirror2 = new Mirror({
@@ -126,22 +124,22 @@ async function main() {
     oracle,
     terraswapFactory,
     mirrorToken,
-    assets: [
-      {
+    assets: {
+      MIR: {
         name: 'Mirror Token',
         symbol: 'MIR',
         token: mirrorToken,
         lpToken: mirrorLpToken,
         pair: mirrorPair
       },
-      {
+      mAPPL: {
         name: 'APPLE Derivative',
-        symbol: 'AAPL',
+        symbol: 'mAAPL',
         token: appleToken,
         lpToken: appleLpToken,
         pair: applePair
       }
-    ]
+    }
   });
 
   // Feed oracle price
@@ -194,8 +192,8 @@ async function main() {
   console.log('Provide Liquidity UST-AAPL');
   await execute(
     test1,
-    mirror.assets[AAPL_INDEX].token.increaseAllowance(applePair, int`6000000`),
-    mirror.assets[AAPL_INDEX].pair.provideLiquidity([
+    mirror.assets['mAPPL'].token.increaseAllowance(applePair, int`6000000`),
+    mirror.assets['mAPPL'].pair.provideLiquidity([
       {
         info: { native_token: { denom: 'uusd' } },
         amount: int`6000000000`.toString()
@@ -207,10 +205,10 @@ async function main() {
     ])
   );
 
-  const balanceRes = await mirror.assets[AAPL_INDEX].lpToken.getBalance();
+  const balanceRes = await mirror.assets['mAPPL'].lpToken.getBalance();
   assert(balanceRes.balance === '189736659');
 
-  const tokenInfoRes = await mirror.assets[AAPL_INDEX].lpToken.getTokenInfo();
+  const tokenInfoRes = await mirror.assets['mAPPL'].lpToken.getTokenInfo();
   assert(tokenInfoRes.total_supply === '189736659');
 
   // Bond AAPL LP token to staking contract
@@ -220,7 +218,7 @@ async function main() {
     mirror.staking.bond(
       appleToken,
       189736659,
-      mirror.assets[AAPL_INDEX].lpToken
+      mirror.assets['mAPPL'].lpToken
     )
   );
 
@@ -234,7 +232,7 @@ async function main() {
   console.log('Buy APPL');
   await execute(
     test2,
-    mirror2.assets[AAPL_INDEX].pair.swap(
+    mirror2.assets['mAPPL'].pair.swap(
       {
         info: { native_token: { denom: 'uusd' } },
         amount: int`1000000000`.toString()
@@ -243,7 +241,7 @@ async function main() {
     )
   );
 
-  const balanceRes2 = await mirror2.assets[AAPL_INDEX].token.getBalance();
+  const balanceRes2 = await mirror2.assets['mAPPL'].token.getBalance();
   assert(balanceRes2.balance === '854572');
 
   // Update Oracle price to hold an auction
@@ -287,8 +285,8 @@ async function main() {
   console.log('Provide UST-MIR liquidity');
   await execute(
     test1,
-    mirror.assets[MIR_INDEX].token.increaseAllowance(mirrorPair, 6000000),
-    mirror.assets[MIR_INDEX].pair.provideLiquidity([
+    mirror.assets['MIR'].token.increaseAllowance(mirrorPair, 6000000),
+    mirror.assets['MIR'].pair.provideLiquidity([
       {
         info: { native_token: { denom: 'uusd' } },
         amount: int`6000000000`.toString()
@@ -300,10 +298,10 @@ async function main() {
     ])
   );
 
-  const balanceRes3 = await mirror.assets[MIR_INDEX].lpToken.getBalance();
+  const balanceRes3 = await mirror.assets['MIR'].lpToken.getBalance();
   assert(balanceRes3.balance === '189736659');
 
-  const tokenInfoRes3 = await mirror.assets[MIR_INDEX].lpToken.getTokenInfo();
+  const tokenInfoRes3 = await mirror.assets['MIR'].lpToken.getTokenInfo();
   assert(tokenInfoRes3.total_supply === '189736659');
 
   // Stake MIR LP token
@@ -313,7 +311,7 @@ async function main() {
     mirror.staking.bond(
       mirrorToken,
       189736659,
-      mirror.assets[MIR_INDEX].lpToken
+      mirror.assets['MIR'].lpToken
     )
   );
 
