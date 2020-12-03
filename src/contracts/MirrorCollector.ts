@@ -23,8 +23,8 @@ export namespace MirrorCollector {
     };
   }
 
-  export interface HandleSend {
-    send: EmptyObject;
+  export interface HandleDistribute {
+    distribute: EmptyObject;
   }
 
   export interface HookDepositReward {
@@ -42,7 +42,7 @@ export namespace MirrorCollector {
     base_denom: string;
   }
 
-  export type HandleMsg = HandleConvert | HandleSend;
+  export type HandleMsg = HandleConvert | HandleDistribute;
   export type HookMsg = HookDepositReward;
   export type QueryMsg = QueryConfig;
 }
@@ -69,7 +69,7 @@ export class MirrorCollector extends ContractClient {
 
   public send(): MsgExecuteContract {
     return this.createExecuteMsg({
-      send: {}
+      distribute: {}
     });
   }
 

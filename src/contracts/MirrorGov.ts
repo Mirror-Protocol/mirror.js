@@ -60,6 +60,12 @@ export namespace MirrorGov {
     };
   }
 
+  export interface HandleExpirePoll {
+    expire_poll: {
+      poll_id: number;
+    };
+  }
+
   export interface HookStakeVotingTokens {
     stake_voting_tokens: EmptyObject;
   }
@@ -182,7 +188,8 @@ export namespace MirrorGov {
     | HandleCastVote
     | HandleWithdrawVotingTokens
     | HandleEndPoll
-    | HandleExecutePoll;
+    | HandleExecutePoll
+    | HandleExpirePoll;
 
   export type HookMsg = HookStakeVotingTokens | HookCreatePoll;
 
@@ -248,6 +255,14 @@ export class MirrorGov extends ContractClient {
   public executePoll(poll_id: number): MsgExecuteContract {
     return this.createExecuteMsg({
       execute_poll: {
+        poll_id
+      }
+    });
+  }
+
+  public expirePoll(poll_id: number): MsgExecuteContract {
+    return this.createExecuteMsg({
+      expire_poll: {
         poll_id
       }
     });
