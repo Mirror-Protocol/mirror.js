@@ -54,18 +54,18 @@ const mirror = new Mirror({
   terraswapFactory: 'terra1...',
   assets: {
     MIR: {
-      name: 'Mirror';
-      symbol: 'MIR';
-      token: 'terra1...'; // Terraswap token contract
-      lpToken: 'terra1...'; // Terraswap LP token contract
-      pair: 'terra1...'; // Terraswap pair contract against UST
+      name: 'Mirror',
+      symbol: 'MIR',
+      token: 'terra1...', // Terraswap token contract
+      lpToken: 'terra1...', // Terraswap LP token contract
+      pair: 'terra1...', // Terraswap pair contract against UST
     },
     mAAPL: {
-      name: 'Mirrored Apple, Inc. stock';
-      symbol: 'mAAPL';
-      token: 'terra1...'; // Terraswap token contract
-      lpToken: 'terra1...'; // Terraswap LP token contract
-      pair: 'terra1...'; // Terraswap pair contract against UST
+      name: 'Mirrored Apple, Inc. stock',
+      symbol: 'mAAPL',
+      token: 'terra1...', // Terraswap token contract
+      lpToken: 'terra1...', // Terraswap LP token contract
+      pair: 'terra1...', // Terraswap pair contract against UST
     },
     ...
   }
