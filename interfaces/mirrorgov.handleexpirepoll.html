@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>FeederResponse | Mirror.js</title>
+	<title>HandleExpirePoll | Mirror.js</title>
 	<meta name="description" content="Documentation for Mirror.js">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -52,13 +52,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../classes/mirrororacle.html">MirrorOracle</a>
+					<a href="../classes/mirrorgov.html">MirrorGov</a>
 				</li>
 				<li>
-					<a href="mirrororacle.feederresponse.html">FeederResponse</a>
+					<a href="mirrorgov.handleexpirepoll.html">HandleExpirePoll</a>
 				</li>
 			</ul>
-			<h1>Interface FeederResponse</h1>
+			<h1>Interface HandleExpirePoll</h1>
 		</div>
 	</div>
 </header>
@@ -69,7 +69,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">FeederResponse</span>
+						<span class="target">HandleExpirePoll</span>
 					</li>
 				</ul>
 			</section>
@@ -80,8 +80,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="mirrororacle.feederresponse.html#asset_token" class="tsd-kind-icon">asset_<wbr>token</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="mirrororacle.feederresponse.html#feeder" class="tsd-kind-icon">feeder</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="mirrorgov.handleexpirepoll.html#expire_poll" class="tsd-kind-icon">expire_<wbr>poll</a></li>
 							</ul>
 						</section>
 					</div>
@@ -90,24 +89,22 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="asset_token" class="tsd-anchor"></a>
-					<h3>asset_<wbr>token</h3>
-					<div class="tsd-signature tsd-kind-icon">asset_<wbr>token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AccAddress</span></div>
+					<a name="expire_poll" class="tsd-anchor"></a>
+					<h3>expire_<wbr>poll</h3>
+					<div class="tsd-signature tsd-kind-icon">expire_<wbr>poll<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>poll_id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/d982e5a/src/contracts/MirrorOracle.ts#L68">src/contracts/MirrorOracle.ts:68</a></li>
+							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/d982e5a/src/contracts/MirrorGov.ts#L64">src/contracts/MirrorGov.ts:64</a></li>
 						</ul>
 					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="feeder" class="tsd-anchor"></a>
-					<h3>feeder</h3>
-					<div class="tsd-signature tsd-kind-icon">feeder<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AccAddress</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/d982e5a/src/contracts/MirrorOracle.ts#L69">src/contracts/MirrorOracle.ts:69</a></li>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>poll_<wbr>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+							</li>
 						</ul>
-					</aside>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -139,116 +136,29 @@
 					<li class=" tsd-kind-class">
 						<a href="../classes/mirrorfactory.html" class="tsd-kind-icon">Mirror<wbr>Factory</a>
 					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/mirrorgov.html" class="tsd-kind-icon">Mirror<wbr>Gov</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/mirrormint.html" class="tsd-kind-icon">Mirror<wbr>Mint</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
-						<a href="../classes/mirrororacle.html" class="tsd-kind-icon">Mirror<wbr>Oracle</a>
+						<a href="../classes/mirrorgov.html" class="tsd-kind-icon">Mirror<wbr>Gov</a>
 						<ul>
-							<li class=" tsd-kind-interface tsd-parent-kind-class">
-								<a href="mirrororacle.configresponse.html" class="tsd-kind-icon">Config<wbr>Response</a>
-							</li>
 							<li class="current tsd-kind-interface tsd-parent-kind-class">
-								<a href="mirrororacle.feederresponse.html" class="tsd-kind-icon">Feeder<wbr>Response</a>
+								<a href="mirrorgov.handleexpirepoll.html" class="tsd-kind-icon">Handle<wbr>Expire<wbr>Poll</a>
 								<ul>
 									<li class=" tsd-kind-property tsd-parent-kind-interface">
-										<a href="mirrororacle.feederresponse.html#asset_token" class="tsd-kind-icon">asset_<wbr>token</a>
-									</li>
-									<li class=" tsd-kind-property tsd-parent-kind-interface">
-										<a href="mirrororacle.feederresponse.html#feeder" class="tsd-kind-icon">feeder</a>
+										<a href="mirrorgov.handleexpirepoll.html#expire_poll" class="tsd-kind-icon">expire_<wbr>poll</a>
 									</li>
 								</ul>
-							</li>
-							<li class=" tsd-kind-interface tsd-parent-kind-class">
-								<a href="mirrororacle.handlefeedprice.html" class="tsd-kind-icon">Handle<wbr>Feed<wbr>Price</a>
-							</li>
-							<li class=" tsd-kind-interface tsd-parent-kind-class">
-								<a href="mirrororacle.handleregisterasset.html" class="tsd-kind-icon">Handle<wbr>Register<wbr>Asset</a>
-							</li>
-							<li class=" tsd-kind-interface tsd-parent-kind-class">
-								<a href="mirrororacle.handleupdateconfig.html" class="tsd-kind-icon">Handle<wbr>Update<wbr>Config</a>
-							</li>
-							<li class=" tsd-kind-interface tsd-parent-kind-class">
-								<a href="mirrororacle.initmsg.html" class="tsd-kind-icon">Init<wbr>Msg</a>
-							</li>
-							<li class=" tsd-kind-interface tsd-parent-kind-class">
-								<a href="mirrororacle.priceresponse.html" class="tsd-kind-icon">Price<wbr>Response</a>
-							</li>
-							<li class=" tsd-kind-interface tsd-parent-kind-class">
-								<a href="mirrororacle.pricesresponse.html" class="tsd-kind-icon">Prices<wbr>Response</a>
-							</li>
-							<li class=" tsd-kind-interface tsd-parent-kind-class">
-								<a href="mirrororacle.pricesresponseelem.html" class="tsd-kind-icon">Prices<wbr>Response<wbr>Elem</a>
-							</li>
-							<li class=" tsd-kind-interface tsd-parent-kind-class">
-								<a href="mirrororacle.queryconfig.html" class="tsd-kind-icon">Query<wbr>Config</a>
-							</li>
-							<li class=" tsd-kind-interface tsd-parent-kind-class">
-								<a href="mirrororacle.queryfeeder.html" class="tsd-kind-icon">Query<wbr>Feeder</a>
-							</li>
-							<li class=" tsd-kind-interface tsd-parent-kind-class">
-								<a href="mirrororacle.queryprice.html" class="tsd-kind-icon">Query<wbr>Price</a>
-							</li>
-							<li class=" tsd-kind-interface tsd-parent-kind-class">
-								<a href="mirrororacle.queryprices.html" class="tsd-kind-icon">Query<wbr>Prices</a>
-							</li>
-							<li class=" tsd-kind-type-alias tsd-parent-kind-class tsd-is-static">
-								<a href="../classes/mirrororacle.html#handlemsg" class="tsd-kind-icon">Handle<wbr>Msg</a>
-							</li>
-							<li class=" tsd-kind-type-alias tsd-parent-kind-class tsd-is-static">
-								<a href="../classes/mirrororacle.html#querymsg" class="tsd-kind-icon">Query<wbr>Msg</a>
-							</li>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
-								<a href="../classes/mirrororacle.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="../classes/mirrororacle.html#codeid" class="tsd-kind-icon">codeID</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="../classes/mirrororacle.html#contractaddress" class="tsd-kind-icon">contract<wbr>Address</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="../classes/mirrororacle.html#key" class="tsd-kind-icon">key</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="../classes/mirrororacle.html#lcd" class="tsd-kind-icon">lcd</a>
-							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
-								<a href="../classes/mirrororacle.html#wallet" class="tsd-kind-icon">wallet</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="../classes/mirrororacle.html#feedprice" class="tsd-kind-icon">feed<wbr>Price</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="../classes/mirrororacle.html#getconfig" class="tsd-kind-icon">get<wbr>Config</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="../classes/mirrororacle.html#getfeeder" class="tsd-kind-icon">get<wbr>Feeder</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="../classes/mirrororacle.html#getprice" class="tsd-kind-icon">get<wbr>Price</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="../classes/mirrororacle.html#getprices" class="tsd-kind-icon">get<wbr>Prices</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="../classes/mirrororacle.html#init" class="tsd-kind-icon">init</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="../classes/mirrororacle.html#registerasset" class="tsd-kind-icon">register<wbr>Asset</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="../classes/mirrororacle.html#updateconfig" class="tsd-kind-icon">update<wbr>Config</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-class">
+						<a href="../classes/mirrormint.html" class="tsd-kind-icon">Mirror<wbr>Mint</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/mirrororacle.html" class="tsd-kind-icon">Mirror<wbr>Oracle</a>
+					</li>
 					<li class=" tsd-kind-class">
 						<a href="../classes/mirrorstaking.html" class="tsd-kind-icon">Mirror<wbr>Staking</a>
 					</li>
