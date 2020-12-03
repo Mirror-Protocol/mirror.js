@@ -83,8 +83,7 @@ export class MirrorCollector extends ContractClient {
       );
     }
 
-    return asset_token.send.call(
-      this,
+    return asset_token.send(
       this.contractAddress,
       amount,
       createHookMsg({
