@@ -2,7 +2,7 @@
   "name": "@mirror-protocol/mirror.js",
   "version": "1.0.8",
   "description": "The JavaScript SDK for Mirror Protocol",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "author": "Mirror Protocol",
   "keywords": [
     "terra",
