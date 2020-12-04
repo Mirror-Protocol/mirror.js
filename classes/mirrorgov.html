@@ -87,6 +87,7 @@
 								<li class="tsd-kind-interface tsd-parent-kind-class"><a href="../interfaces/mirrorgov.handlecastvote.html" class="tsd-kind-icon">Handle<wbr>Cast<wbr>Vote</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-class"><a href="../interfaces/mirrorgov.handleendpoll.html" class="tsd-kind-icon">Handle<wbr>End<wbr>Poll</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-class"><a href="../interfaces/mirrorgov.handleexecutepoll.html" class="tsd-kind-icon">Handle<wbr>Execute<wbr>Poll</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-class"><a href="../interfaces/mirrorgov.handleexpirepoll.html" class="tsd-kind-icon">Handle<wbr>Expire<wbr>Poll</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-class"><a href="../interfaces/mirrorgov.handleupdateconfig.html" class="tsd-kind-icon">Handle<wbr>Update<wbr>Config</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-class"><a href="../interfaces/mirrorgov.handlewithdrawvotingtokens.html" class="tsd-kind-icon">Handle<wbr>Withdraw<wbr>Voting<wbr>Tokens</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-class"><a href="../interfaces/mirrorgov.hookcreatepoll.html" class="tsd-kind-icon">Hook<wbr>Create<wbr>Poll</a></li>
@@ -146,6 +147,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="mirrorgov.html#createpoll" class="tsd-kind-icon">create<wbr>Poll</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="mirrorgov.html#endpoll" class="tsd-kind-icon">end<wbr>Poll</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="mirrorgov.html#executepoll" class="tsd-kind-icon">execute<wbr>Poll</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="mirrorgov.html#expirepoll" class="tsd-kind-icon">expire<wbr>Poll</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="mirrorgov.html#getconfig" class="tsd-kind-icon">get<wbr>Config</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="mirrorgov.html#getpoll" class="tsd-kind-icon">get<wbr>Poll</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="mirrorgov.html#getpolls" class="tsd-kind-icon">get<wbr>Polls</a></li>
@@ -166,10 +168,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-class tsd-is-static">
 					<a name="handlemsg" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> Handle<wbr>Msg</h3>
-					<div class="tsd-signature tsd-kind-icon">Handle<wbr>Msg<span class="tsd-signature-symbol">:</span> <a href="../interfaces/mirrorgov.handleupdateconfig.html" class="tsd-signature-type">HandleUpdateConfig</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/mirrorgov.handlecastvote.html" class="tsd-signature-type">HandleCastVote</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/mirrorgov.handlewithdrawvotingtokens.html" class="tsd-signature-type">HandleWithdrawVotingTokens</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/mirrorgov.handleendpoll.html" class="tsd-signature-type">HandleEndPoll</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/mirrorgov.handleexecutepoll.html" class="tsd-signature-type">HandleExecutePoll</a></div>
+					<div class="tsd-signature tsd-kind-icon">Handle<wbr>Msg<span class="tsd-signature-symbol">:</span> <a href="../interfaces/mirrorgov.handleupdateconfig.html" class="tsd-signature-type">HandleUpdateConfig</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/mirrorgov.handlecastvote.html" class="tsd-signature-type">HandleCastVote</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/mirrorgov.handlewithdrawvotingtokens.html" class="tsd-signature-type">HandleWithdrawVotingTokens</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/mirrorgov.handleendpoll.html" class="tsd-signature-type">HandleEndPoll</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/mirrorgov.handleexecutepoll.html" class="tsd-signature-type">HandleExecutePoll</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/mirrorgov.handleexpirepoll.html" class="tsd-signature-type">HandleExpirePoll</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/MirrorGov.ts#L177">src/contracts/MirrorGov.ts:177</a></li>
+							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/MirrorGov.ts#L186">src/contracts/MirrorGov.ts:186</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -179,7 +181,7 @@
 					<div class="tsd-signature tsd-kind-icon">Hook<wbr>Msg<span class="tsd-signature-symbol">:</span> <a href="../interfaces/mirrorgov.hookstakevotingtokens.html" class="tsd-signature-type">HookStakeVotingTokens</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/mirrorgov.hookcreatepoll.html" class="tsd-signature-type">HookCreatePoll</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/MirrorGov.ts#L184">src/contracts/MirrorGov.ts:184</a></li>
+							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/MirrorGov.ts#L194">src/contracts/MirrorGov.ts:194</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -189,7 +191,7 @@
 					<div class="tsd-signature tsd-kind-icon">Poll<wbr>Status<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"in_progress"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"passed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"rejected"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"executed"</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/MirrorGov.ts#L99">src/contracts/MirrorGov.ts:99</a></li>
+							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/MirrorGov.ts#L107">src/contracts/MirrorGov.ts:107</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -199,7 +201,7 @@
 					<div class="tsd-signature tsd-kind-icon">Query<wbr>Msg<span class="tsd-signature-symbol">:</span> <a href="../interfaces/mirrorgov.queryconfig.html" class="tsd-signature-type">QueryConfig</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/mirrorgov.querystate.html" class="tsd-signature-type">QueryState</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/mirrorgov.querystaker.html" class="tsd-signature-type">QueryStaker</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/mirrorgov.querypoll.html" class="tsd-signature-type">QueryPoll</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/mirrorgov.querypolls.html" class="tsd-signature-type">QueryPolls</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/mirrorgov.queryvoters.html" class="tsd-signature-type">QueryVoters</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/MirrorGov.ts#L186">src/contracts/MirrorGov.ts:186</a></li>
+							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/MirrorGov.ts#L196">src/contracts/MirrorGov.ts:196</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -209,7 +211,7 @@
 					<div class="tsd-signature tsd-kind-icon">Vote<wbr>Option<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"yes"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"no"</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/MirrorGov.ts#L34">src/contracts/MirrorGov.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/MirrorGov.ts#L36">src/contracts/MirrorGov.ts:36</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -227,7 +229,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="contractclient.html">ContractClient</a>.<a href="contractclient.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/ContractClient.ts#L20">src/contracts/ContractClient.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/ContractClient.ts#L20">src/contracts/ContractClient.ts:20</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -250,7 +252,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="contractclient.html">ContractClient</a>.<a href="contractclient.html#codeid">codeID</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/ContractClient.ts#L16">src/contracts/ContractClient.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/ContractClient.ts#L16">src/contracts/ContractClient.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -261,7 +263,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="contractclient.html">ContractClient</a>.<a href="contractclient.html#contractaddress">contractAddress</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/ContractClient.ts#L14">src/contracts/ContractClient.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/ContractClient.ts#L14">src/contracts/ContractClient.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -272,7 +274,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="contractclient.html">ContractClient</a>.<a href="contractclient.html#key">key</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/ContractClient.ts#L20">src/contracts/ContractClient.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/ContractClient.ts#L20">src/contracts/ContractClient.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -283,7 +285,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="contractclient.html">ContractClient</a>.<a href="contractclient.html#lcd">lcd</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/ContractClient.ts#L18">src/contracts/ContractClient.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/ContractClient.ts#L18">src/contracts/ContractClient.ts:18</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -301,7 +303,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="contractclient.html">ContractClient</a>.<a href="contractclient.html#wallet">wallet</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/ContractClient.ts#L37">src/contracts/ContractClient.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/ContractClient.ts#L37">src/contracts/ContractClient.ts:37</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Wallet</span></h4>
@@ -321,7 +323,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/MirrorGov.ts#L215">src/contracts/MirrorGov.ts:215</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/MirrorGov.ts#L225">src/contracts/MirrorGov.ts:225</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -350,7 +352,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/MirrorGov.ts#L272">src/contracts/MirrorGov.ts:272</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/MirrorGov.ts#L290">src/contracts/MirrorGov.ts:290</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -388,7 +390,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/MirrorGov.ts#L237">src/contracts/MirrorGov.ts:237</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/MirrorGov.ts#L247">src/contracts/MirrorGov.ts:247</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -411,7 +413,30 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/MirrorGov.ts#L245">src/contracts/MirrorGov.ts:245</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/MirrorGov.ts#L255">src/contracts/MirrorGov.ts:255</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>poll_id: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">MsgExecuteContract</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="expirepoll" class="tsd-anchor"></a>
+					<h3>expire<wbr>Poll</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">expire<wbr>Poll<span class="tsd-signature-symbol">(</span>poll_id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">MsgExecuteContract</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/MirrorGov.ts#L263">src/contracts/MirrorGov.ts:263</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -434,7 +459,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/MirrorGov.ts#L300">src/contracts/MirrorGov.ts:300</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/MirrorGov.ts#L318">src/contracts/MirrorGov.ts:318</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/mirrorgov.configresponse.html" class="tsd-signature-type">ConfigResponse</a><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -451,7 +476,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/MirrorGov.ts#L322">src/contracts/MirrorGov.ts:322</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/MirrorGov.ts#L340">src/contracts/MirrorGov.ts:340</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -474,7 +499,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/MirrorGov.ts#L330">src/contracts/MirrorGov.ts:330</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/MirrorGov.ts#L348">src/contracts/MirrorGov.ts:348</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -503,7 +528,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/MirrorGov.ts#L312">src/contracts/MirrorGov.ts:312</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/MirrorGov.ts#L330">src/contracts/MirrorGov.ts:330</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -526,7 +551,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/MirrorGov.ts#L306">src/contracts/MirrorGov.ts:306</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/MirrorGov.ts#L324">src/contracts/MirrorGov.ts:324</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/mirrorgov.stateresponse.html" class="tsd-signature-type">StateResponse</a><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -543,7 +568,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/MirrorGov.ts#L344">src/contracts/MirrorGov.ts:344</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/MirrorGov.ts#L362">src/contracts/MirrorGov.ts:362</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -572,7 +597,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/MirrorGov.ts#L200">src/contracts/MirrorGov.ts:200</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/MirrorGov.ts#L210">src/contracts/MirrorGov.ts:210</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -598,7 +623,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/MirrorGov.ts#L253">src/contracts/MirrorGov.ts:253</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/MirrorGov.ts#L271">src/contracts/MirrorGov.ts:271</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -624,7 +649,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/MirrorGov.ts#L207">src/contracts/MirrorGov.ts:207</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/MirrorGov.ts#L217">src/contracts/MirrorGov.ts:217</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -647,7 +672,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/MirrorGov.ts#L229">src/contracts/MirrorGov.ts:229</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/MirrorGov.ts#L239">src/contracts/MirrorGov.ts:239</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -685,6 +710,9 @@
 						<a href="mirrorcollector.html" class="tsd-kind-icon">Mirror<wbr>Collector</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="mirrorcommunity.html" class="tsd-kind-icon">Mirror<wbr>Community</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="mirrorfactory.html" class="tsd-kind-icon">Mirror<wbr>Factory</a>
 					</li>
 				</ul>
@@ -706,6 +734,9 @@
 							</li>
 							<li class=" tsd-kind-interface tsd-parent-kind-class">
 								<a href="../interfaces/mirrorgov.handleexecutepoll.html" class="tsd-kind-icon">Handle<wbr>Execute<wbr>Poll</a>
+							</li>
+							<li class=" tsd-kind-interface tsd-parent-kind-class">
+								<a href="../interfaces/mirrorgov.handleexpirepoll.html" class="tsd-kind-icon">Handle<wbr>Expire<wbr>Poll</a>
 							</li>
 							<li class=" tsd-kind-interface tsd-parent-kind-class">
 								<a href="../interfaces/mirrorgov.handleupdateconfig.html" class="tsd-kind-icon">Handle<wbr>Update<wbr>Config</a>
@@ -810,6 +841,9 @@
 								<a href="mirrorgov.html#executepoll" class="tsd-kind-icon">execute<wbr>Poll</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="mirrorgov.html#expirepoll" class="tsd-kind-icon">expire<wbr>Poll</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="mirrorgov.html#getconfig" class="tsd-kind-icon">get<wbr>Config</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -861,7 +895,7 @@
 					<li class=" tsd-kind-class">
 						<a href="terraswaptoken.html" class="tsd-kind-icon">Terraswap<wbr>Token</a>
 					</li>
-					<li class=" tsd-kind-interface">
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="../interfaces/asset.html" class="tsd-kind-icon">Asset</a>
 					</li>
 					<li class=" tsd-kind-interface">

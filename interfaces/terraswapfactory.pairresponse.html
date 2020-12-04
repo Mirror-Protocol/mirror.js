@@ -82,7 +82,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="terraswapfactory.pairresponse.html#asset_infos" class="tsd-kind-icon">asset_<wbr>infos</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="terraswapfactory.pairresponse.html#contract_addr" class="tsd-kind-icon">contract_<wbr>addr</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="terraswapfactory.pairresponse.html#owner" class="tsd-kind-icon">owner</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="terraswapfactory.pairresponse.html#liquidity_token" class="tsd-kind-icon">liquidity_<wbr>token</a></li>
 							</ul>
 						</section>
 					</div>
@@ -96,7 +96,7 @@
 					<div class="tsd-signature tsd-kind-icon">asset_<wbr>infos<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">[</span><a href="../globals.html#assetinfo" class="tsd-signature-type">AssetInfo</a><span class="tsd-signature-symbol">, </span><a href="../globals.html#assetinfo" class="tsd-signature-type">AssetInfo</a><span class="tsd-signature-symbol">]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/TerraswapFactory.ts#L63">src/contracts/TerraswapFactory.ts:63</a></li>
+							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/TerraswapFactory.ts#L64">src/contracts/TerraswapFactory.ts:64</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -106,17 +106,17 @@
 					<div class="tsd-signature tsd-kind-icon">contract_<wbr>addr<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AccAddress</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/TerraswapFactory.ts#L62">src/contracts/TerraswapFactory.ts:62</a></li>
+							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/TerraswapFactory.ts#L65">src/contracts/TerraswapFactory.ts:65</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="owner" class="tsd-anchor"></a>
-					<h3>owner</h3>
-					<div class="tsd-signature tsd-kind-icon">owner<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AccAddress</span></div>
+					<a name="liquidity_token" class="tsd-anchor"></a>
+					<h3>liquidity_<wbr>token</h3>
+					<div class="tsd-signature tsd-kind-icon">liquidity_<wbr>token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AccAddress</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/TerraswapFactory.ts#L61">src/contracts/TerraswapFactory.ts:61</a></li>
+							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/TerraswapFactory.ts#L66">src/contracts/TerraswapFactory.ts:66</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -143,6 +143,9 @@
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="../classes/mirrorcollector.html" class="tsd-kind-icon">Mirror<wbr>Collector</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/mirrorcommunity.html" class="tsd-kind-icon">Mirror<wbr>Community</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="../classes/mirrorfactory.html" class="tsd-kind-icon">Mirror<wbr>Factory</a>
@@ -189,15 +192,21 @@
 										<a href="terraswapfactory.pairresponse.html#contract_addr" class="tsd-kind-icon">contract_<wbr>addr</a>
 									</li>
 									<li class=" tsd-kind-property tsd-parent-kind-interface">
-										<a href="terraswapfactory.pairresponse.html#owner" class="tsd-kind-icon">owner</a>
+										<a href="terraswapfactory.pairresponse.html#liquidity_token" class="tsd-kind-icon">liquidity_<wbr>token</a>
 									</li>
 								</ul>
+							</li>
+							<li class=" tsd-kind-interface tsd-parent-kind-class">
+								<a href="terraswapfactory.pairsresponse.html" class="tsd-kind-icon">Pairs<wbr>Response</a>
 							</li>
 							<li class=" tsd-kind-interface tsd-parent-kind-class">
 								<a href="terraswapfactory.queryconfig.html" class="tsd-kind-icon">Query<wbr>Config</a>
 							</li>
 							<li class=" tsd-kind-interface tsd-parent-kind-class">
 								<a href="terraswapfactory.querypair.html" class="tsd-kind-icon">Query<wbr>Pair</a>
+							</li>
+							<li class=" tsd-kind-interface tsd-parent-kind-class">
+								<a href="terraswapfactory.querypairs.html" class="tsd-kind-icon">Query<wbr>Pairs</a>
 							</li>
 							<li class=" tsd-kind-type-alias tsd-parent-kind-class tsd-is-static">
 								<a href="../classes/terraswapfactory.html#handlemsg" class="tsd-kind-icon">Handle<wbr>Msg</a>
@@ -233,6 +242,9 @@
 								<a href="../classes/terraswapfactory.html#getpair" class="tsd-kind-icon">get<wbr>Pair</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="../classes/terraswapfactory.html#getpairs" class="tsd-kind-icon">get<wbr>Pairs</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="../classes/terraswapfactory.html#init" class="tsd-kind-icon">init</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -248,7 +260,7 @@
 					<li class=" tsd-kind-class">
 						<a href="../classes/terraswaptoken.html" class="tsd-kind-icon">Terraswap<wbr>Token</a>
 					</li>
-					<li class=" tsd-kind-interface">
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="asset.html" class="tsd-kind-icon">Asset</a>
 					</li>
 					<li class=" tsd-kind-interface">

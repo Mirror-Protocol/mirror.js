@@ -80,9 +80,11 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="mirrormint.configresponse.html#base_asset_info" class="tsd-kind-icon">base_<wbr>asset_<wbr>info</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="mirrormint.configresponse.html#base_denom" class="tsd-kind-icon">base_<wbr>denom</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="mirrormint.configresponse.html#collector" class="tsd-kind-icon">collector</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="mirrormint.configresponse.html#oracle" class="tsd-kind-icon">oracle</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="mirrormint.configresponse.html#owner" class="tsd-kind-icon">owner</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="mirrormint.configresponse.html#protocol_fee_rate" class="tsd-kind-icon">protocol_<wbr>fee_<wbr>rate</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="mirrormint.configresponse.html#token_code_id" class="tsd-kind-icon">token_<wbr>code_<wbr>id</a></li>
 							</ul>
 						</section>
@@ -92,12 +94,22 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="base_asset_info" class="tsd-anchor"></a>
-					<h3>base_<wbr>asset_<wbr>info</h3>
-					<div class="tsd-signature tsd-kind-icon">base_<wbr>asset_<wbr>info<span class="tsd-signature-symbol">:</span> <a href="../globals.html#assetinfo" class="tsd-signature-type">AssetInfo</a></div>
+					<a name="base_denom" class="tsd-anchor"></a>
+					<h3>base_<wbr>denom</h3>
+					<div class="tsd-signature tsd-kind-icon">base_<wbr>denom<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/MirrorMint.ts#L135">src/contracts/MirrorMint.ts:135</a></li>
+							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/MirrorMint.ts#L142">src/contracts/MirrorMint.ts:142</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="collector" class="tsd-anchor"></a>
+					<h3>collector</h3>
+					<div class="tsd-signature tsd-kind-icon">collector<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AccAddress</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/MirrorMint.ts#L141">src/contracts/MirrorMint.ts:141</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -107,7 +119,7 @@
 					<div class="tsd-signature tsd-kind-icon">oracle<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AccAddress</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/MirrorMint.ts#L134">src/contracts/MirrorMint.ts:134</a></li>
+							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/MirrorMint.ts#L140">src/contracts/MirrorMint.ts:140</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -117,7 +129,17 @@
 					<div class="tsd-signature tsd-kind-icon">owner<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AccAddress</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/MirrorMint.ts#L133">src/contracts/MirrorMint.ts:133</a></li>
+							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/MirrorMint.ts#L139">src/contracts/MirrorMint.ts:139</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="protocol_fee_rate" class="tsd-anchor"></a>
+					<h3>protocol_<wbr>fee_<wbr>rate</h3>
+					<div class="tsd-signature tsd-kind-icon">protocol_<wbr>fee_<wbr>rate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/MirrorMint.ts#L144">src/contracts/MirrorMint.ts:144</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -127,7 +149,7 @@
 					<div class="tsd-signature tsd-kind-icon">token_<wbr>code_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/MirrorMint.ts#L136">src/contracts/MirrorMint.ts:136</a></li>
+							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/MirrorMint.ts#L143">src/contracts/MirrorMint.ts:143</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -156,6 +178,9 @@
 						<a href="../classes/mirrorcollector.html" class="tsd-kind-icon">Mirror<wbr>Collector</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="../classes/mirrorcommunity.html" class="tsd-kind-icon">Mirror<wbr>Community</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="../classes/mirrorfactory.html" class="tsd-kind-icon">Mirror<wbr>Factory</a>
 					</li>
 					<li class=" tsd-kind-class">
@@ -170,13 +195,19 @@
 								<a href="mirrormint.configresponse.html" class="tsd-kind-icon">Config<wbr>Response</a>
 								<ul>
 									<li class=" tsd-kind-property tsd-parent-kind-interface">
-										<a href="mirrormint.configresponse.html#base_asset_info" class="tsd-kind-icon">base_<wbr>asset_<wbr>info</a>
+										<a href="mirrormint.configresponse.html#base_denom" class="tsd-kind-icon">base_<wbr>denom</a>
+									</li>
+									<li class=" tsd-kind-property tsd-parent-kind-interface">
+										<a href="mirrormint.configresponse.html#collector" class="tsd-kind-icon">collector</a>
 									</li>
 									<li class=" tsd-kind-property tsd-parent-kind-interface">
 										<a href="mirrormint.configresponse.html#oracle" class="tsd-kind-icon">oracle</a>
 									</li>
 									<li class=" tsd-kind-property tsd-parent-kind-interface">
 										<a href="mirrormint.configresponse.html#owner" class="tsd-kind-icon">owner</a>
+									</li>
+									<li class=" tsd-kind-property tsd-parent-kind-interface">
+										<a href="mirrormint.configresponse.html#protocol_fee_rate" class="tsd-kind-icon">protocol_<wbr>fee_<wbr>rate</a>
 									</li>
 									<li class=" tsd-kind-property tsd-parent-kind-interface">
 										<a href="mirrormint.configresponse.html#token_code_id" class="tsd-kind-icon">token_<wbr>code_<wbr>id</a>
@@ -202,7 +233,7 @@
 					<li class=" tsd-kind-class">
 						<a href="../classes/terraswaptoken.html" class="tsd-kind-icon">Terraswap<wbr>Token</a>
 					</li>
-					<li class=" tsd-kind-interface">
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="asset.html" class="tsd-kind-icon">Asset</a>
 					</li>
 					<li class=" tsd-kind-interface">

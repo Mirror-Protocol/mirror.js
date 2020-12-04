@@ -94,7 +94,7 @@
 					<div class="tsd-signature tsd-kind-icon">migrate_<wbr>asset<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>end_price<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>from_token<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AccAddress</span><span class="tsd-signature-symbol">; </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>symbol<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/MirrorFactory.ts#L83">src/contracts/MirrorFactory.ts:83</a></li>
+							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/MirrorFactory.ts#L73">src/contracts/MirrorFactory.ts:73</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -139,6 +139,9 @@
 					<li class=" tsd-kind-class">
 						<a href="../classes/mirrorcollector.html" class="tsd-kind-icon">Mirror<wbr>Collector</a>
 					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/mirrorcommunity.html" class="tsd-kind-icon">Mirror<wbr>Community</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
@@ -150,6 +153,9 @@
 							<li class=" tsd-kind-interface tsd-parent-kind-class">
 								<a href="mirrorfactory.distributioninforesponse.html" class="tsd-kind-icon">Distribution<wbr>Info<wbr>Response</a>
 							</li>
+							<li class=" tsd-kind-interface tsd-parent-kind-class">
+								<a href="mirrorfactory.handledistribute.html" class="tsd-kind-icon">Handle<wbr>Distribute</a>
+							</li>
 							<li class="current tsd-kind-interface tsd-parent-kind-class">
 								<a href="mirrorfactory.handlemigrateasset.html" class="tsd-kind-icon">Handle<wbr>Migrate<wbr>Asset</a>
 								<ul>
@@ -157,9 +163,6 @@
 										<a href="mirrorfactory.handlemigrateasset.html#migrate_asset" class="tsd-kind-icon">migrate_<wbr>asset</a>
 									</li>
 								</ul>
-							</li>
-							<li class=" tsd-kind-interface tsd-parent-kind-class">
-								<a href="mirrorfactory.handlemint.html" class="tsd-kind-icon">Handle<wbr>Mint</a>
 							</li>
 							<li class=" tsd-kind-interface tsd-parent-kind-class">
 								<a href="mirrorfactory.handlepasscommand.html" class="tsd-kind-icon">Handle<wbr>Pass<wbr>Command</a>
@@ -172,9 +175,6 @@
 							</li>
 							<li class=" tsd-kind-interface tsd-parent-kind-class">
 								<a href="mirrorfactory.handleupdateconfig.html" class="tsd-kind-icon">Handle<wbr>Update<wbr>Config</a>
-							</li>
-							<li class=" tsd-kind-interface tsd-parent-kind-class">
-								<a href="mirrorfactory.handleupdateweight.html" class="tsd-kind-icon">Handle<wbr>Update<wbr>Weight</a>
 							</li>
 							<li class=" tsd-kind-interface tsd-parent-kind-class">
 								<a href="mirrorfactory.handlewhitelist.html" class="tsd-kind-icon">Handle<wbr>Whitelist</a>
@@ -216,6 +216,9 @@
 								<a href="../classes/mirrorfactory.html#wallet" class="tsd-kind-icon">wallet</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="../classes/mirrorfactory.html#distribute" class="tsd-kind-icon">distribute</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="../classes/mirrorfactory.html#getconfig" class="tsd-kind-icon">get<wbr>Config</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -228,9 +231,6 @@
 								<a href="../classes/mirrorfactory.html#migrateasset" class="tsd-kind-icon">migrate<wbr>Asset</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="../classes/mirrorfactory.html#mint" class="tsd-kind-icon">mint</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="../classes/mirrorfactory.html#passcommand" class="tsd-kind-icon">pass<wbr>Command</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -241,9 +241,6 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="../classes/mirrorfactory.html#updateconfig" class="tsd-kind-icon">update<wbr>Config</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="../classes/mirrorfactory.html#updateweight" class="tsd-kind-icon">update<wbr>Weight</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="../classes/mirrorfactory.html#whitelist" class="tsd-kind-icon">whitelist</a>
@@ -273,7 +270,7 @@
 					<li class=" tsd-kind-class">
 						<a href="../classes/terraswaptoken.html" class="tsd-kind-icon">Terraswap<wbr>Token</a>
 					</li>
-					<li class=" tsd-kind-interface">
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="asset.html" class="tsd-kind-icon">Asset</a>
 					</li>
 					<li class=" tsd-kind-interface">

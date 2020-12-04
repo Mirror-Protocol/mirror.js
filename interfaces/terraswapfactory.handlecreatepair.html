@@ -91,10 +91,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="create_pair" class="tsd-anchor"></a>
 					<h3>create_<wbr>pair</h3>
-					<div class="tsd-signature tsd-kind-icon">create_<wbr>pair<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>asset_infos<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><a href="../globals.html#assetinfo" class="tsd-signature-type">AssetInfo</a><span class="tsd-signature-symbol">, </span><a href="../globals.html#assetinfo" class="tsd-signature-type">AssetInfo</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">; </span>commission_collector<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AccAddress</span><span class="tsd-signature-symbol">; </span>init_hook<span class="tsd-signature-symbol">?: </span><a href="terraswapfactory.inithook.html" class="tsd-signature-type">InitHook</a><span class="tsd-signature-symbol">; </span>lp_commission<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>owner_commission<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>pair_owner<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AccAddress</span><span class="tsd-signature-symbol"> }</span></div>
+					<div class="tsd-signature tsd-kind-icon">create_<wbr>pair<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>asset_infos<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><a href="../globals.html#assetinfo" class="tsd-signature-type">AssetInfo</a><span class="tsd-signature-symbol">, </span><a href="../globals.html#assetinfo" class="tsd-signature-type">AssetInfo</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">; </span>init_hook<span class="tsd-signature-symbol">?: </span><a href="terraswapfactory.inithook.html" class="tsd-signature-type">InitHook</a><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/88fadcd/src/contracts/TerraswapFactory.ts#L34">src/contracts/TerraswapFactory.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/TerraswapFactory.ts#L34">src/contracts/TerraswapFactory.ts:34</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -104,19 +104,7 @@
 								<h5>asset_<wbr>infos<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><a href="../globals.html#assetinfo" class="tsd-signature-type">AssetInfo</a><span class="tsd-signature-symbol">, </span><a href="../globals.html#assetinfo" class="tsd-signature-type">AssetInfo</a><span class="tsd-signature-symbol">]</span></h5>
 							</li>
 							<li class="tsd-parameter">
-								<h5>commission_<wbr>collector<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AccAddress</span></h5>
-							</li>
-							<li class="tsd-parameter">
 								<h5><span class="tsd-flag ts-flagOptional">Optional</span> init_<wbr>hook<span class="tsd-signature-symbol">?: </span><a href="terraswapfactory.inithook.html" class="tsd-signature-type">InitHook</a></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5>lp_<wbr>commission<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5>owner_<wbr>commission<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5>pair_<wbr>owner<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AccAddress</span></h5>
 							</li>
 						</ul>
 					</div>
@@ -144,6 +132,9 @@
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="../classes/mirrorcollector.html" class="tsd-kind-icon">Mirror<wbr>Collector</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/mirrorcommunity.html" class="tsd-kind-icon">Mirror<wbr>Community</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="../classes/mirrorfactory.html" class="tsd-kind-icon">Mirror<wbr>Factory</a>
@@ -189,10 +180,16 @@
 								<a href="terraswapfactory.pairresponse.html" class="tsd-kind-icon">Pair<wbr>Response</a>
 							</li>
 							<li class=" tsd-kind-interface tsd-parent-kind-class">
+								<a href="terraswapfactory.pairsresponse.html" class="tsd-kind-icon">Pairs<wbr>Response</a>
+							</li>
+							<li class=" tsd-kind-interface tsd-parent-kind-class">
 								<a href="terraswapfactory.queryconfig.html" class="tsd-kind-icon">Query<wbr>Config</a>
 							</li>
 							<li class=" tsd-kind-interface tsd-parent-kind-class">
 								<a href="terraswapfactory.querypair.html" class="tsd-kind-icon">Query<wbr>Pair</a>
+							</li>
+							<li class=" tsd-kind-interface tsd-parent-kind-class">
+								<a href="terraswapfactory.querypairs.html" class="tsd-kind-icon">Query<wbr>Pairs</a>
 							</li>
 							<li class=" tsd-kind-type-alias tsd-parent-kind-class tsd-is-static">
 								<a href="../classes/terraswapfactory.html#handlemsg" class="tsd-kind-icon">Handle<wbr>Msg</a>
@@ -228,6 +225,9 @@
 								<a href="../classes/terraswapfactory.html#getpair" class="tsd-kind-icon">get<wbr>Pair</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="../classes/terraswapfactory.html#getpairs" class="tsd-kind-icon">get<wbr>Pairs</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="../classes/terraswapfactory.html#init" class="tsd-kind-icon">init</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -243,7 +243,7 @@
 					<li class=" tsd-kind-class">
 						<a href="../classes/terraswaptoken.html" class="tsd-kind-icon">Terraswap<wbr>Token</a>
 					</li>
-					<li class=" tsd-kind-interface">
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="asset.html" class="tsd-kind-icon">Asset</a>
 					</li>
 					<li class=" tsd-kind-interface">
