@@ -1,6 +1,7 @@
 import { AccAddress, Key, LCDClient, Coin } from '@terra-money/terra.js';
 import { EmptyKey } from '../utils/EmptyKey';
 import {
+  MirrorAirdrop,
   MirrorCollector,
   MirrorCommunity,
   MirrorFactory,
@@ -24,6 +25,7 @@ export interface AssetOptions {
 export interface MirrorOptions {
   lcd: LCDClient;
   key: Key;
+  airdrop: AccAddress;
   collector: AccAddress;
   community: AccAddress;
   factory: AccAddress;
@@ -46,99 +48,114 @@ export const DEFAULT_MIRROR_OPTIONS: MirrorOptions = {
     gasAdjustment: '1.2'
   }),
   key: new EmptyKey(),
-  collector: 'terra1jmj39n0tfg6qu852fx0kr46gn4sewq6uyqyu8t',
-  community: 'terra1jmj39n0tfg6qu852fx0kr46gn4sewq6uyqyu8t', // dummy
-  factory: 'terra1ndzjhjszw4pp8dkkt864drgmwhc59padjfccxg',
-  gov: 'terra12pf2c9k7m2ag2893aa6sv75nmytr9uuxzv8vgx',
-  mint: 'terra1ycsd7mlffq2ksmqdr20y4drtf6ctw3n8fmup5g',
-  oracle: 'terra14nh9jzg6gx3qp2jnlg5lvkmky40uxu7w9mgevz',
-  staking: 'terra1xxqqw7vysmh2wnq3y6hgh7d2ytmgazw62f28hh',
-  mirrorToken: 'terra16y2ew6rmnehu9fn45jj55w4g37d62xgjz8zsx9',
-  terraswapFactory: 'terra10w3rtrs8fmgwy6rsh2xwq6x27ym4kpz3698dr4',
+  airdrop: 'terra1kalp2knjm4cs3f59ukr4hdhuuncp648eqrgshw',
+  collector: 'terra1s4fllut0e6vw0k3fxsg4fs6fm2ad6hn0prqp3s',
+  community: 'terra1x35fvy3sy47drd3qs288sm47fjzjnksuwpyl9k',
+  factory: 'terra1mzj9nsxx0lxlaxnekleqdy8xnyw2qrh3uz6h8p',
+  gov: 'terra15gwkyepfc6xgca5t5zefzwy42uts8l2m4g40k6',
+  mint: 'terra1wfz7h3aqf4cjmjcvc6s8lxdhh7k30nkczyf0mj',
+  oracle: 'terra1t6xe0txzywdg85n6k8c960cuwgh6l8esw6lau9',
+  staking: 'terra17f7zu97865jmknk7p2glqvxzhduk78772ezac5',
+  mirrorToken: 'terra15gwkyepfc6xgca5t5zefzwy42uts8l2m4g40k6',
+  terraswapFactory: 'terra1ulgw0td86nvs4wtpsc80thv6xelk76ut7a7apj',
   assets: {
     MIR: {
       symbol: 'MIR',
       name: 'Mirror',
-      token: 'terra16y2ew6rmnehu9fn45jj55w4g37d62xgjz8zsx9',
-      pair: 'terra1ck0ky4ad0ecmz7sksacejxf3rek8922n2302lh',
-      lpToken: 'terra1xfm4k6qj3ryhpef4t4p9zgww6e3zuw6c0eqd05'
+      token: 'terra15gwkyepfc6xgca5t5zefzwy42uts8l2m4g40k6',
+      pair: 'terra1amv303y8kzxuegvurh0gug2xe9wkgj65enq2ux',
+      lpToken: 'terra17gjf2zehfvnyjtdgua9p9ygquk6gukxe7ucgwh'
     },
     mAAPL: {
       symbol: 'mAAPL',
       name: 'Apple',
-      token: 'terra17c3tsywm5h95j3z7hy62mvmyjct4euly4gj3kp',
-      pair: 'terra1d6548cmpmugndjg650k0k66fhnvkeqxavv0z07',
-      lpToken: 'terra1msdk05534hqupfed4v5q04f5y883ezqm0uukn7'
+      token: 'terra1vxtwu4ehgzz77mnfwrntyrmgl64qjs75mpwqaz',
+      pair: 'terra1774f8rwx76k7ruy0gqnzq25wh7lmd72eg6eqp5',
+      lpToken: 'terra122asauhmv083p02rhgyp7jn7kmjjm4ksexjnks'
     },
     mGOOGL: {
       symbol: 'mGOOGL',
       name: 'Google',
-      token: 'terra1tz0c9uy0wwaaq4p57v8qzfx0g08l3zr3zcdtgl',
-      pair: 'terra1t8m4cs4f32zqgsktu4pucwnlkz47dgql8crywn',
-      lpToken: 'terra1wxh3lw9u3k7psmvqzraxpmscmpgp329kzg834m'
+      token: 'terra1h8arz2k547uvmpxctuwush3jzc8fun4s96qgwt',
+      pair: 'terra1u56eamzkwzpm696hae4kl92jm6xxztar9uhkea',
+      lpToken: 'terra1falkl6jy4087h4z567y2l59defm9acmwcs70ts'
     },
     mTSLA: {
       symbol: 'mTSLA',
       name: 'Tesla',
-      token: 'terra13fkuw7gh8r0mjswj8ckyt87m84azq43q3qldmj',
-      pair: 'terra1uf29lrmpsmww4k3c9jcxdzet75c2pt353mx4tq',
-      lpToken: 'terra1zccwcq7shh4yj8j2ynecd7pyyftxlhdd77fpu3'
+      token: 'terra14y5affaarufk3uscy2vr6pe6w6zqf2wpjzn5sh',
+      pair: 'terra1pdxyk2gkykaraynmrgjfq2uu7r9pf5v8x7k4xk',
+      lpToken: 'terra1ygazp9w7tx64rkx5wmevszu38y5cpg6h3fk86e'
     },
     mNFLX: {
       symbol: 'mNFLX',
       name: 'Netflix',
-      token: 'terra1f9pk063a99g27l5nu83pd55x6rs649s3ax7pw3',
-      pair: 'terra1t033f2r5phvuvysu50x2lj5ctshakcf45szn49',
-      lpToken: 'terra1ch6d5kdenshk2zktap2s05arytpn8xhdffarvc'
+      token: 'terra1jsxngqasf2zynj5kyh0tgq9mj3zksa5gk35j4k',
+      pair: 'terra1yppvuda72pvmxd727knemvzsuergtslj486rdq',
+      lpToken: 'terra1mwu3cqzvhygqg7vrsa6kfstgg9d6yzkgs6yy3t'
     },
     mQQQ: {
       symbol: 'mQQQ',
       name: 'Invesco QQQ Trust',
-      token: 'terra1hu7u866jla3vgckf4sd6vjdfxzuqvzvu0ekpc9',
-      pair: 'terra19ujpfl5djdrp6w4w30vtx9cremz25gkg9nzcfa',
-      lpToken: 'terra1cj8rcff3djz86rarg3uw3nzgdy2trgvj5egvdl'
+      token: 'terra1csk6tc7pdmpr782w527hwhez6gfv632tyf72cp',
+      pair: 'terra1dkc8075nv34k2fu6xn6wcgrqlewup2qtkr4ymu',
+      lpToken: 'terra16j09nh806vaql0wujw8ktmvdj7ph8h09ltjs2r'
     },
     mTWTR: {
       symbol: 'mTWTR',
       name: 'Twitter',
-      token: 'terra1ua295n83qqm7kncn6g704d2a3hpmtjyx7f07u7',
-      pair: 'terra14q8szcr0gy5pzksve5sp7e94kqqa0xlc3g2y9u',
-      lpToken: 'terra1wunltsvvl2gfsnpwc4hf9pdxt6tnp7rt877ny8'
+      token: 'terra1cc3enj9qgchlrj34cnzhwuclc4vl2z3jl7tkqg',
+      pair: 'terra1ea9js3y4l7vy0h46k4e5r5ykkk08zc3fx7v4t8',
+      lpToken: 'terra1fc5a5gsxatjey9syq93c2n3xq90n06t60nkj6l'
+    },
+    mMSFT: {
+      symbol: 'mMSFT',
+      name: 'Microsfot Corporation',
+      token: 'terra1227ppwxxj3jxz8cfgq00jgnxqcny7ryenvkwj6',
+      pair: 'terra10ypv4vq67ns54t5ur3krkx37th7j58paev0qhd',
+      lpToken: 'terra14uaqudeylx6tegamqmygh85lfq8qg2jmg7uucc'
+    },
+    mAMZN: {
+      symbol: 'mAMZN',
+      name: 'Amazon.com',
+      token: 'terra165nd2qmrtszehcfrntlplzern7zl4ahtlhd5t2',
+      pair: 'terra1vkvmvnmex90wanque26mjvay2mdtf0rz57fm6d',
+      lpToken: 'terra1q7m2qsj3nzlz5ng25z5q5w5qcqldclfe3ljup9'
     },
     mBABA: {
       symbol: 'mBABA',
       name: 'Alibaba Group Holdings Ltd ADR',
-      token: 'terra1vekqnp3tgukt90lqfumu5467jw9jy4eewzn2fu',
-      pair: 'terra1q5gyld4cjr59fdk2rjuuzs200ks28lp08fudnt',
-      lpToken: 'terra1vrkjzhs26qlg6863s7rcnkqlmp3ftsxfdc6l5r'
+      token: 'terra1w7zgkcyt7y4zpct9dw8mw362ywvdlydnum2awa',
+      pair: 'terra1afdz4l9vsqddwmjqxmel99atu4rwscpfjm4yfp',
+      lpToken: 'terra1stfeev27wdf7er2uja34gsmrv58yv397dlxmyn'
     },
     mIAU: {
       symbol: 'mIAU',
       name: 'iShares Gold Trust',
-      token: 'terra1cyrhd8m2hhvvrn3mrn29d4h6unzyp6deay6g2y',
-      pair: 'terra1ygeltj9hg4tsshhx2m4et4nmhn2sqpmu2cv8qk',
-      lpToken: 'terra1whql3f3vukrtu3qs363vj5a67xccydjz9lpg6t'
+      token: 'terra15hp9pr8y4qsvqvxf3m4xeptlk7l8h60634gqec',
+      pair: 'terra1q2cg4sauyedt8syvarc8hcajw6u94ah40yp342',
+      lpToken: 'terra1jl4vkz3fllvj6fchnj2trrm9argtqxq6335ews'
     },
     mSLV: {
       symbol: 'mSLV',
       name: 'iShares Silver Trust',
-      token: 'terra17szfxhpttyp6w5p8llpqcr72yegxtaqy6uarye',
-      pair: 'terra1vh4e69jq20tdzldc49wwuz22qe4pdr0zlwpvsg',
-      lpToken: 'terra1d2ujj007l2tp5r6mgp78hr0ecrtq4q9afvmlwh'
+      token: 'terra1kscs6uhrqwy6rx5kuw5lwpuqvm3t6j2d6uf2lp',
+      pair: 'terra1f6d9mhrsl5t6yxqnr4rgfusjlt3gfwxdveeyuy',
+      lpToken: 'terra178cf7xf4r9d3z03tj3pftewmhx0x2p77s0k6yh'
     },
     mUSO: {
       symbol: 'mUSO',
       name: 'United States Oil Fund, LP',
-      token: 'terra19sf42kkwn85dj8hzffcytvw6jx4g8g3nxfnrdu',
-      pair: 'terra1yde9tsacetgrdzdm56s5dng2uc53wpnyf9dyds',
-      lpToken: 'terra1pkv2skq9pqzpfe483dn6q2dskadrhyrqg2f5ya'
+      token: 'terra1lvmx8fsagy70tv0fhmfzdw9h6s3sy4prz38ugf',
+      pair: 'terra1zey9knmvs2frfrjnf4cfv4prc4ts3mrsefstrj',
+      lpToken: 'terra1utf3tm35qk6fkft7ltcnscwml737vfz7xghwn5'
     },
     mVIXY: {
       symbol: 'mVIXY',
       name: 'ProShares VIX',
-      token: 'terra1kmt8vekwu4aq6l9y50n8hg9zcdzd3tqdp8lgdr',
-      pair: 'terra195fcntnznx4f676gf383g02yguhync2fsuk03x',
-      lpToken: 'terra1svhet09r7ulhyr4vs4fl6j6lnam94q6natumck'
+      token: 'terra1zp3a6q6q4953cz376906g5qfmxnlg77hx3te45',
+      pair: 'terra1yngadscckdtd68nzw5r5va36jccjmmasm7klpp',
+      lpToken: 'terra1cmrl4txa7cwd7cygpp4yzu7xu8g7c772els2y8'
     }
   }
 };
@@ -147,6 +164,8 @@ export class Mirror {
   public lcd?: LCDClient;
 
   public key: Key;
+
+  public airdrop: MirrorAirdrop;
 
   public collector: MirrorCollector;
 
@@ -181,6 +200,7 @@ export class Mirror {
     const {
       lcd,
       key,
+      airdrop,
       collector,
       community,
       factory,
@@ -196,6 +216,11 @@ export class Mirror {
     this.lcd = lcd;
     this.key = key;
 
+    this.airdrop = new MirrorAirdrop({
+      contractAddress: airdrop,
+      lcd,
+      key
+    });
     this.collector = new MirrorCollector({
       contractAddress: collector,
       lcd,

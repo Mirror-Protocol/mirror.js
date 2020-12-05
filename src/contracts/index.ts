@@ -1,3 +1,4 @@
+export * from './MirrorAirdrop';
 export * from './MirrorCollector';
 export * from './MirrorCommunity';
 export * from './MirrorFactory';
