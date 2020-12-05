@@ -42,7 +42,7 @@ export interface MirrorOptions {
 
 export const DEFAULT_MIRROR_OPTIONS: MirrorOptions = {
   lcd: new LCDClient({
-    URL: 'https://tequila-lcd.terra.dev',
+    URL: 'https://lcd.terra.dev',
     chainID: 'localterra',
     gasPrices: [new Coin('ukrw', '1.8')],
     gasAdjustment: '1.2'
