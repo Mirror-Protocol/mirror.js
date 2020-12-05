@@ -69,6 +69,7 @@
 								<li class="tsd-kind-class"><a href="classes/contractclient.html" class="tsd-kind-icon">Contract<wbr>Client</a></li>
 								<li class="tsd-kind-class"><a href="classes/emptykey.html" class="tsd-kind-icon">Empty<wbr>Key</a></li>
 								<li class="tsd-kind-class"><a href="classes/mirror.html" class="tsd-kind-icon">Mirror</a></li>
+								<li class="tsd-kind-class"><a href="classes/mirrorairdrop.html" class="tsd-kind-icon">Mirror<wbr>Airdrop</a></li>
 								<li class="tsd-kind-class"><a href="classes/mirrorcollector.html" class="tsd-kind-icon">Mirror<wbr>Collector</a></li>
 								<li class="tsd-kind-class"><a href="classes/mirrorcommunity.html" class="tsd-kind-icon">Mirror<wbr>Community</a></li>
 								<li class="tsd-kind-class"><a href="classes/mirrorfactory.html" class="tsd-kind-icon">Mirror<wbr>Factory</a></li>
@@ -123,7 +124,7 @@
 					<div class="tsd-signature tsd-kind-icon">Asset<wbr>Info<span class="tsd-signature-symbol">:</span> <a href="interfaces/token.html" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/nativetoken.html" class="tsd-signature-type">NativeToken</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/utils/Asset.ts#L16">src/utils/Asset.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/utils/Asset.ts#L16">src/utils/Asset.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -133,7 +134,7 @@
 					<div class="tsd-signature tsd-kind-icon">Empty<wbr>Object<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/utils/EmptyObject.ts#L1">src/utils/EmptyObject.ts:1</a></li>
+							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/utils/EmptyObject.ts#L1">src/utils/EmptyObject.ts:1</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -155,7 +156,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/contracts/MirrorCollector.ts#L50">src/contracts/MirrorCollector.ts:50</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/contracts/MirrorCollector.ts#L50">src/contracts/MirrorCollector.ts:50</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -178,7 +179,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/utils/Asset.ts#L18">src/utils/Asset.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/utils/Asset.ts#L18">src/utils/Asset.ts:18</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -200,46 +201,56 @@
 					<div class="tsd-signature tsd-kind-icon">DEFAULT_<wbr>MIRROR_<wbr>OPTIONS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L41">src/client/Mirror.ts:41</a></li>
+							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L43">src/client/Mirror.ts:43</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-						<a name="default_mirror_options.collector" class="tsd-anchor"></a>
-						<h3>collector</h3>
-						<div class="tsd-signature tsd-kind-icon">collector<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1jmj39n0tfg6qu852fx0kr46gn4sewq6uyqyu8t&quot;</span></div>
+						<a name="default_mirror_options.airdrop" class="tsd-anchor"></a>
+						<h3>airdrop</h3>
+						<div class="tsd-signature tsd-kind-icon">airdrop<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1kalp2knjm4cs3f59ukr4hdhuuncp648eqrgshw&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L49">src/client/Mirror.ts:49</a></li>
+								<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L51">src/client/Mirror.ts:51</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="default_mirror_options.collector" class="tsd-anchor"></a>
+						<h3>collector</h3>
+						<div class="tsd-signature tsd-kind-icon">collector<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1s4fllut0e6vw0k3fxsg4fs6fm2ad6hn0prqp3s&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L52">src/client/Mirror.ts:52</a></li>
 							</ul>
 						</aside>
 					</section>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 						<a name="default_mirror_options.community" class="tsd-anchor"></a>
 						<h3>community</h3>
-						<div class="tsd-signature tsd-kind-icon">community<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1jmj39n0tfg6qu852fx0kr46gn4sewq6uyqyu8t&quot;</span></div>
+						<div class="tsd-signature tsd-kind-icon">community<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1x35fvy3sy47drd3qs288sm47fjzjnksuwpyl9k&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L50">src/client/Mirror.ts:50</a></li>
+								<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L53">src/client/Mirror.ts:53</a></li>
 							</ul>
 						</aside>
 					</section>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 						<a name="default_mirror_options.factory" class="tsd-anchor"></a>
 						<h3>factory</h3>
-						<div class="tsd-signature tsd-kind-icon">factory<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1ndzjhjszw4pp8dkkt864drgmwhc59padjfccxg&quot;</span></div>
+						<div class="tsd-signature tsd-kind-icon">factory<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1mzj9nsxx0lxlaxnekleqdy8xnyw2qrh3uz6h8p&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L51">src/client/Mirror.ts:51</a></li>
+								<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L54">src/client/Mirror.ts:54</a></li>
 							</ul>
 						</aside>
 					</section>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 						<a name="default_mirror_options.gov" class="tsd-anchor"></a>
 						<h3>gov</h3>
-						<div class="tsd-signature tsd-kind-icon">gov<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra12pf2c9k7m2ag2893aa6sv75nmytr9uuxzv8vgx&quot;</span></div>
+						<div class="tsd-signature tsd-kind-icon">gov<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra15gwkyepfc6xgca5t5zefzwy42uts8l2m4g40k6&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L52">src/client/Mirror.ts:52</a></li>
+								<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L55">src/client/Mirror.ts:55</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -249,7 +260,7 @@
 						<div class="tsd-signature tsd-kind-icon">key<span class="tsd-signature-symbol">:</span> <a href="classes/emptykey.html" class="tsd-signature-type">EmptyKey</a><span class="tsd-signature-symbol"> = new EmptyKey()</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L48">src/client/Mirror.ts:48</a></li>
+								<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L50">src/client/Mirror.ts:50</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -259,57 +270,57 @@
 						<div class="tsd-signature tsd-kind-icon">lcd<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">LCDClient</span><span class="tsd-signature-symbol"> = new LCDClient({URL: &#x27;https://tequila-lcd.terra.dev&#x27;,chainID: &#x27;localterra&#x27;,gasPrices: [new Coin(&#x27;ukrw&#x27;, &#x27;1.8&#x27;)],gasAdjustment: &#x27;1.2&#x27;})</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L42">src/client/Mirror.ts:42</a></li>
+								<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L44">src/client/Mirror.ts:44</a></li>
 							</ul>
 						</aside>
 					</section>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 						<a name="default_mirror_options.mint" class="tsd-anchor"></a>
 						<h3>mint</h3>
-						<div class="tsd-signature tsd-kind-icon">mint<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1ycsd7mlffq2ksmqdr20y4drtf6ctw3n8fmup5g&quot;</span></div>
+						<div class="tsd-signature tsd-kind-icon">mint<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1wfz7h3aqf4cjmjcvc6s8lxdhh7k30nkczyf0mj&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L53">src/client/Mirror.ts:53</a></li>
+								<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L56">src/client/Mirror.ts:56</a></li>
 							</ul>
 						</aside>
 					</section>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 						<a name="default_mirror_options.mirrortoken" class="tsd-anchor"></a>
 						<h3>mirror<wbr>Token</h3>
-						<div class="tsd-signature tsd-kind-icon">mirror<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra16y2ew6rmnehu9fn45jj55w4g37d62xgjz8zsx9&quot;</span></div>
+						<div class="tsd-signature tsd-kind-icon">mirror<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra15gwkyepfc6xgca5t5zefzwy42uts8l2m4g40k6&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L56">src/client/Mirror.ts:56</a></li>
+								<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L59">src/client/Mirror.ts:59</a></li>
 							</ul>
 						</aside>
 					</section>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 						<a name="default_mirror_options.oracle" class="tsd-anchor"></a>
 						<h3>oracle</h3>
-						<div class="tsd-signature tsd-kind-icon">oracle<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra14nh9jzg6gx3qp2jnlg5lvkmky40uxu7w9mgevz&quot;</span></div>
+						<div class="tsd-signature tsd-kind-icon">oracle<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1t6xe0txzywdg85n6k8c960cuwgh6l8esw6lau9&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L54">src/client/Mirror.ts:54</a></li>
+								<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L57">src/client/Mirror.ts:57</a></li>
 							</ul>
 						</aside>
 					</section>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 						<a name="default_mirror_options.staking" class="tsd-anchor"></a>
 						<h3>staking</h3>
-						<div class="tsd-signature tsd-kind-icon">staking<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1xxqqw7vysmh2wnq3y6hgh7d2ytmgazw62f28hh&quot;</span></div>
+						<div class="tsd-signature tsd-kind-icon">staking<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra17f7zu97865jmknk7p2glqvxzhduk78772ezac5&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L55">src/client/Mirror.ts:55</a></li>
+								<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L58">src/client/Mirror.ts:58</a></li>
 							</ul>
 						</aside>
 					</section>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 						<a name="default_mirror_options.terraswapfactory" class="tsd-anchor"></a>
 						<h3>terraswap<wbr>Factory</h3>
-						<div class="tsd-signature tsd-kind-icon">terraswap<wbr>Factory<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra10w3rtrs8fmgwy6rsh2xwq6x27ym4kpz3698dr4&quot;</span></div>
+						<div class="tsd-signature tsd-kind-icon">terraswap<wbr>Factory<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1ulgw0td86nvs4wtpsc80thv6xelk76ut7a7apj&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L57">src/client/Mirror.ts:57</a></li>
+								<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L60">src/client/Mirror.ts:60</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -319,7 +330,7 @@
 						<div class="tsd-signature tsd-kind-icon">assets<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L58">src/client/Mirror.ts:58</a></li>
+								<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L61">src/client/Mirror.ts:61</a></li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal">
@@ -328,16 +339,16 @@
 							<div class="tsd-signature tsd-kind-icon">MIR<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L59">src/client/Mirror.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L62">src/client/Mirror.ts:62</a></li>
 								</ul>
 							</aside>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 								<a name="default_mirror_options.assets.mir.lptoken" class="tsd-anchor"></a>
 								<h3>lp<wbr>Token</h3>
-								<div class="tsd-signature tsd-kind-icon">lp<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1xfm4k6qj3ryhpef4t4p9zgww6e3zuw6c0eqd05&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">lp<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra17gjf2zehfvnyjtdgua9p9ygquk6gukxe7ucgwh&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L64">src/client/Mirror.ts:64</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L67">src/client/Mirror.ts:67</a></li>
 									</ul>
 								</aside>
 							</section>
@@ -347,17 +358,17 @@
 								<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Mirror&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L61">src/client/Mirror.ts:61</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L64">src/client/Mirror.ts:64</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 								<a name="default_mirror_options.assets.mir.pair" class="tsd-anchor"></a>
 								<h3>pair</h3>
-								<div class="tsd-signature tsd-kind-icon">pair<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1ck0ky4ad0ecmz7sksacejxf3rek8922n2302lh&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">pair<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1amv303y8kzxuegvurh0gug2xe9wkgj65enq2ux&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L63">src/client/Mirror.ts:63</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L66">src/client/Mirror.ts:66</a></li>
 									</ul>
 								</aside>
 							</section>
@@ -367,17 +378,17 @@
 								<div class="tsd-signature tsd-kind-icon">symbol<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;MIR&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L60">src/client/Mirror.ts:60</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L63">src/client/Mirror.ts:63</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 								<a name="default_mirror_options.assets.mir.token" class="tsd-anchor"></a>
 								<h3>token</h3>
-								<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra16y2ew6rmnehu9fn45jj55w4g37d62xgjz8zsx9&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra15gwkyepfc6xgca5t5zefzwy42uts8l2m4g40k6&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L62">src/client/Mirror.ts:62</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L65">src/client/Mirror.ts:65</a></li>
 									</ul>
 								</aside>
 							</section>
@@ -388,16 +399,16 @@
 							<div class="tsd-signature tsd-kind-icon">mAAPL<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L66">src/client/Mirror.ts:66</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L69">src/client/Mirror.ts:69</a></li>
 								</ul>
 							</aside>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 								<a name="default_mirror_options.assets.maapl.lptoken-1" class="tsd-anchor"></a>
 								<h3>lp<wbr>Token</h3>
-								<div class="tsd-signature tsd-kind-icon">lp<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1msdk05534hqupfed4v5q04f5y883ezqm0uukn7&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">lp<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra122asauhmv083p02rhgyp7jn7kmjjm4ksexjnks&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L71">src/client/Mirror.ts:71</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L74">src/client/Mirror.ts:74</a></li>
 									</ul>
 								</aside>
 							</section>
@@ -407,17 +418,17 @@
 								<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Apple&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L68">src/client/Mirror.ts:68</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L71">src/client/Mirror.ts:71</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 								<a name="default_mirror_options.assets.maapl.pair-1" class="tsd-anchor"></a>
 								<h3>pair</h3>
-								<div class="tsd-signature tsd-kind-icon">pair<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1d6548cmpmugndjg650k0k66fhnvkeqxavv0z07&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">pair<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1774f8rwx76k7ruy0gqnzq25wh7lmd72eg6eqp5&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L70">src/client/Mirror.ts:70</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L73">src/client/Mirror.ts:73</a></li>
 									</ul>
 								</aside>
 							</section>
@@ -427,17 +438,77 @@
 								<div class="tsd-signature tsd-kind-icon">symbol<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;mAAPL&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L67">src/client/Mirror.ts:67</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L70">src/client/Mirror.ts:70</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 								<a name="default_mirror_options.assets.maapl.token-1" class="tsd-anchor"></a>
 								<h3>token</h3>
-								<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra17c3tsywm5h95j3z7hy62mvmyjct4euly4gj3kp&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1vxtwu4ehgzz77mnfwrntyrmgl64qjs75mpwqaz&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L69">src/client/Mirror.ts:69</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L72">src/client/Mirror.ts:72</a></li>
+									</ul>
+								</aside>
+							</section>
+						</section>
+						<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal">
+							<a name="default_mirror_options.assets.mamzn" class="tsd-anchor"></a>
+							<h3>mAMZN</h3>
+							<div class="tsd-signature tsd-kind-icon">mAMZN<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L118">src/client/Mirror.ts:118</a></li>
+								</ul>
+							</aside>
+							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+								<a name="default_mirror_options.assets.mamzn.lptoken-2" class="tsd-anchor"></a>
+								<h3>lp<wbr>Token</h3>
+								<div class="tsd-signature tsd-kind-icon">lp<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1q7m2qsj3nzlz5ng25z5q5w5qcqldclfe3ljup9&quot;</span></div>
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L123">src/client/Mirror.ts:123</a></li>
+									</ul>
+								</aside>
+							</section>
+							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+								<a name="default_mirror_options.assets.mamzn.name-2" class="tsd-anchor"></a>
+								<h3>name</h3>
+								<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Amazon.com&quot;</span></div>
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L120">src/client/Mirror.ts:120</a></li>
+									</ul>
+								</aside>
+							</section>
+							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+								<a name="default_mirror_options.assets.mamzn.pair-2" class="tsd-anchor"></a>
+								<h3>pair</h3>
+								<div class="tsd-signature tsd-kind-icon">pair<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1vkvmvnmex90wanque26mjvay2mdtf0rz57fm6d&quot;</span></div>
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L122">src/client/Mirror.ts:122</a></li>
+									</ul>
+								</aside>
+							</section>
+							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+								<a name="default_mirror_options.assets.mamzn.symbol-2" class="tsd-anchor"></a>
+								<h3>symbol</h3>
+								<div class="tsd-signature tsd-kind-icon">symbol<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;mAMZN&quot;</span></div>
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L119">src/client/Mirror.ts:119</a></li>
+									</ul>
+								</aside>
+							</section>
+							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+								<a name="default_mirror_options.assets.mamzn.token-2" class="tsd-anchor"></a>
+								<h3>token</h3>
+								<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra165nd2qmrtszehcfrntlplzern7zl4ahtlhd5t2&quot;</span></div>
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L121">src/client/Mirror.ts:121</a></li>
 									</ul>
 								</aside>
 							</section>
@@ -448,56 +519,56 @@
 							<div class="tsd-signature tsd-kind-icon">mBABA<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L108">src/client/Mirror.ts:108</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L125">src/client/Mirror.ts:125</a></li>
 								</ul>
 							</aside>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mbaba.lptoken-2" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mbaba.lptoken-3" class="tsd-anchor"></a>
 								<h3>lp<wbr>Token</h3>
-								<div class="tsd-signature tsd-kind-icon">lp<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1vrkjzhs26qlg6863s7rcnkqlmp3ftsxfdc6l5r&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">lp<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1stfeev27wdf7er2uja34gsmrv58yv397dlxmyn&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L113">src/client/Mirror.ts:113</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L130">src/client/Mirror.ts:130</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mbaba.name-2" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mbaba.name-3" class="tsd-anchor"></a>
 								<h3>name</h3>
 								<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Alibaba Group Holdings Ltd ADR&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L110">src/client/Mirror.ts:110</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L127">src/client/Mirror.ts:127</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mbaba.pair-2" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mbaba.pair-3" class="tsd-anchor"></a>
 								<h3>pair</h3>
-								<div class="tsd-signature tsd-kind-icon">pair<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1q5gyld4cjr59fdk2rjuuzs200ks28lp08fudnt&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">pair<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1afdz4l9vsqddwmjqxmel99atu4rwscpfjm4yfp&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L112">src/client/Mirror.ts:112</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L129">src/client/Mirror.ts:129</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mbaba.symbol-2" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mbaba.symbol-3" class="tsd-anchor"></a>
 								<h3>symbol</h3>
 								<div class="tsd-signature tsd-kind-icon">symbol<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;mBABA&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L109">src/client/Mirror.ts:109</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L126">src/client/Mirror.ts:126</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mbaba.token-2" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mbaba.token-3" class="tsd-anchor"></a>
 								<h3>token</h3>
-								<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1vekqnp3tgukt90lqfumu5467jw9jy4eewzn2fu&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1w7zgkcyt7y4zpct9dw8mw362ywvdlydnum2awa&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L111">src/client/Mirror.ts:111</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L128">src/client/Mirror.ts:128</a></li>
 									</ul>
 								</aside>
 							</section>
@@ -508,56 +579,56 @@
 							<div class="tsd-signature tsd-kind-icon">mGOOGL<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L73">src/client/Mirror.ts:73</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L76">src/client/Mirror.ts:76</a></li>
 								</ul>
 							</aside>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mgoogl.lptoken-3" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mgoogl.lptoken-4" class="tsd-anchor"></a>
 								<h3>lp<wbr>Token</h3>
-								<div class="tsd-signature tsd-kind-icon">lp<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1wxh3lw9u3k7psmvqzraxpmscmpgp329kzg834m&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">lp<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1falkl6jy4087h4z567y2l59defm9acmwcs70ts&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L78">src/client/Mirror.ts:78</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L81">src/client/Mirror.ts:81</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mgoogl.name-3" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mgoogl.name-4" class="tsd-anchor"></a>
 								<h3>name</h3>
 								<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Google&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L75">src/client/Mirror.ts:75</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L78">src/client/Mirror.ts:78</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mgoogl.pair-3" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mgoogl.pair-4" class="tsd-anchor"></a>
 								<h3>pair</h3>
-								<div class="tsd-signature tsd-kind-icon">pair<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1t8m4cs4f32zqgsktu4pucwnlkz47dgql8crywn&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">pair<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1u56eamzkwzpm696hae4kl92jm6xxztar9uhkea&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L77">src/client/Mirror.ts:77</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L80">src/client/Mirror.ts:80</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mgoogl.symbol-3" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mgoogl.symbol-4" class="tsd-anchor"></a>
 								<h3>symbol</h3>
 								<div class="tsd-signature tsd-kind-icon">symbol<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;mGOOGL&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L74">src/client/Mirror.ts:74</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L77">src/client/Mirror.ts:77</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mgoogl.token-3" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mgoogl.token-4" class="tsd-anchor"></a>
 								<h3>token</h3>
-								<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1tz0c9uy0wwaaq4p57v8qzfx0g08l3zr3zcdtgl&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1h8arz2k547uvmpxctuwush3jzc8fun4s96qgwt&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L76">src/client/Mirror.ts:76</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L79">src/client/Mirror.ts:79</a></li>
 									</ul>
 								</aside>
 							</section>
@@ -568,56 +639,116 @@
 							<div class="tsd-signature tsd-kind-icon">mIAU<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L115">src/client/Mirror.ts:115</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L132">src/client/Mirror.ts:132</a></li>
 								</ul>
 							</aside>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.miau.lptoken-4" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.miau.lptoken-5" class="tsd-anchor"></a>
 								<h3>lp<wbr>Token</h3>
-								<div class="tsd-signature tsd-kind-icon">lp<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1whql3f3vukrtu3qs363vj5a67xccydjz9lpg6t&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">lp<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1jl4vkz3fllvj6fchnj2trrm9argtqxq6335ews&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L120">src/client/Mirror.ts:120</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L137">src/client/Mirror.ts:137</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.miau.name-4" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.miau.name-5" class="tsd-anchor"></a>
 								<h3>name</h3>
 								<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;iShares Gold Trust&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L117">src/client/Mirror.ts:117</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L134">src/client/Mirror.ts:134</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.miau.pair-4" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.miau.pair-5" class="tsd-anchor"></a>
 								<h3>pair</h3>
-								<div class="tsd-signature tsd-kind-icon">pair<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1ygeltj9hg4tsshhx2m4et4nmhn2sqpmu2cv8qk&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">pair<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1q2cg4sauyedt8syvarc8hcajw6u94ah40yp342&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L119">src/client/Mirror.ts:119</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L136">src/client/Mirror.ts:136</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.miau.symbol-4" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.miau.symbol-5" class="tsd-anchor"></a>
 								<h3>symbol</h3>
 								<div class="tsd-signature tsd-kind-icon">symbol<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;mIAU&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L116">src/client/Mirror.ts:116</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L133">src/client/Mirror.ts:133</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.miau.token-4" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.miau.token-5" class="tsd-anchor"></a>
 								<h3>token</h3>
-								<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1cyrhd8m2hhvvrn3mrn29d4h6unzyp6deay6g2y&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra15hp9pr8y4qsvqvxf3m4xeptlk7l8h60634gqec&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L118">src/client/Mirror.ts:118</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L135">src/client/Mirror.ts:135</a></li>
+									</ul>
+								</aside>
+							</section>
+						</section>
+						<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal">
+							<a name="default_mirror_options.assets.mmsft" class="tsd-anchor"></a>
+							<h3>mMSFT</h3>
+							<div class="tsd-signature tsd-kind-icon">mMSFT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L111">src/client/Mirror.ts:111</a></li>
+								</ul>
+							</aside>
+							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+								<a name="default_mirror_options.assets.mmsft.lptoken-6" class="tsd-anchor"></a>
+								<h3>lp<wbr>Token</h3>
+								<div class="tsd-signature tsd-kind-icon">lp<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra14uaqudeylx6tegamqmygh85lfq8qg2jmg7uucc&quot;</span></div>
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L116">src/client/Mirror.ts:116</a></li>
+									</ul>
+								</aside>
+							</section>
+							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+								<a name="default_mirror_options.assets.mmsft.name-6" class="tsd-anchor"></a>
+								<h3>name</h3>
+								<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Microsfot Corporation&quot;</span></div>
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L113">src/client/Mirror.ts:113</a></li>
+									</ul>
+								</aside>
+							</section>
+							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+								<a name="default_mirror_options.assets.mmsft.pair-6" class="tsd-anchor"></a>
+								<h3>pair</h3>
+								<div class="tsd-signature tsd-kind-icon">pair<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra10ypv4vq67ns54t5ur3krkx37th7j58paev0qhd&quot;</span></div>
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L115">src/client/Mirror.ts:115</a></li>
+									</ul>
+								</aside>
+							</section>
+							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+								<a name="default_mirror_options.assets.mmsft.symbol-6" class="tsd-anchor"></a>
+								<h3>symbol</h3>
+								<div class="tsd-signature tsd-kind-icon">symbol<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;mMSFT&quot;</span></div>
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L112">src/client/Mirror.ts:112</a></li>
+									</ul>
+								</aside>
+							</section>
+							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+								<a name="default_mirror_options.assets.mmsft.token-6" class="tsd-anchor"></a>
+								<h3>token</h3>
+								<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1227ppwxxj3jxz8cfgq00jgnxqcny7ryenvkwj6&quot;</span></div>
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L114">src/client/Mirror.ts:114</a></li>
 									</ul>
 								</aside>
 							</section>
@@ -628,56 +759,56 @@
 							<div class="tsd-signature tsd-kind-icon">mNFLX<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L87">src/client/Mirror.ts:87</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L90">src/client/Mirror.ts:90</a></li>
 								</ul>
 							</aside>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mnflx.lptoken-5" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mnflx.lptoken-7" class="tsd-anchor"></a>
 								<h3>lp<wbr>Token</h3>
-								<div class="tsd-signature tsd-kind-icon">lp<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1ch6d5kdenshk2zktap2s05arytpn8xhdffarvc&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">lp<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1mwu3cqzvhygqg7vrsa6kfstgg9d6yzkgs6yy3t&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L92">src/client/Mirror.ts:92</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L95">src/client/Mirror.ts:95</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mnflx.name-5" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mnflx.name-7" class="tsd-anchor"></a>
 								<h3>name</h3>
 								<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Netflix&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L89">src/client/Mirror.ts:89</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L92">src/client/Mirror.ts:92</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mnflx.pair-5" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mnflx.pair-7" class="tsd-anchor"></a>
 								<h3>pair</h3>
-								<div class="tsd-signature tsd-kind-icon">pair<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1t033f2r5phvuvysu50x2lj5ctshakcf45szn49&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">pair<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1yppvuda72pvmxd727knemvzsuergtslj486rdq&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L91">src/client/Mirror.ts:91</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L94">src/client/Mirror.ts:94</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mnflx.symbol-5" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mnflx.symbol-7" class="tsd-anchor"></a>
 								<h3>symbol</h3>
 								<div class="tsd-signature tsd-kind-icon">symbol<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;mNFLX&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L88">src/client/Mirror.ts:88</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L91">src/client/Mirror.ts:91</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mnflx.token-5" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mnflx.token-7" class="tsd-anchor"></a>
 								<h3>token</h3>
-								<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1f9pk063a99g27l5nu83pd55x6rs649s3ax7pw3&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1jsxngqasf2zynj5kyh0tgq9mj3zksa5gk35j4k&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L90">src/client/Mirror.ts:90</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L93">src/client/Mirror.ts:93</a></li>
 									</ul>
 								</aside>
 							</section>
@@ -688,56 +819,56 @@
 							<div class="tsd-signature tsd-kind-icon">mQQQ<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L94">src/client/Mirror.ts:94</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L97">src/client/Mirror.ts:97</a></li>
 								</ul>
 							</aside>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mqqq.lptoken-6" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mqqq.lptoken-8" class="tsd-anchor"></a>
 								<h3>lp<wbr>Token</h3>
-								<div class="tsd-signature tsd-kind-icon">lp<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1cj8rcff3djz86rarg3uw3nzgdy2trgvj5egvdl&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">lp<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra16j09nh806vaql0wujw8ktmvdj7ph8h09ltjs2r&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L99">src/client/Mirror.ts:99</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L102">src/client/Mirror.ts:102</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mqqq.name-6" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mqqq.name-8" class="tsd-anchor"></a>
 								<h3>name</h3>
 								<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Invesco QQQ Trust&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L96">src/client/Mirror.ts:96</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L99">src/client/Mirror.ts:99</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mqqq.pair-6" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mqqq.pair-8" class="tsd-anchor"></a>
 								<h3>pair</h3>
-								<div class="tsd-signature tsd-kind-icon">pair<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra19ujpfl5djdrp6w4w30vtx9cremz25gkg9nzcfa&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">pair<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1dkc8075nv34k2fu6xn6wcgrqlewup2qtkr4ymu&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L98">src/client/Mirror.ts:98</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L101">src/client/Mirror.ts:101</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mqqq.symbol-6" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mqqq.symbol-8" class="tsd-anchor"></a>
 								<h3>symbol</h3>
 								<div class="tsd-signature tsd-kind-icon">symbol<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;mQQQ&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L95">src/client/Mirror.ts:95</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L98">src/client/Mirror.ts:98</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mqqq.token-6" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mqqq.token-8" class="tsd-anchor"></a>
 								<h3>token</h3>
-								<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1hu7u866jla3vgckf4sd6vjdfxzuqvzvu0ekpc9&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1csk6tc7pdmpr782w527hwhez6gfv632tyf72cp&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L97">src/client/Mirror.ts:97</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L100">src/client/Mirror.ts:100</a></li>
 									</ul>
 								</aside>
 							</section>
@@ -748,56 +879,56 @@
 							<div class="tsd-signature tsd-kind-icon">mSLV<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L122">src/client/Mirror.ts:122</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L139">src/client/Mirror.ts:139</a></li>
 								</ul>
 							</aside>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mslv.lptoken-7" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mslv.lptoken-9" class="tsd-anchor"></a>
 								<h3>lp<wbr>Token</h3>
-								<div class="tsd-signature tsd-kind-icon">lp<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1d2ujj007l2tp5r6mgp78hr0ecrtq4q9afvmlwh&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">lp<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra178cf7xf4r9d3z03tj3pftewmhx0x2p77s0k6yh&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L127">src/client/Mirror.ts:127</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L144">src/client/Mirror.ts:144</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mslv.name-7" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mslv.name-9" class="tsd-anchor"></a>
 								<h3>name</h3>
 								<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;iShares Silver Trust&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L124">src/client/Mirror.ts:124</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L141">src/client/Mirror.ts:141</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mslv.pair-7" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mslv.pair-9" class="tsd-anchor"></a>
 								<h3>pair</h3>
-								<div class="tsd-signature tsd-kind-icon">pair<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1vh4e69jq20tdzldc49wwuz22qe4pdr0zlwpvsg&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">pair<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1f6d9mhrsl5t6yxqnr4rgfusjlt3gfwxdveeyuy&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L126">src/client/Mirror.ts:126</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L143">src/client/Mirror.ts:143</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mslv.symbol-7" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mslv.symbol-9" class="tsd-anchor"></a>
 								<h3>symbol</h3>
 								<div class="tsd-signature tsd-kind-icon">symbol<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;mSLV&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L123">src/client/Mirror.ts:123</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L140">src/client/Mirror.ts:140</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mslv.token-7" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mslv.token-9" class="tsd-anchor"></a>
 								<h3>token</h3>
-								<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra17szfxhpttyp6w5p8llpqcr72yegxtaqy6uarye&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1kscs6uhrqwy6rx5kuw5lwpuqvm3t6j2d6uf2lp&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L125">src/client/Mirror.ts:125</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L142">src/client/Mirror.ts:142</a></li>
 									</ul>
 								</aside>
 							</section>
@@ -808,56 +939,56 @@
 							<div class="tsd-signature tsd-kind-icon">mTSLA<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L80">src/client/Mirror.ts:80</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L83">src/client/Mirror.ts:83</a></li>
 								</ul>
 							</aside>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mtsla.lptoken-8" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mtsla.lptoken-10" class="tsd-anchor"></a>
 								<h3>lp<wbr>Token</h3>
-								<div class="tsd-signature tsd-kind-icon">lp<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1zccwcq7shh4yj8j2ynecd7pyyftxlhdd77fpu3&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">lp<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1ygazp9w7tx64rkx5wmevszu38y5cpg6h3fk86e&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L85">src/client/Mirror.ts:85</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L88">src/client/Mirror.ts:88</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mtsla.name-8" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mtsla.name-10" class="tsd-anchor"></a>
 								<h3>name</h3>
 								<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Tesla&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L82">src/client/Mirror.ts:82</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L85">src/client/Mirror.ts:85</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mtsla.pair-8" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mtsla.pair-10" class="tsd-anchor"></a>
 								<h3>pair</h3>
-								<div class="tsd-signature tsd-kind-icon">pair<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1uf29lrmpsmww4k3c9jcxdzet75c2pt353mx4tq&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">pair<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1pdxyk2gkykaraynmrgjfq2uu7r9pf5v8x7k4xk&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L84">src/client/Mirror.ts:84</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L87">src/client/Mirror.ts:87</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mtsla.symbol-8" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mtsla.symbol-10" class="tsd-anchor"></a>
 								<h3>symbol</h3>
 								<div class="tsd-signature tsd-kind-icon">symbol<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;mTSLA&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L81">src/client/Mirror.ts:81</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L84">src/client/Mirror.ts:84</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mtsla.token-8" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mtsla.token-10" class="tsd-anchor"></a>
 								<h3>token</h3>
-								<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra13fkuw7gh8r0mjswj8ckyt87m84azq43q3qldmj&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra14y5affaarufk3uscy2vr6pe6w6zqf2wpjzn5sh&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L83">src/client/Mirror.ts:83</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L86">src/client/Mirror.ts:86</a></li>
 									</ul>
 								</aside>
 							</section>
@@ -868,56 +999,56 @@
 							<div class="tsd-signature tsd-kind-icon">mTWTR<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L101">src/client/Mirror.ts:101</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L104">src/client/Mirror.ts:104</a></li>
 								</ul>
 							</aside>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mtwtr.lptoken-9" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mtwtr.lptoken-11" class="tsd-anchor"></a>
 								<h3>lp<wbr>Token</h3>
-								<div class="tsd-signature tsd-kind-icon">lp<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1wunltsvvl2gfsnpwc4hf9pdxt6tnp7rt877ny8&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">lp<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1fc5a5gsxatjey9syq93c2n3xq90n06t60nkj6l&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L106">src/client/Mirror.ts:106</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L109">src/client/Mirror.ts:109</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mtwtr.name-9" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mtwtr.name-11" class="tsd-anchor"></a>
 								<h3>name</h3>
 								<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Twitter&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L103">src/client/Mirror.ts:103</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L106">src/client/Mirror.ts:106</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mtwtr.pair-9" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mtwtr.pair-11" class="tsd-anchor"></a>
 								<h3>pair</h3>
-								<div class="tsd-signature tsd-kind-icon">pair<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra14q8szcr0gy5pzksve5sp7e94kqqa0xlc3g2y9u&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">pair<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1ea9js3y4l7vy0h46k4e5r5ykkk08zc3fx7v4t8&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L105">src/client/Mirror.ts:105</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L108">src/client/Mirror.ts:108</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mtwtr.symbol-9" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mtwtr.symbol-11" class="tsd-anchor"></a>
 								<h3>symbol</h3>
 								<div class="tsd-signature tsd-kind-icon">symbol<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;mTWTR&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L102">src/client/Mirror.ts:102</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L105">src/client/Mirror.ts:105</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mtwtr.token-9" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mtwtr.token-11" class="tsd-anchor"></a>
 								<h3>token</h3>
-								<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1ua295n83qqm7kncn6g704d2a3hpmtjyx7f07u7&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1cc3enj9qgchlrj34cnzhwuclc4vl2z3jl7tkqg&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L104">src/client/Mirror.ts:104</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L107">src/client/Mirror.ts:107</a></li>
 									</ul>
 								</aside>
 							</section>
@@ -928,56 +1059,56 @@
 							<div class="tsd-signature tsd-kind-icon">mUSO<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L129">src/client/Mirror.ts:129</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L146">src/client/Mirror.ts:146</a></li>
 								</ul>
 							</aside>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.muso.lptoken-10" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.muso.lptoken-12" class="tsd-anchor"></a>
 								<h3>lp<wbr>Token</h3>
-								<div class="tsd-signature tsd-kind-icon">lp<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1pkv2skq9pqzpfe483dn6q2dskadrhyrqg2f5ya&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">lp<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1utf3tm35qk6fkft7ltcnscwml737vfz7xghwn5&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L134">src/client/Mirror.ts:134</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L151">src/client/Mirror.ts:151</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.muso.name-10" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.muso.name-12" class="tsd-anchor"></a>
 								<h3>name</h3>
 								<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;United States Oil Fund, LP&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L131">src/client/Mirror.ts:131</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L148">src/client/Mirror.ts:148</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.muso.pair-10" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.muso.pair-12" class="tsd-anchor"></a>
 								<h3>pair</h3>
-								<div class="tsd-signature tsd-kind-icon">pair<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1yde9tsacetgrdzdm56s5dng2uc53wpnyf9dyds&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">pair<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1zey9knmvs2frfrjnf4cfv4prc4ts3mrsefstrj&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L133">src/client/Mirror.ts:133</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L150">src/client/Mirror.ts:150</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.muso.symbol-10" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.muso.symbol-12" class="tsd-anchor"></a>
 								<h3>symbol</h3>
 								<div class="tsd-signature tsd-kind-icon">symbol<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;mUSO&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L130">src/client/Mirror.ts:130</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L147">src/client/Mirror.ts:147</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.muso.token-10" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.muso.token-12" class="tsd-anchor"></a>
 								<h3>token</h3>
-								<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra19sf42kkwn85dj8hzffcytvw6jx4g8g3nxfnrdu&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1lvmx8fsagy70tv0fhmfzdw9h6s3sy4prz38ugf&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L132">src/client/Mirror.ts:132</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L149">src/client/Mirror.ts:149</a></li>
 									</ul>
 								</aside>
 							</section>
@@ -988,56 +1119,56 @@
 							<div class="tsd-signature tsd-kind-icon">mVIXY<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L136">src/client/Mirror.ts:136</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L153">src/client/Mirror.ts:153</a></li>
 								</ul>
 							</aside>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mvixy.lptoken-11" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mvixy.lptoken-13" class="tsd-anchor"></a>
 								<h3>lp<wbr>Token</h3>
-								<div class="tsd-signature tsd-kind-icon">lp<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1svhet09r7ulhyr4vs4fl6j6lnam94q6natumck&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">lp<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1cmrl4txa7cwd7cygpp4yzu7xu8g7c772els2y8&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L141">src/client/Mirror.ts:141</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L158">src/client/Mirror.ts:158</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mvixy.name-11" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mvixy.name-13" class="tsd-anchor"></a>
 								<h3>name</h3>
 								<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;ProShares VIX&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L138">src/client/Mirror.ts:138</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L155">src/client/Mirror.ts:155</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mvixy.pair-11" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mvixy.pair-13" class="tsd-anchor"></a>
 								<h3>pair</h3>
-								<div class="tsd-signature tsd-kind-icon">pair<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra195fcntnznx4f676gf383g02yguhync2fsuk03x&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">pair<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1yngadscckdtd68nzw5r5va36jccjmmasm7klpp&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L140">src/client/Mirror.ts:140</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L157">src/client/Mirror.ts:157</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mvixy.symbol-11" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mvixy.symbol-13" class="tsd-anchor"></a>
 								<h3>symbol</h3>
 								<div class="tsd-signature tsd-kind-icon">symbol<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;mVIXY&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L137">src/client/Mirror.ts:137</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L154">src/client/Mirror.ts:154</a></li>
 									</ul>
 								</aside>
 							</section>
 							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-								<a name="default_mirror_options.assets.mvixy.token-11" class="tsd-anchor"></a>
+								<a name="default_mirror_options.assets.mvixy.token-13" class="tsd-anchor"></a>
 								<h3>token</h3>
-								<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1kmt8vekwu4aq6l9y50n8hg9zcdzd3tqdp8lgdr&quot;</span></div>
+								<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;terra1zp3a6q6q4953cz376906g5qfmxnlg77hx3te45&quot;</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/client/Mirror.ts#L139">src/client/Mirror.ts:139</a></li>
+										<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/client/Mirror.ts#L156">src/client/Mirror.ts:156</a></li>
 									</ul>
 								</aside>
 							</section>
@@ -1050,7 +1181,7 @@
 					<div class="tsd-signature tsd-kind-icon">UST<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/utils/Asset.ts#L27">src/utils/Asset.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/utils/Asset.ts#L27">src/utils/Asset.ts:27</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal">
@@ -1059,7 +1190,7 @@
 						<div class="tsd-signature tsd-kind-icon">native_<wbr>token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/utils/Asset.ts#L28">src/utils/Asset.ts:28</a></li>
+								<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/utils/Asset.ts#L28">src/utils/Asset.ts:28</a></li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1068,7 +1199,7 @@
 							<div class="tsd-signature tsd-kind-icon">denom<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;uusd&quot;</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/de7daaa/src/utils/Asset.ts#L29">src/utils/Asset.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/181e0f0/src/utils/Asset.ts#L29">src/utils/Asset.ts:29</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -1094,6 +1225,9 @@
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/mirror.html" class="tsd-kind-icon">Mirror</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/mirrorairdrop.html" class="tsd-kind-icon">Mirror<wbr>Airdrop</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/mirrorcollector.html" class="tsd-kind-icon">Mirror<wbr>Collector</a>

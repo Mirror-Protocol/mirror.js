@@ -97,31 +97,31 @@
 
 <span class="hljs-comment">// optional -- specify contract addresses and assets</span>
 <span class="hljs-keyword">const</span> mirror = <span class="hljs-keyword">new</span> Mirror({
-  <span class="hljs-attr">lcd</span>: <span class="hljs-keyword">new</span> LCDClient(...),
-  <span class="hljs-attr">key</span>: <span class="hljs-keyword">new</span> MnemonicKey(), <span class="hljs-comment">// or other Terra.js-compliant key</span>
-  <span class="hljs-attr">collector</span>: <span class="hljs-string">&#x27;terra1...&#x27;</span>,
-  <span class="hljs-attr">community</span>: <span class="hljs-string">&#x27;terra1...&#x27;</span>,
-  <span class="hljs-attr">factory</span>: <span class="hljs-string">&#x27;terra1...&#x27;</span>,
-  <span class="hljs-attr">gov</span>: <span class="hljs-string">&#x27;terra1...&#x27;</span>,
-  <span class="hljs-attr">mint</span>: <span class="hljs-string">&#x27;terra1...&#x27;</span>,
-  <span class="hljs-attr">oracle</span>: <span class="hljs-string">&#x27;terra1...&#x27;</span>,
-  <span class="hljs-attr">staking</span>: <span class="hljs-string">&#x27;terra1...&#x27;</span>,
-  <span class="hljs-attr">mirrorToken</span>: <span class="hljs-string">&#x27;terra1...&#x27;</span>,
-  <span class="hljs-attr">terraswapFactory</span>: <span class="hljs-string">&#x27;terra1...&#x27;</span>,
-  <span class="hljs-attr">assets</span>: {
-    <span class="hljs-attr">MIR</span>: {
-      <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Mirror&#x27;</span>,
-      <span class="hljs-attr">symbol</span>: <span class="hljs-string">&#x27;MIR&#x27;</span>,
-      <span class="hljs-attr">token</span>: <span class="hljs-string">&#x27;terra1...&#x27;</span>, <span class="hljs-comment">// Terraswap token contract</span>
-      <span class="hljs-attr">lpToken</span>: <span class="hljs-string">&#x27;terra1...&#x27;</span>, <span class="hljs-comment">// Terraswap LP token contract</span>
-      <span class="hljs-attr">pair</span>: <span class="hljs-string">&#x27;terra1...&#x27;</span>, <span class="hljs-comment">// Terraswap pair contract against UST</span>
+  lcd: <span class="hljs-keyword">new</span> LCDClient(...),
+  key: <span class="hljs-keyword">new</span> MnemonicKey(), <span class="hljs-comment">// or other Terra.js-compliant key</span>
+  collector: <span class="hljs-string">&#x27;terra1...&#x27;</span>,
+  community: <span class="hljs-string">&#x27;terra1...&#x27;</span>,
+  factory: <span class="hljs-string">&#x27;terra1...&#x27;</span>,
+  gov: <span class="hljs-string">&#x27;terra1...&#x27;</span>,
+  mint: <span class="hljs-string">&#x27;terra1...&#x27;</span>,
+  oracle: <span class="hljs-string">&#x27;terra1...&#x27;</span>,
+  staking: <span class="hljs-string">&#x27;terra1...&#x27;</span>,
+  mirrorToken: <span class="hljs-string">&#x27;terra1...&#x27;</span>,
+  terraswapFactory: <span class="hljs-string">&#x27;terra1...&#x27;</span>,
+  assets: {
+    MIR: {
+      name: <span class="hljs-string">&#x27;Mirror&#x27;</span>,
+      symbol: <span class="hljs-string">&#x27;MIR&#x27;</span>,
+      token: <span class="hljs-string">&#x27;terra1...&#x27;</span>, <span class="hljs-comment">// Terraswap token contract</span>
+      lpToken: <span class="hljs-string">&#x27;terra1...&#x27;</span>, <span class="hljs-comment">// Terraswap LP token contract</span>
+      pair: <span class="hljs-string">&#x27;terra1...&#x27;</span>, <span class="hljs-comment">// Terraswap pair contract against UST</span>
     },
-    <span class="hljs-attr">mAAPL</span>: {
-      <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Mirrored Apple, Inc. stock&#x27;</span>,
-      <span class="hljs-attr">symbol</span>: <span class="hljs-string">&#x27;mAAPL&#x27;</span>,
-      <span class="hljs-attr">token</span>: <span class="hljs-string">&#x27;terra1...&#x27;</span>, <span class="hljs-comment">// Terraswap token contract</span>
-      <span class="hljs-attr">lpToken</span>: <span class="hljs-string">&#x27;terra1...&#x27;</span>, <span class="hljs-comment">// Terraswap LP token contract</span>
-      <span class="hljs-attr">pair</span>: <span class="hljs-string">&#x27;terra1...&#x27;</span>, <span class="hljs-comment">// Terraswap pair contract against UST</span>
+    mAAPL: {
+      name: <span class="hljs-string">&#x27;Mirrored Apple, Inc. stock&#x27;</span>,
+      symbol: <span class="hljs-string">&#x27;mAAPL&#x27;</span>,
+      token: <span class="hljs-string">&#x27;terra1...&#x27;</span>, <span class="hljs-comment">// Terraswap token contract</span>
+      lpToken: <span class="hljs-string">&#x27;terra1...&#x27;</span>, <span class="hljs-comment">// Terraswap LP token contract</span>
+      pair: <span class="hljs-string">&#x27;terra1...&#x27;</span>, <span class="hljs-comment">// Terraswap pair contract against UST</span>
     },
     ...
   }
@@ -144,8 +144,8 @@ main().catch(<span class="hljs-built_in">console</span>.error);</code></pre>
 
 <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sendMIR</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-keyword">const</span> tx = <span class="hljs-keyword">await</span> wallet.createAndSignTx({
-    <span class="hljs-attr">msgs</span>: [mirror.mirrorToken.transfer(<span class="hljs-string">&#x27;terra1...&#x27;</span>, <span class="hljs-number">1_000_000</span>)],
-    <span class="hljs-attr">fee</span>: <span class="hljs-keyword">new</span> StdFee(<span class="hljs-number">200_000</span>, { <span class="hljs-attr">uluna</span>: <span class="hljs-number">20_000_000</span> })
+    msgs: [mirror.mirrorToken.transfer(<span class="hljs-string">&#x27;terra1...&#x27;</span>, <span class="hljs-number">1</span>_000_000)],
+    fee: <span class="hljs-keyword">new</span> StdFee(<span class="hljs-number">200</span>_000, { uluna: <span class="hljs-number">20</span>_000_000 })
   });
   <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> mirror.lcd.tx.broadcast(tx);
 }
@@ -153,14 +153,14 @@ main().catch(<span class="hljs-built_in">console</span>.error);</code></pre>
 <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">stakeLPTokens</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-keyword">const</span> { mAAPL } = mirror.assets;
   <span class="hljs-keyword">const</span> tx = <span class="hljs-keyword">await</span> wallet.createAndSignTx({
-    <span class="hljs-attr">msgs</span>: [
+    msgs: [
       mirror.staking.bond(
         mAAPL.pair.contractAddress,
-        <span class="hljs-number">500_000_000</span>,
+        <span class="hljs-number">500</span>_000_000,
         mAAPL.lpToken
       )
     ],
-    <span class="hljs-attr">fee</span>: <span class="hljs-keyword">new</span> StdFee(<span class="hljs-number">200_000</span>, { <span class="hljs-attr">uluna</span>: <span class="hljs-number">20_000_000</span> })
+    fee: <span class="hljs-keyword">new</span> StdFee(<span class="hljs-number">200</span>_000, { uluna: <span class="hljs-number">20</span>_000_000 })
   });
   <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> mirror.lcd.tx.broadcast(tx);
 }
@@ -196,6 +196,9 @@ main().catch(<span class="hljs-built_in">console</span>.error);</code></pre>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/mirror.html" class="tsd-kind-icon">Mirror</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/mirrorairdrop.html" class="tsd-kind-icon">Mirror<wbr>Airdrop</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/mirrorcollector.html" class="tsd-kind-icon">Mirror<wbr>Collector</a>
