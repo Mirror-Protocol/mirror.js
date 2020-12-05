@@ -206,8 +206,7 @@ export class TerraswapPair extends ContractClient {
       );
     }
 
-    return lp_token.send.call(
-      this,
+    return lp_token.send(
       this.contractAddress,
       amount,
       createHookMsg({

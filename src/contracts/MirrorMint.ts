@@ -280,8 +280,7 @@ export class MirrorMint extends ContractClient {
         collateral.info.token.contract_addr
       );
 
-      return collateral_token.send.call(
-        this,
+      return collateral_token.send(
         this.contractAddress,
         collateral.amount,
         createHookMsg({
@@ -319,8 +318,7 @@ export class MirrorMint extends ContractClient {
         collateral.info.token.contract_addr
       );
 
-      return collateral_token.send.call(
-        this,
+      return collateral_token.send(
         this.contractAddress,
         collateral.amount,
         createHookMsg({
@@ -368,8 +366,7 @@ export class MirrorMint extends ContractClient {
 
     const asset_token = this.getTerraswapToken(asset.info.token.contract_addr);
 
-    return asset_token.send.call(
-      this,
+    return asset_token.send(
       this.contractAddress,
       asset.amount,
       createHookMsg({

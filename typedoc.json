@@ -10,6 +10,5 @@
   "excludeNotExported": true,
   "excludePrivate": true,
   "excludeProtected": true,
-  "media": "img",
   "hideGenerator": true
 }
