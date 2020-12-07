@@ -111,6 +111,14 @@ function createHookMsg(msg: TerraswapPair.HookMsg): string {
 }
 
 export class TerraswapPair extends ContractClient {
+  protected getTerraswapToken(contractAddress: AccAddress): TerraswapToken {
+    return new TerraswapToken({
+      contractAddress: contractAddress,
+      lcd: this.lcd,
+      key: this.key
+    });
+  }
+
   public init(
     init_msg: TerraswapPair.InitMsg,
     migratable: boolean
@@ -147,15 +155,16 @@ export class TerraswapPair extends ContractClient {
     params: {
       belief_price?: Numeric.Input;
       max_spread?: Numeric.Input;
-      offer_token?: TerraswapToken;
       to?: AccAddress;
     }
   ): MsgExecuteContract {
-    if (!params.offer_token) {
-      if (!isNativeToken(offer_asset.info)) {
-        throw new Error('OfferToken must be provided - unable to swap');
-      }
+    if (!this.contractAddress) {
+      throw new Error(
+        'contractAddress not provided - unable to execute message'
+      );
+    }
 
+    if (isNativeToken(offer_asset.info)) {
       return this.createExecuteMsg(
         {
           swap: {
@@ -173,13 +182,11 @@ export class TerraswapPair extends ContractClient {
       );
     }
 
-    if (!this.contractAddress) {
-      throw new Error(
-        'contractAddress not provided - unable to execute message'
-      );
-    }
+    const offerToken = this.getTerraswapToken(
+      offer_asset.info.token.contract_addr
+    );
 
-    return params.offer_token.send(
+    return offerToken.send(
       this.contractAddress,
       offer_asset.amount,
       createHookMsg({
