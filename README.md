@@ -34,7 +34,7 @@ To create the Mirror object:
 
 ```ts
 import { LCDClient } from '@terra-money/terra.js';
-import { Mirror } from '@mirror-protocl/mirror.js';
+import { Mirror } from '@mirror-protocol/mirror.js';
 
 // default -- uses Columbus-4 core contract addresses
 const mirror = new Mirror();
