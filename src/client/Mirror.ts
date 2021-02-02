@@ -52,7 +52,7 @@ export const DEFAULT_MIRROR_OPTIONS: MirrorOptions = {
   collector: 'terra1s4fllut0e6vw0k3fxsg4fs6fm2ad6hn0prqp3s',
   community: 'terra1x35fvy3sy47drd3qs288sm47fjzjnksuwpyl9k',
   factory: 'terra1mzj9nsxx0lxlaxnekleqdy8xnyw2qrh3uz6h8p',
-  gov: 'terra15gwkyepfc6xgca5t5zefzwy42uts8l2m4g40k6',
+  gov: 'terra1wh39swv7nq36pnefnupttm2nr96kz7jjddyt2x',
   mint: 'terra1wfz7h3aqf4cjmjcvc6s8lxdhh7k30nkczyf0mj',
   oracle: 'terra1t6xe0txzywdg85n6k8c960cuwgh6l8esw6lau9',
   staking: 'terra17f7zu97865jmknk7p2glqvxzhduk78772ezac5',
