@@ -156,6 +156,41 @@ export const DEFAULT_MIRROR_OPTIONS: MirrorOptions = {
       token: 'terra1zp3a6q6q4953cz376906g5qfmxnlg77hx3te45',
       pair: 'terra1yngadscckdtd68nzw5r5va36jccjmmasm7klpp',
       lpToken: 'terra1cmrl4txa7cwd7cygpp4yzu7xu8g7c772els2y8'
+    },
+    mABNB: {
+      symbol: 'mABNB',
+      name: 'Airbnb, Inc.',
+      token: 'terra1g4x2pzmkc9z3mseewxf758rllg08z3797xly0n',
+      pair: 'terra1gq7lq389w4dxqtkxj03wp0fvz0cemj0ek5wwmm',
+      lpToken: 'terra1jmauv302lfvpdfau5nhzy06q0j2f9te4hy2d07'
+    },
+    mGS: {
+      symbol: 'mGS',
+      name: 'Goldman Sachs Group, Inc.',
+      token: 'terra137drsu8gce5thf6jr5mxlfghw36rpljt3zj73v',
+      pair: 'terra108ukjf6ekezuc52t9keernlqxtmzpj4wf7rx0h',
+      lpToken: 'terra17smg3rl9vdpawwpe7ex4ea4xm6q038gp2chge5'
+    },
+    mETH: {
+      symbol: 'mETH',
+      name: 'Ether',
+      token: 'terra1dk3g53js3034x4v5c3vavhj2738une880yu6kx',
+      pair: 'terra14fyt2g3umeatsr4j4g2rs8ca0jceu3k0mcs7ry',
+      lpToken: 'terra16auz7uhnuxrj2dzrynz2elthx5zpps5gs6tyln'
+    },
+    mBTC: {
+      symbol: 'mBTC',
+      name: 'Bitcoin',
+      token: 'terra1rhhvx8nzfrx5fufkuft06q5marfkucdqwq5sjw',
+      pair: 'terra1prfcyujt9nsn5kfj5n925sfd737r2n8tk5lmpv',
+      lpToken: 'terra1d34edutzwcz6jgecgk26mpyynqh74j3emdsnq5'
+    },
+    mFB: {
+      symbol: 'mFB',
+      name: 'Facebook, Inc.',
+      token: 'terra1mqsjugsugfprn3cvgxsrr8akkvdxv2pzc74us7',
+      pair: 'terra1yl2atgxw422qxahm02p364wtgu7gmeya237pcs',
+      lpToken: 'terra1jh2dh4g65hptsrwjv53nhsnkwlw8jdrxaxrca0'
     }
   }
 };
