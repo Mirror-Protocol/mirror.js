@@ -8,6 +8,7 @@ import {
   MirrorGov,
   MirrorMint,
   MirrorOracle,
+  MirrorCollateralOracle,
   MirrorStaking,
   TerraswapFactory,
   TerraswapPair,
@@ -32,6 +33,7 @@ export interface MirrorOptions {
   gov: AccAddress;
   mint: AccAddress;
   oracle: AccAddress;
+  collateralOracle: AccAddress;
   staking: AccAddress;
   mirrorToken: AccAddress;
   terraswapFactory: AccAddress;
@@ -55,6 +57,7 @@ export const DEFAULT_MIRROR_OPTIONS: MirrorOptions = {
   gov: 'terra1wh39swv7nq36pnefnupttm2nr96kz7jjddyt2x',
   mint: 'terra1wfz7h3aqf4cjmjcvc6s8lxdhh7k30nkczyf0mj',
   oracle: 'terra1t6xe0txzywdg85n6k8c960cuwgh6l8esw6lau9',
+  collateralOracle: 'terra00',
   staking: 'terra17f7zu97865jmknk7p2glqvxzhduk78772ezac5',
   mirrorToken: 'terra15gwkyepfc6xgca5t5zefzwy42uts8l2m4g40k6',
   terraswapFactory: 'terra1ulgw0td86nvs4wtpsc80thv6xelk76ut7a7apj',
@@ -228,6 +231,8 @@ export class Mirror {
 
   public oracle: MirrorOracle;
 
+  public collaterallOracle: MirrorCollateralOracle;
+
   public staking: MirrorStaking;
 
   public mirrorToken: TerraswapToken;
@@ -256,6 +261,7 @@ export class Mirror {
       gov,
       mint,
       oracle,
+      collateralOracle,
       staking,
       mirrorToken,
       terraswapFactory,
@@ -297,6 +303,11 @@ export class Mirror {
     });
     this.oracle = new MirrorOracle({
       contractAddress: oracle,
+      lcd,
+      key
+    });
+    this.collaterallOracle = new MirrorCollateralOracle({
+      contractAddress: collateralOracle,
       lcd,
       key
     });

@@ -1,0 +1,1 @@
+export const contractAddressesFile: string = 'integration-test/artifacts/contractAddresses.json';

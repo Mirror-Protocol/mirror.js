@@ -7,6 +7,7 @@ import {
   StdFee,
   MsgExecuteContract
 } from '@terra-money/terra.js';
+import {contractAddressesFile} from './lib';
 import * as fs from 'fs';
 import { Mirror } from '../src/client/Mirror';
 import {
@@ -18,7 +19,8 @@ import {
   MirrorStaking,
   TerraswapToken,
   TerraswapFactory,
-  TerraswapPair
+  TerraswapPair,
+  MirrorCollateralOracle
 } from '../src/contracts';
 import { UST } from '../src/utils/Asset';
 import { MirrorCommunity } from '../src/contracts/MirrorCommunity';
@@ -36,7 +38,8 @@ const contractFiles: { [k: string]: string } = {
   mirror_staking: 'integration-test/artifacts/mirror_staking.wasm',
   terraswap_factory: 'integration-test/artifacts/terraswap_factory.wasm',
   terraswap_pair: 'integration-test/artifacts/terraswap_pair.wasm',
-  terraswap_token: 'integration-test/artifacts/terraswap_token.wasm'
+  terraswap_token: 'integration-test/artifacts/terraswap_token.wasm',
+  mirror_collateral_oracle: 'integration-test/artifacts/mirror_collateral_oracle.wasm',
 };
 
 const codeIDs: {
@@ -58,6 +61,7 @@ export async function deployContracts(): Promise<{
   appleToken: AccAddress;
   applePair: AccAddress;
   appleLpToken: AccAddress;
+  collateralOracle: AccAddress;
 }> {
   // upload all contracts
   for (const contract in contractFiles) {
@@ -84,7 +88,7 @@ export async function deployContracts(): Promise<{
     console.log(`Uploaded ${contract} - code id: ${codeId}`);
   }
 
-  // Factory Instantiation
+  // instanciate all contracts
   const factory = await instantiate(createFactory());
   const mirrorToken = await instantiate(createMirrorToken(factory));
   const gov = await instantiate(createGov(mirrorToken));
@@ -96,12 +100,14 @@ export async function deployContracts(): Promise<{
   const mint = await instantiate(createMint(factory, oracle, collector));
   const staking = await instantiate(createStaking(factory, mirrorToken));
   const community = await instantiate(createCommunity(gov, mirrorToken));
+  const collateralOracle = await instantiate(createCollateralOracle(mint, factory));
 
   const mirror = new Mirror({
     factory,
     mirrorToken,
     gov,
     oracle,
+    collateralOracle,
     mint,
     staking,
     terraswapFactory,
@@ -192,7 +198,8 @@ export async function deployContracts(): Promise<{
     mirrorPair,
     appleToken,
     applePair,
-    appleLpToken
+    appleLpToken,
+    collateralOracle,
   };
 }
 
@@ -324,6 +331,23 @@ const createCollector = (
     false
   );
 
+const createCollateralOracle = (
+  mint: string,
+  mirrorFactory: string
+) => 
+  new MirrorCollateralOracle({
+    codeID: codeIDs['mirror_collateral_oracle'],
+    key: test1.key
+  }).init(
+    {
+      owner: test1.key.accAddress,
+      mint_contract: mint,
+      factory_contract: mirrorFactory,
+      base_denom: UST.native_token.denom
+    },
+    false
+  );
+
 async function instantiate(msg: MsgInstantiateContract): Promise<string> {
   const tx = await test1.createAndSignTx({
     msgs: [msg],
@@ -365,3 +389,7 @@ async function execute(
 
   return result.logs[0].eventsByType.from_contract;
 }
+
+deployContracts().then(res => {
+  fs.writeFileSync(contractAddressesFile, JSON.stringify(res))
+});

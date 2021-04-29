@@ -29,7 +29,8 @@
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
     "doc": "typedoc",
     "prepublishOnly": "npm run build",
-    "integration-test": "ts-node ./integration-test/index.ts"
+    "integration-test": "ts-node ./integration-test/index.ts",
+    "integration-test-deploy": "ts-node ./integration-test/deploy.ts"
   },
   "peerDependencies": {
     "@terra-money/terra.js": "^1"

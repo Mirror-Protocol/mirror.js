@@ -9,3 +9,4 @@ export * from './MirrorStaking';
 export * from './TerraswapFactory';
 export * from './TerraswapPair';
 export * from './TerraswapToken';
+export * from './MirrorCollateralOracle';
