@@ -15,11 +15,21 @@ export namespace MirrorStaking {
   export interface InitMsg {
     owner: AccAddress;
     mirror_token: AccAddress;
+    mint_contract: AccAddress;
+    oracle_contract: AccAddress;
+    terraswap_factory: AccAddress;
+    base_denom: string;
+    premium_tolerance: string;
+    short_reward_weight: string;
+    premium_short_reward_weight: string;
   }
 
   export interface HandleUpdateConfig {
     update_config: {
       owner?: AccAddress;
+      premium_tolerance?: string;
+      short_reward_weight?: string;
+      premium_short_reward_weight?: string;
     };
   }
 
@@ -43,6 +53,28 @@ export namespace MirrorStaking {
     };
   }
 
+  export interface HandleAdjustPremium {
+    adjust_premium: {
+      asset_tokens: Array<AccAddress>;
+    };
+  }
+
+  export interface HandleIncreaseShortToken {
+    increase_short_token: {
+      asset_token: AccAddress;
+      staker_addr: AccAddress;
+      amount: string;
+    };
+  }
+
+  export interface HandleDecreaseShortToken {
+    decrease_short_token: {
+      asset_token: AccAddress;
+      staker_addr: AccAddress;
+      amount: string;
+    };
+  }
+
   export interface HookBond {
     bond: {
       asset_token: AccAddress;
@@ -51,7 +83,7 @@ export namespace MirrorStaking {
 
   export interface HookDepositReward {
     deposit_reward: {
-      asset_token: AccAddress;
+      rewards: Array<[AccAddress, string]>;
     };
   }
 
@@ -67,7 +99,7 @@ export namespace MirrorStaking {
 
   export interface QueryRewardInfo {
     reward_info: {
-      staker: AccAddress;
+      staker_addr: AccAddress;
       asset_token?: AccAddress;
     };
   }
@@ -75,20 +107,32 @@ export namespace MirrorStaking {
   export interface ConfigResponse {
     owner: AccAddress;
     mirror_token: AccAddress;
+    mint_contract: AccAddress;
+    oracle_contract: AccAddress;
+    terraswap_factory: AccAddress;
+    base_denom: string;
+    premium_tolerance: string;
+    short_reward_weight: string;
+    premium_short_reward_weight: string;
   }
 
   export interface PoolInfoResponse {
     asset_token: AccAddress;
     staking_token: AccAddress;
     total_bond_amount: string;
+    total_short_amount: string;
     reward_index: string;
+    short_reward_index: string;
+    pending_reward: string;
+    short_pending_reward: string;
+    premium_rate: string;
   }
 
   export interface RewardInfoResponseItem {
     asset_token: AccAddress;
-    index: string;
     bond_amount: string;
     pending_reward: string;
+    is_short: boolean;
   }
 
   export interface RewardInfoResponse {
@@ -100,7 +144,10 @@ export namespace MirrorStaking {
     | HandleUpdateConfig
     | HandleRegisterAsset
     | HandleUnbond
-    | HandleWithdraw;
+    | HandleWithdraw
+    | HandleAdjustPremium
+    | HandleDecreaseShortToken
+    | HandleIncreaseShortToken;
 
   export type HookMsg = HookBond | HookDepositReward;
 
@@ -185,26 +232,62 @@ export class MirrorStaking extends ContractClient {
     );
   }
 
-  public depositReward(
-    asset_token: AccAddress,
-    amount: Numeric.Input,
-    mirror_token: TerraswapToken
-  ): MsgExecuteContract {
-    if (!this.contractAddress) {
-      throw new Error(
-        'contractAddress not provided - unable to execute message'
-      );
-    }
+  // public depositReward(
+  //   asset_token: AccAddress,
+  //   amount: Numeric.Input,
+  //   mirror_token: TerraswapToken
+  // ): MsgExecuteContract {
+  //   if (!this.contractAddress) {
+  //     throw new Error(
+  //       'contractAddress not provided - unable to execute message'
+  //     );
+  //   }
 
-    return mirror_token.send(
-      this.contractAddress,
-      amount,
-      createHookMsg({
-        deposit_reward: {
-          asset_token
-        }
-      })
-    );
+  //   return mirror_token.send(
+  //     this.contractAddress,
+  //     amount,
+  //     createHookMsg({
+  //       deposit_reward: {
+  //         asset_token
+  //       }
+  //     })
+  //   );
+  // }
+
+  public adjustPremium(asset_tokens: Array<AccAddress>): MsgExecuteContract {
+    return this.createExecuteMsg({
+      adjust_premium: {
+        asset_tokens
+      }
+    });
+  }
+
+  public increaseShortToken(
+    asset_token: AccAddress,
+    staker_addr: AccAddress,
+    amount: Numeric.Input
+  ): MsgExecuteContract {
+    return this.createExecuteMsg({
+      increase_short_token: {
+        asset_token,
+        staker_addr,
+        amount: new Int(amount).toString()
+      }
+    });
+  }
+
+  public decreaseShortToken(
+    asset_token: AccAddress,
+    staker_addr: AccAddress,
+    amount: Numeric.Input
+  ): MsgExecuteContract {
+    return this.createExecuteMsg({
+      decrease_short_token: {
+        asset_token,
+        staker_addr,
+        amount: new Int(amount).toString()
+      }
+    });
   }
 
   public async getConfig(): Promise<MirrorStaking.ConfigResponse> {
@@ -229,7 +312,7 @@ export class MirrorStaking extends ContractClient {
   ): Promise<MirrorStaking.RewardInfoResponse> {
     return this.query({
       reward_info: {
-        staker,
+        staker_addr: staker,
         asset_token
       }
     });

@@ -98,7 +98,7 @@ export async function deployContracts(): Promise<{
     createCollector(gov, terraswapFactory, mirrorToken)
   );
   const mint = await instantiate(createMint(factory, oracle, collector));
-  const staking = await instantiate(createStaking(factory, mirrorToken));
+  const staking = await instantiate(createStaking(factory, mirrorToken, mint, oracle, terraswapFactory));
   const community = await instantiate(createCommunity(gov, mirrorToken));
   const collateralOracle = await instantiate(createCollateralOracle(mint, factory));
 
@@ -170,7 +170,10 @@ export async function deployContracts(): Promise<{
   const whitelistAAPLLogs = await execute(
     mirror.factory.whitelist('APPLE Derivative', 'AAPL', test1.key.accAddress, {
       auction_discount: '0.2',
-      min_collateral_ratio: '1.5'
+      min_collateral_ratio: '1.5',
+      weight: undefined,
+      mint_period: undefined,
+      min_collateral_ratio_after_migration: undefined,
     })
   );
 
@@ -178,13 +181,7 @@ export async function deployContracts(): Promise<{
   const applePair = whitelistAAPLLogs['pair_contract_addr'][0];
   const appleLpToken = whitelistAAPLLogs['liquidity_token_addr'][0];
 
-  await execute(
-    mirror.factory.updateConfig({
-      owner: gov
-    })
-  );
-
-  return {
+  const res = {
     gov,
     factory,
     terraswapFactory,
@@ -201,6 +198,10 @@ export async function deployContracts(): Promise<{
     appleLpToken,
     collateralOracle,
   };
+
+  fs.writeFileSync(contractAddressesFile, JSON.stringify(res));
+
+  return res;
 }
 
 const createFactory = () =>
@@ -289,14 +290,21 @@ const createMint = (factory: string, oracle: string, collector: string) =>
     false
   );
 
-const createStaking = (factory: string, mirrorToken: string) =>
+const createStaking = (factory: string, mirrorToken: string, mint: string, oracle: string, terraswapFactory: string) =>
   new MirrorStaking({
     codeID: codeIDs['mirror_staking'],
     key: test1.key
   }).init(
     {
       owner: factory,
-      mirror_token: mirrorToken
+      mirror_token: mirrorToken,
+      mint_contract: mint,
+      oracle_contract: oracle,
+      terraswap_factory: terraswapFactory,
+      base_denom: UST.native_token.denom,
+      premium_tolerance: "2.0",
+      short_reward_weight: "20.0",
+      premium_short_reward_weight: "40.0"
     },
     false
   );
@@ -389,7 +397,3 @@ async function execute(
 
   return result.logs[0].eventsByType.from_contract;
 }
-
-deployContracts().then(res => {
-  fs.writeFileSync(contractAddressesFile, JSON.stringify(res))
-});

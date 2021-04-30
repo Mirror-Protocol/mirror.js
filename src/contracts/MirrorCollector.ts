@@ -27,10 +27,6 @@ export namespace MirrorCollector {
     distribute: EmptyObject;
   }
 
-  export interface HookDepositReward {
-    deposit_reward: EmptyObject;
-  }
-
   export interface QueryConfig {
     config: EmptyObject;
   }
@@ -43,12 +39,7 @@ export namespace MirrorCollector {
   }
 
   export type HandleMsg = HandleConvert | HandleDistribute;
-  export type HookMsg = HookDepositReward;
   export type QueryMsg = QueryConfig;
-}
-
-function createHookMsg(msg: MirrorCollector.HookMsg): string {
-  return Buffer.from(JSON.stringify(msg)).toString('base64');
 }
 
 export class MirrorCollector extends ContractClient {
@@ -83,13 +74,7 @@ export class MirrorCollector extends ContractClient {
       );
     }
 
-    return asset_token.send(
-      this.contractAddress,
-      amount,
-      createHookMsg({
-        deposit_reward: {}
-      })
-    );
+    return asset_token.send(this.contractAddress, amount, undefined);
   }
 
   public async getConfig(): Promise<MirrorCollector.ConfigResponse> {

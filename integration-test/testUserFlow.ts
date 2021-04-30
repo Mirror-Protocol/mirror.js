@@ -1,100 +1,19 @@
 import {
-  isTxError,
-  LocalTerra,
   int,
-  MsgExecuteContract,
-  Wallet
 } from '@terra-money/terra.js';
-import * as fs from 'fs';
-import { contractAddressesFile } from './lib';
 import { Mirror } from '../src/client';
 import { strict as assert } from 'assert';
 import { UST } from '../src/utils/Asset';
+import { execute, terra } from './lib';
 
-const terra = new LocalTerra();
 const { test1, test2 } = terra.wallets;
 
-export async function testUserFlow() {
+export async function testUserFlow(mirror: Mirror, mirror2: Mirror) {
 
-  const {
-    collector,
-    community,
-    factory,
-    gov,
-    mint,
-    staking,
-    oracle,
-    terraswapFactory,
-    mirrorToken,
-    mirrorLpToken,
-    mirrorPair,
-    appleLpToken,
-    applePair,
-    appleToken,
-    collateralOracle
-  } = JSON.parse(fs.readFileSync(contractAddressesFile).toString())
-
-  const mirror = new Mirror({
-    lcd: terra,
-    key: test1.key,
-    collector,
-    community,
-    factory,
-    gov,
-    mint,
-    staking,
-    oracle,
-    collateralOracle,
-    terraswapFactory,
-    mirrorToken,
-    assets: {
-      MIR: {
-        name: 'Mirror Token',
-        symbol: 'MIR',
-        token: mirrorToken,
-        lpToken: mirrorLpToken,
-        pair: mirrorPair
-      },
-      mAPPL: {
-        name: 'APPLE Derivative',
-        symbol: 'mAAPL',
-        token: appleToken,
-        lpToken: appleLpToken,
-        pair: applePair
-      }
-    }
-  });
-
-  const mirror2 = new Mirror({
-    lcd: terra,
-    key: test2.key,
-    collector,
-    community,
-    factory,
-    gov,
-    mint,
-    staking,
-    oracle,
-    collateralOracle,
-    terraswapFactory,
-    mirrorToken,
-    assets: {
-      MIR: {
-        name: 'Mirror Token',
-        symbol: 'MIR',
-        token: mirrorToken,
-        lpToken: mirrorLpToken,
-        pair: mirrorPair
-      },
-      mAPPL: {
-        name: 'APPLE Derivative',
-        symbol: 'mAAPL',
-        token: appleToken,
-        lpToken: appleLpToken,
-        pair: applePair
-      }
-    }
-  });
+  const mirrorToken = mirror.assets.MIR.token.contractAddress || "";
+  const appleToken = mirror.assets.mAPPL.token.contractAddress || "";
+  const mirrorPair = mirror.assets.MIR.pair.contractAddress || "";
+  const applePair = mirror.assets.mAPPL.pair.contractAddress || "";
 
   // Feed oracle price
   console.log('Feed AAPL oracle price');
@@ -106,7 +25,7 @@ export async function testUserFlow() {
         price: 1000.0
       }
     ])
-  );
+  )
 
   // Open position
   console.log('Open UST-AAPL position');
@@ -121,7 +40,7 @@ export async function testUserFlow() {
       1.5
     )
   );
-
+  
   // Deposit UST
   console.log('Deposit UST');
   await execute(
@@ -141,7 +60,6 @@ export async function testUserFlow() {
       amount: int`6666666`.toString()
     })
   );
-
   // Provide Liquidity
   console.log('Provide Liquidity UST-AAPL');
   await execute(
@@ -277,28 +195,4 @@ export async function testUserFlow() {
     mirror.factory.distribute(),
     mirror.staking.withdraw(mirrorToken)
   );
-}
-
-async function execute(
-  wallet: Wallet,
-  ...msgs: MsgExecuteContract[]
-): Promise<{
-  [key: string]: string[];
-}> {
-  const tx = await wallet.createAndSignTx({
-    msgs,
-    gasPrices: { uluna: 0.015 },
-    gasAdjustment: 1.4
-  });
-
-  const result = await terra.tx.broadcast(tx);
-
-  if (isTxError(result)) {
-    console.log(JSON.stringify(result));
-    throw new Error(
-      `Error while executing: ${result.code} - ${result.raw_log}`
-    );
-  }
-
-  return result.logs[0].eventsByType.from_contract;
 }
