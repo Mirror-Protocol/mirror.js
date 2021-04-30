@@ -22,6 +22,7 @@ export namespace MirrorStaking {
     premium_tolerance: string;
     short_reward_weight: string;
     premium_short_reward_weight: string;
+    premium_min_update_interval: number;
   }
 
   export interface HandleUpdateConfig {
@@ -30,6 +31,7 @@ export namespace MirrorStaking {
       premium_tolerance?: string;
       short_reward_weight?: string;
       premium_short_reward_weight?: string;
+      premium_min_update_interval?: number;
     };
   }
 
@@ -114,6 +116,7 @@ export namespace MirrorStaking {
     premium_tolerance: string;
     short_reward_weight: string;
     premium_short_reward_weight: string;
+    premium_min_update_interval: number;
   }
 
   export interface PoolInfoResponse {
@@ -126,6 +129,7 @@ export namespace MirrorStaking {
     pending_reward: string;
     short_pending_reward: string;
     premium_rate: string;
+    premium_updated_time: number;
   }
 
   export interface RewardInfoResponseItem {
