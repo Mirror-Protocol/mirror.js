@@ -18,6 +18,10 @@ export namespace MirrorMint {
     owner: AccAddress;
     oracle: AccAddress;
     collector: AccAddress;
+    collateral_oracle: AccAddress;
+    staking: AccAddress;
+    terraswap_factory: AccAddress;
+    lock: AccAddress;
     base_denom: string;
     token_code_id: number;
     protocol_fee_rate: string;
@@ -28,6 +32,9 @@ export namespace MirrorMint {
       owner?: AccAddress;
       oracle?: AccAddress;
       collector?: AccAddress;
+      collateral_oracle?: AccAddress;
+      terraswap_factory?: AccAddress;
+      lock?: AccAddress;
       token_code_id?: number;
       protocol_fee_rate?: string;
     };
@@ -46,6 +53,8 @@ export namespace MirrorMint {
       asset_token: AccAddress;
       auction_discount: string;
       min_collateral_ratio: string;
+      mint_end?: number;
+      min_collateral_ratio_after_migration?: string;
     };
   }
 
@@ -56,11 +65,19 @@ export namespace MirrorMint {
     };
   }
 
+  export interface ShortParams {
+    short_params: {
+      belief_price?: string;
+      max_spread?: string;
+    };
+  }
+
   export interface HandleOpenPosition {
     open_position: {
       collateral: Asset<AssetInfo>;
       asset_info: AssetInfo;
       collateral_ratio: string;
+      short_params?: ShortParams;
     };
   }
 
@@ -82,6 +99,7 @@ export namespace MirrorMint {
     mint: {
       position_idx: string;
       asset: Asset<Token>;
+      short_params?: ShortParams;
     };
   }
 
@@ -89,6 +107,7 @@ export namespace MirrorMint {
     open_position: {
       asset_info: AssetInfo;
       collateral_ratio: string;
+      short_params?: ShortParams;
     };
   }
 
@@ -135,10 +154,18 @@ export namespace MirrorMint {
     };
   }
 
+  export interface QueryNextPositionIdx {
+    next_position_idx: EmptyObject;
+  }
+
   export interface ConfigResponse {
     owner: AccAddress;
     oracle: AccAddress;
     collector: AccAddress;
+    collateral_oracle: AccAddress;
+    staking: AccAddress;
+    terraswap_factory: AccAddress;
+    lock: AccAddress;
     base_denom: string;
     token_code_id: number;
     protocol_fee_rate: string;
@@ -149,6 +176,8 @@ export namespace MirrorMint {
     auction_discount: string;
     min_collateral_ratio: string;
     end_price?: string;
+    mint_end?: number;
+    min_collateral_ratio_after_migration?: string;
   }
 
   export interface PositionResponse {
@@ -156,10 +185,15 @@ export namespace MirrorMint {
     owner: AccAddress;
     collateral: Asset<AssetInfo>;
     asset: Asset<Token>;
+    is_short: boolean;
   }
 
   export interface PositionsResponse {
     positions: Array<PositionResponse>;
+  }
+
+  export interface NextPositionIdxResponse {
+    next_position_idx: string;
   }
 
   export type HandleMsg =
@@ -178,7 +212,8 @@ export namespace MirrorMint {
     | QueryConfig
     | QueryAssetConfig
     | QueryPosition
-    | QueryPositions;
+    | QueryPositions
+    | QueryNextPositionIdx;
 }
 
 function createHookMsg(msg: MirrorMint.HookMsg): string {
@@ -230,13 +265,19 @@ export class MirrorMint extends ContractClient {
   public registerAsset(
     asset_token: AccAddress,
     auction_discount: Numeric.Input,
-    min_collateral_ratio: Numeric.Input
+    min_collateral_ratio: Numeric.Input,
+    mint_end?: number,
+    min_collateral_ratio_after_migration?: Numeric.Input
   ): MsgExecuteContract {
     return this.createExecuteMsg({
       register_asset: {
         asset_token,
         auction_discount: new Dec(auction_discount).toFixed(),
-        min_collateral_ratio: new Dec(min_collateral_ratio).toFixed()
+        min_collateral_ratio: new Dec(min_collateral_ratio).toFixed(),
+        mint_end,
+        min_collateral_ratio_after_migration: min_collateral_ratio_after_migration
+          ? new Dec(min_collateral_ratio_after_migration).toFixed()
+          : undefined
       }
     });
   }
@@ -256,7 +297,8 @@ export class MirrorMint extends ContractClient {
   public openPosition(
     collateral: Asset<AssetInfo>,
     asset_info: AssetInfo,
-    collateral_ratio: Numeric.Input
+    collateral_ratio: Numeric.Input,
+    short_params?: MirrorMint.ShortParams
   ): MsgExecuteContract {
     if (isNativeToken(collateral.info)) {
       return this.createExecuteMsg(
@@ -264,7 +306,8 @@ export class MirrorMint extends ContractClient {
           open_position: {
             collateral,
             asset_info,
-            collateral_ratio: new Dec(collateral_ratio).toFixed()
+            collateral_ratio: new Dec(collateral_ratio).toFixed(),
+            short_params
           }
         },
         [new Coin(collateral.info.native_token.denom, collateral.amount)]
@@ -286,7 +329,8 @@ export class MirrorMint extends ContractClient {
         createHookMsg({
           open_position: {
             asset_info,
-            collateral_ratio: new Dec(collateral_ratio).toFixed()
+            collateral_ratio: new Dec(collateral_ratio).toFixed(),
+            short_params
           }
         })
       );
@@ -344,12 +388,14 @@ export class MirrorMint extends ContractClient {
 
   public mint(
     position_idx: Numeric.Input,
-    asset: Asset<Token>
+    asset: Asset<Token>,
+    short_params?: MirrorMint.ShortParams
   ): MsgExecuteContract {
     return this.createExecuteMsg({
       mint: {
         position_idx: new Int(position_idx).toString(),
-        asset
+        asset,
+        short_params
       }
     });
   }
@@ -437,6 +483,12 @@ export class MirrorMint extends ContractClient {
         start_after: start_after ? new Int(start_after).toString() : undefined,
         limit
       }
+    });
+  }
+
+  public async getNextPositionIdx(): Promise<MirrorMint.NextPositionIdxResponse> {
+    return this.query({
+      next_position_idx: {}
     });
   }
 

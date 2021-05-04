@@ -10,6 +10,7 @@ import {
   MirrorOracle,
   MirrorCollateralOracle,
   MirrorStaking,
+  MirrorLock,
   TerraswapFactory,
   TerraswapPair,
   TerraswapToken
@@ -35,6 +36,7 @@ export interface MirrorOptions {
   oracle: AccAddress;
   collateralOracle: AccAddress;
   staking: AccAddress;
+  lock: AccAddress;
   mirrorToken: AccAddress;
   terraswapFactory: AccAddress;
   assets: {
@@ -59,6 +61,7 @@ export const DEFAULT_MIRROR_OPTIONS: MirrorOptions = {
   oracle: 'terra1t6xe0txzywdg85n6k8c960cuwgh6l8esw6lau9',
   collateralOracle: 'terra00',
   staking: 'terra17f7zu97865jmknk7p2glqvxzhduk78772ezac5',
+  lock: 'terra00',
   mirrorToken: 'terra15gwkyepfc6xgca5t5zefzwy42uts8l2m4g40k6',
   terraswapFactory: 'terra1ulgw0td86nvs4wtpsc80thv6xelk76ut7a7apj',
   assets: {
@@ -235,6 +238,8 @@ export class Mirror {
 
   public staking: MirrorStaking;
 
+  public lock: MirrorLock;
+
   public mirrorToken: TerraswapToken;
 
   public terraswapFactory: TerraswapFactory;
@@ -263,6 +268,7 @@ export class Mirror {
       oracle,
       collateralOracle,
       staking,
+      lock,
       mirrorToken,
       terraswapFactory,
       assets
@@ -313,6 +319,11 @@ export class Mirror {
     });
     this.staking = new MirrorStaking({
       contractAddress: staking,
+      lcd,
+      key
+    });
+    this.lock = new MirrorLock({
+      contractAddress: lock,
       lcd,
       key
     });

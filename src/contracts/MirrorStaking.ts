@@ -19,18 +19,12 @@ export namespace MirrorStaking {
     oracle_contract: AccAddress;
     terraswap_factory: AccAddress;
     base_denom: string;
-    premium_tolerance: string;
-    short_reward_weight: string;
-    premium_short_reward_weight: string;
     premium_min_update_interval: number;
   }
 
   export interface HandleUpdateConfig {
     update_config: {
       owner?: AccAddress;
-      premium_tolerance?: string;
-      short_reward_weight?: string;
-      premium_short_reward_weight?: string;
       premium_min_update_interval?: number;
     };
   }
@@ -113,9 +107,6 @@ export namespace MirrorStaking {
     oracle_contract: AccAddress;
     terraswap_factory: AccAddress;
     base_denom: string;
-    premium_tolerance: string;
-    short_reward_weight: string;
-    premium_short_reward_weight: string;
     premium_min_update_interval: number;
   }
 
@@ -140,7 +131,7 @@ export namespace MirrorStaking {
   }
 
   export interface RewardInfoResponse {
-    staker: AccAddress;
+    staker_addr: AccAddress;
     reward_infos: Array<RewardInfoResponseItem>;
   }
 
@@ -236,27 +227,27 @@ export class MirrorStaking extends ContractClient {
     );
   }
 
-  // public depositReward(
-  //   asset_token: AccAddress,
-  //   amount: Numeric.Input,
-  //   mirror_token: TerraswapToken
-  // ): MsgExecuteContract {
-  //   if (!this.contractAddress) {
-  //     throw new Error(
-  //       'contractAddress not provided - unable to execute message'
-  //     );
-  //   }
+  public depositReward(
+    asset_token: AccAddress,
+    amount: Numeric.Input,
+    mirror_token: TerraswapToken
+  ): MsgExecuteContract {
+    if (!this.contractAddress) {
+      throw new Error(
+        'contractAddress not provided - unable to execute message'
+      );
+    }
 
-  //   return mirror_token.send(
-  //     this.contractAddress,
-  //     amount,
-  //     createHookMsg({
-  //       deposit_reward: {
-  //         asset_token
-  //       }
-  //     })
-  //   );
-  // }
+    return mirror_token.send(
+      this.contractAddress,
+      amount,
+      createHookMsg({
+        deposit_reward: {
+          rewards: [[asset_token, new Int(amount).toString()]]
+        }
+      })
+    );
+  }
 
   public adjustPremium(asset_tokens: Array<AccAddress>): MsgExecuteContract {
     return this.createExecuteMsg({

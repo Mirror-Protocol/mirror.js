@@ -19,6 +19,8 @@ export namespace MirrorGov {
     effective_delay: number;
     expiration_period: number;
     proposal_deposit: string;
+    voter_weight: string;
+    snapshot_period: number;
   }
 
   export interface HandleUpdateConfig {
@@ -30,10 +32,12 @@ export namespace MirrorGov {
       effective_delay?: number;
       expiration_period?: number;
       proposal_deposit?: string;
+      voter_weight?: string;
+      snapshot_period: number;
     };
   }
 
-  export type VoteOption = 'yes' | 'no';
+  export type VoteOption = 'yes' | 'no' | 'abstain';
   export interface HandleCastVote {
     cast_vote: {
       poll_id: number;
@@ -46,6 +50,14 @@ export namespace MirrorGov {
     withdraw_voting_tokens: {
       amount?: string;
     };
+  }
+
+  export interface HandleWithdrawVotingRewards {
+    withdraw_voting_rewards: EmptyObject;
+  }
+
+  export interface HandleStakeVotingRewards {
+    stake_voting_rewards: EmptyObject;
   }
 
   export interface HandleEndPoll {
@@ -66,6 +78,12 @@ export namespace MirrorGov {
     };
   }
 
+  export interface HandleSnapshotPoll {
+    snapshot_poll: {
+      poll_id: number;
+    };
+  }
+
   export interface HookStakeVotingTokens {
     stake_voting_tokens: EmptyObject;
   }
@@ -82,6 +100,10 @@ export namespace MirrorGov {
       link?: string;
       execute_msg?: ExecuteMsg;
     };
+  }
+
+  export interface HookDepositReward {
+    deposit_reward: EmptyObject;
   }
 
   export interface QueryConfig {
@@ -131,12 +153,15 @@ export namespace MirrorGov {
     effective_delay: number;
     expiration_period: number;
     proposal_deposit: string;
+    voter_weight: string;
+    snapshot_period: number;
   }
 
   export interface StateResponse {
     poll_count: number;
     total_share: string;
     total_deposit: string;
+    pending_voting_rewards: string;
   }
 
   export interface PollResponse {
@@ -151,6 +176,10 @@ export namespace MirrorGov {
     execute_data?: ExecuteMsg;
     yes_votes: string;
     no_votes: string;
+    abstain_votes: string;
+    total_balance_at_end_poll?: string;
+    voters_reward: string;
+    staked_amount?: string;
   }
 
   export interface PollsResponse {
@@ -170,12 +199,12 @@ export namespace MirrorGov {
     balance: string;
     share: string;
     locked_share: Array<[number, VoterInfo]>;
+    pending_voting_rewards: string;
   }
 
   export interface VotersResponseItem {
     voter: AccAddress;
     vote: VoteOption;
-    share: string;
     balance: string;
   }
 
@@ -189,9 +218,15 @@ export namespace MirrorGov {
     | HandleWithdrawVotingTokens
     | HandleEndPoll
     | HandleExecutePoll
-    | HandleExpirePoll;
+    | HandleExpirePoll
+    | HandleSnapshotPoll
+    | HandleWithdrawVotingRewards
+    | HandleStakeVotingRewards;
 
-  export type HookMsg = HookStakeVotingTokens | HookCreatePoll;
+  export type HookMsg =
+    | HookStakeVotingTokens
+    | HookCreatePoll
+    | HookDepositReward;
 
   export type QueryMsg =
     | QueryConfig
@@ -244,6 +279,18 @@ export class MirrorGov extends ContractClient {
     });
   }
 
+  public withdrawVotingRewards(): MsgExecuteContract {
+    return this.createExecuteMsg({
+      withdraw_voting_rewards: {}
+    });
+  }
+
+  public stakeVotingRewards(): MsgExecuteContract {
+    return this.createExecuteMsg({
+      stake_voting_rewards: {}
+    });
+  }
+
   public endPoll(poll_id: number): MsgExecuteContract {
     return this.createExecuteMsg({
       end_poll: {
@@ -268,6 +315,14 @@ export class MirrorGov extends ContractClient {
     });
   }
 
+  public snapshotPoll(poll_id: number): MsgExecuteContract {
+    return this.createExecuteMsg({
+      snapshot_poll: {
+        poll_id
+      }
+    });
+  }
+
   public stakeVotingTokens(
     terraswap_token: TerraswapToken,
     amount: Numeric.Input
@@ -283,6 +338,25 @@ export class MirrorGov extends ContractClient {
       amount,
       createHookMsg({
         stake_voting_tokens: {}
+      })
+    );
+  }
+
+  public depositReward(
+    terraswap_token: TerraswapToken,
+    amount: Numeric.Input
+  ): MsgExecuteContract {
+    if (!this.contractAddress) {
+      throw new Error(
+        'contractAddress not provided - unable to execute message'
+      );
+    }
+
+    return terraswap_token.send(
+      this.contractAddress,
+      amount,
+      createHookMsg({
+        deposit_reward: {}
       })
     );
   }
