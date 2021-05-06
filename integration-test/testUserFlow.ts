@@ -186,13 +186,4 @@ export async function testUserFlow(mirror: Mirror, mirror2: Mirror) {
       mirror.assets['MIR'].lpToken
     )
   );
-
-  // Mint mirror token to generate staking rewards for MIR staking pool
-  // Claim staking rewards
-  console.log('Mint mirror token & claim reward');
-  await execute(
-    test1,
-    mirror.factory.distribute(),
-    mirror.staking.withdraw(mirrorToken)
-  );
 }

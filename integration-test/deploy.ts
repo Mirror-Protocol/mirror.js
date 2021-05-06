@@ -20,7 +20,8 @@ import {
   TerraswapToken,
   TerraswapFactory,
   TerraswapPair,
-  MirrorCollateralOracle
+  MirrorCollateralOracle,
+  MirrorLock
 } from '../src/contracts';
 import { UST } from '../src/utils/Asset';
 import { MirrorCommunity } from '../src/contracts/MirrorCommunity';
@@ -40,6 +41,7 @@ const contractFiles: { [k: string]: string } = {
   terraswap_pair: 'integration-test/artifacts/terraswap_pair.wasm',
   terraswap_token: 'integration-test/artifacts/terraswap_token.wasm',
   mirror_collateral_oracle: 'integration-test/artifacts/mirror_collateral_oracle.wasm',
+  mirror_lock: 'integration-test/artifacts/mirror_lock.wasm',
 };
 
 const codeIDs: {
@@ -62,6 +64,7 @@ export async function deployContracts(): Promise<{
   applePair: AccAddress;
   appleLpToken: AccAddress;
   collateralOracle: AccAddress;
+  lock: AccAddress;
 }> {
   // upload all contracts
   for (const contract in contractFiles) {
@@ -97,10 +100,12 @@ export async function deployContracts(): Promise<{
   const collector = await instantiate(
     createCollector(gov, terraswapFactory, mirrorToken)
   );
-  const mint = await instantiate(createMint(factory, oracle, collector));
+  // instantiate mint contract with provisional collateral_oracle, staking, and lock contracts, due to circular depndency
+  const mint = await instantiate(createMint(test1.key.accAddress, oracle, collector, test1.key.accAddress, terraswapFactory, test1.key.accAddress, test1.key.accAddress));
   const staking = await instantiate(createStaking(factory, mirrorToken, mint, oracle, terraswapFactory));
   const community = await instantiate(createCommunity(gov, mirrorToken));
   const collateralOracle = await instantiate(createCollateralOracle(mint, factory));
+  const lock = await instantiate(createLock(gov, mint));
 
   const mirror = new Mirror({
     factory,
@@ -114,6 +119,24 @@ export async function deployContracts(): Promise<{
     collector,
     key: test1.key
   });
+
+  // Update mint contract with final config
+  console.log('UPDATE MINT CONFIG')
+  await execute(
+    mirror.mint.updateConfig(
+      {
+        owner: factory, // assign owner back to factory
+        oracle: undefined,
+        collector: undefined,
+        collateral_oracle: collateralOracle,
+        staking: staking,
+        terraswap_factory: undefined,
+        lock: lock,
+        token_code_id: undefined,
+        protocol_fee_rate: undefined
+      }
+    )
+  );
 
   // Create MIR-UST pair
   console.log('CREATE TERRASWAP_PAIR for MIR-UST');
@@ -197,6 +220,7 @@ export async function deployContracts(): Promise<{
     applePair,
     appleLpToken,
     collateralOracle,
+    lock,
   };
 
   fs.writeFileSync(contractAddressesFile, JSON.stringify(res));
@@ -244,7 +268,9 @@ const createGov = (mirrorToken: string) =>
       voting_period: 1000,
       effective_delay: 1000,
       expiration_period: 2000,
-      proposal_deposit: '1000000'
+      proposal_deposit: '1000000',
+      voter_weight:'0.5',
+      snapshot_period: 500,
     },
     false
   );
@@ -274,18 +300,22 @@ const createOracle = (factory: string) =>
     false
   );
 
-const createMint = (factory: string, oracle: string, collector: string) =>
+const createMint = (owner: string, oracle: string, collector: string, collateralOracle: string, terraswapFactory: string, staking: string, lock: string) =>
   new MirrorMint({
     codeID: codeIDs['mirror_mint'],
     key: test1.key
   }).init(
     {
-      owner: factory,
+      owner: owner,
       oracle: oracle,
       collector: collector,
       base_denom: UST.native_token.denom,
       token_code_id: codeIDs['terraswap_token'],
-      protocol_fee_rate: '0.015'
+      protocol_fee_rate: '0.015',
+      collateral_oracle: collateralOracle,
+      staking: staking,
+      lock: lock,
+      terraswap_factory: terraswapFactory
     },
     false
   );
@@ -302,9 +332,7 @@ const createStaking = (factory: string, mirrorToken: string, mint: string, oracl
       oracle_contract: oracle,
       terraswap_factory: terraswapFactory,
       base_denom: UST.native_token.denom,
-      premium_tolerance: "2.0",
-      short_reward_weight: "20.0",
-      premium_short_reward_weight: "40.0"
+      premium_min_update_interval: 100
     },
     false
   );
@@ -352,6 +380,23 @@ const createCollateralOracle = (
       mint_contract: mint,
       factory_contract: mirrorFactory,
       base_denom: UST.native_token.denom
+    },
+    false
+  );
+
+const createLock = (
+  gov: string,
+  mint_contract: string,
+) =>
+  new MirrorLock({
+    codeID: codeIDs['mirror_lock'],
+    key: test1.key
+  }).init(
+    {
+      owner: gov,
+      mint_contract,
+      base_denom: UST.native_token.denom,
+      lockup_period: 10000
     },
     false
   );

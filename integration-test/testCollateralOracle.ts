@@ -7,7 +7,6 @@ const { test1 } = terra.wallets;
   
 export async function testCollateralOracle(mirror: Mirror) {
 
-  const mirrorToken = mirror.assets['MIR'].token.contractAddress || "";
   const appleToken = mirror.assets['mAPPL'].token.contractAddress || "";
 
   // Feed oracle price
@@ -26,7 +25,7 @@ export async function testCollateralOracle(mirror: Mirror) {
   await execute(
     test1,
     mirror.collaterallOracle.updateConfig({
-      base_denom: UST.native_token.denom
+      factory_contract: test1.key.accAddress
     })
   );
 
@@ -84,5 +83,13 @@ export async function testCollateralOracle(mirror: Mirror) {
   let collateralInfoRes = await mirror.collaterallOracle.getCollateralAssetInfo(
     "uluna",
   );
-  assert(collateralInfoRes.collateral_premium === '100.0');
+  assert(collateralInfoRes.collateral_premium === '100');
+
+  console.log('Update config');
+  await execute(
+    test1,
+    mirror.collaterallOracle.updateConfig({
+      factory_contract: mirror.factory.key.accAddress
+    })
+  );
 }

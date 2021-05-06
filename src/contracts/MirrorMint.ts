@@ -33,6 +33,7 @@ export namespace MirrorMint {
       oracle?: AccAddress;
       collector?: AccAddress;
       collateral_oracle?: AccAddress;
+      staking?: AccAddress;
       terraswap_factory?: AccAddress;
       lock?: AccAddress;
       token_code_id?: number;
