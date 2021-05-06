@@ -5,6 +5,7 @@ import * as fs from 'fs';
 import { testUserFlow } from "./testUserFlow";
 import { testCollateralOracle } from "./testCollateralOracle";
 import { testFactory } from "./testFactory";
+import { testLock } from "./testLock";
 import { deployContracts } from "./deploy";
 import { Mirror } from '../src/client';
 import { contractAddressesFile } from './lib';
@@ -21,6 +22,7 @@ async function main() {
   await testUserFlow(mirror, mirror2);
   await testFactory(mirror);
   await testCollateralOracle(mirror);
+  await testLock(mirror);
 }
 
 async function setup(deploy: boolean): Promise<{
@@ -42,7 +44,8 @@ async function setup(deploy: boolean): Promise<{
     appleLpToken,
     applePair,
     appleToken,
-    collateralOracle
+    collateralOracle,
+    lock
   } = deploy? 
     await deployContracts() :
     JSON.parse(fs.readFileSync(contractAddressesFile).toString());
@@ -56,6 +59,7 @@ async function setup(deploy: boolean): Promise<{
     gov,
     mint,
     staking,
+    lock,
     oracle,
     collateralOracle,
     terraswapFactory,
@@ -87,6 +91,7 @@ async function setup(deploy: boolean): Promise<{
     gov,
     mint,
     staking,
+    lock,
     oracle,
     collateralOracle,
     terraswapFactory,

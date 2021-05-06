@@ -25,7 +25,7 @@ export async function testUserFlow(mirror: Mirror, mirror2: Mirror) {
         price: 1000.0
       }
     ])
-  )
+  );
 
   // Open position
   console.log('Open UST-AAPL position');
