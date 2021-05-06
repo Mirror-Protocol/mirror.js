@@ -107,6 +107,7 @@ export async function deployContracts(): Promise<{
   const collateralOracle = await instantiate(createCollateralOracle(mint, factory));
   const lock = await instantiate(createLock(gov, mint));
 
+  console.log('--- SET UP TEST ENVIRONMENT ---');
   const mirror = new Mirror({
     factory,
     mirrorToken,
@@ -121,7 +122,7 @@ export async function deployContracts(): Promise<{
   });
 
   // Update mint contract with final config
-  console.log('UPDATE MINT CONFIG')
+  console.log('Update mint config')
   await execute(
     mirror.mint.updateConfig(
       {
@@ -139,7 +140,7 @@ export async function deployContracts(): Promise<{
   );
 
   // Create MIR-UST pair
-  console.log('CREATE TERRASWAP_PAIR for MIR-UST');
+  console.log('Create terraswap pair for MIR-UST');
   const mirrorPairCreationLogs = await execute(
     mirror.terraswapFactory.createPair([
       UST,
@@ -172,7 +173,7 @@ export async function deployContracts(): Promise<{
   };
 
   // PostInitailize factory
-  console.log('POST_INITIALZE FACTORY');
+  console.log('Post-initialize factory');
   await execute(
     mirror.factory.postInitialize(
       test1.key.accAddress,
@@ -186,10 +187,10 @@ export async function deployContracts(): Promise<{
   );
 
   // Whitelist MIR
-  console.log('WHITELIST MIRROR');
+  console.log('Whitelist MIR');
   await execute(mirror.factory.terraswapCreationHook(mirrorToken));
 
-  console.log('WHITELIST AAPL');
+  console.log('Whitelist AAPL');
   const whitelistAAPLLogs = await execute(
     mirror.factory.whitelist('APPLE Derivative', 'AAPL', test1.key.accAddress, {
       auction_discount: '0.2',
@@ -223,6 +224,7 @@ export async function deployContracts(): Promise<{
     lock,
   };
 
+  console.log('Saving contract addresses to: ' + contractAddressesFile);
   fs.writeFileSync(contractAddressesFile, JSON.stringify(res));
 
   return res;
@@ -251,7 +253,7 @@ const createMirrorToken = (factory: string) =>
       name: 'Mirror Token',
       symbol: 'MIR',
       decimals: 6,
-      initial_balances: [{ address: factory, amount: '60000000000' }]
+      initial_balances: [{ address: factory, amount: '60000000000' },{ address: test1.key.accAddress, amount: '60000000000' }] // give MIR to test account for testing
     },
     false
   );

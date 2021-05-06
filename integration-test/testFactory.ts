@@ -5,10 +5,10 @@ const { test1 } = terra.wallets;
 
 export async function testFactory(mirror: Mirror) {
 
-  console.log('WHITELIST TSLA');
+  console.log('Whitelist new asset');
   const whitelistLogs = await execute(
     test1,
-    mirror.factory.whitelist('Tesla Derivative', 'TSLA', test1.key.accAddress, {
+    mirror.factory.whitelist('Test asset', 'TASSET', test1.key.accAddress, {
       auction_discount: '0.3',
       min_collateral_ratio: '1.5',
       weight: undefined,
@@ -16,18 +16,18 @@ export async function testFactory(mirror: Mirror) {
       min_collateral_ratio_after_migration: undefined,
     })
   );
-  const tslaToken = whitelistLogs['asset_token_addr'][0];
+  const newAsset = whitelistLogs['asset_token_addr'][0];
 
-  console.log('REVOKE TSLA');
+  console.log('Revoke asset');
   await execute(
     test1,
     mirror.factory.revokeAsset(
-      tslaToken,
+      newAsset,
       '1.0'
     )
   );
 
-  console.log('UPDATE CONFIG');
+  console.log('Update config');
   await execute(
     test1,
     mirror.factory.updateConfig({

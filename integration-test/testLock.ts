@@ -24,7 +24,7 @@ export async function testLock(mirror: Mirror) {
   );
 
   // open a short position on mint contract, should lock the outcome of seling the asset
-  console.log('OPEN SHORT POSITION ON AAPL');
+  console.log('Open short position on AAPL');
 
   let openRes = await execute(
     test1,
@@ -45,7 +45,7 @@ export async function testLock(mirror: Mirror) {
   );
   const positionIdx = openRes['position_idx'][0];
   // query
-  console.log("QUERYING LOCKED POSITION")
+  console.log("Query lock position")
   const lockRes = await mirror.lock.getPositionLockInfo(positionIdx);
   assert(lockRes.locked_funds.length == 1);
   assert(openRes['locked_amount'][0] == lockRes.locked_funds[0][1]+"uusd");
@@ -62,7 +62,7 @@ export async function testLock(mirror: Mirror) {
   });
 
   // mint more to lock more funds
-  console.log('MINT MORE AAPL');
+  console.log('Mint more AAPL');
   let mintRes = await execute(
     test1,
     mirror.mint.mint(
@@ -81,14 +81,14 @@ export async function testLock(mirror: Mirror) {
   );
 
   // query again
-  console.log('QUERY LOCK POSITION AGAIN - expect 2 locks');
+  console.log('Query lock position again - expect 2 locks');
   const lockRes2 = await mirror.lock.getPositionLockInfo(positionIdx);
   assert(lockRes2.locked_funds.length == 2);
 
   const mintAmount: number = parseInt(openRes['mint_amount'][0].substring(0, openRes['mint_amount'][0].indexOf('terra'))) + 100;
   
   // close position to trigger release funds
-  console.log('BURNING AAPL')
+  console.log('Burn all AAPL')
   await execute(
     test1,
     mirror.mint.burn(
@@ -99,7 +99,7 @@ export async function testLock(mirror: Mirror) {
       },
     )
   );
-  console.log('WITHDRAWING ALL COLLATERAL')
+  console.log('Withdraw all collateral')
   let withdrawRes = await execute(
     test1,
     mirror.mint.withdraw(
@@ -113,7 +113,7 @@ export async function testLock(mirror: Mirror) {
   assert(withdrawRes['action'][1] == 'unlock_shorting_funds');
 
   // query lock again
-  console.log("QUERYING LOCK POSITION AGAIN - expect error")
+  console.log("Querying lock position again - expect error")
   await mirror.lock.getPositionLockInfo(positionIdx)
     .catch((error) => {
       assert(error.response.data.error.includes('not found'));

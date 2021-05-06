@@ -48,11 +48,13 @@ export async function testCollateralOracle(mirror: Mirror) {
 
   let query_request = Buffer.from(JSON.stringify(wasm_query)).toString('base64');
 
+  // generate random collateral denom to prevent error if we repeat the same test on the network
+  const randomCollateralDenom: string = Math.random().toString(36).substring(7);
   console.log('Register collateral');
   await execute(
     test1,
     mirror.collaterallOracle.registerCollateralAsset(
-      {native_token: { denom: "uluna" }},
+      {native_token: { denom: randomCollateralDenom }},
       query_request,
       50.0,
     )
@@ -62,12 +64,12 @@ export async function testCollateralOracle(mirror: Mirror) {
   await execute(
     test1,
     mirror.collaterallOracle.revokeCollateralAsset(
-      {native_token: { denom: "uluna" }},
+      {native_token: { denom: randomCollateralDenom }},
     )
   );
 
   let collateralPriceRes = await mirror.collaterallOracle.getCollateralPrice(
-    "uluna",
+    randomCollateralDenom,
   );
   assert(collateralPriceRes.is_revoked == true);
 
@@ -75,13 +77,13 @@ export async function testCollateralOracle(mirror: Mirror) {
   await execute(
     test1,
     mirror.collaterallOracle.updateCollateralPremium(
-      {native_token: { denom: "uluna" }},
+      {native_token: { denom: randomCollateralDenom }},
       100.0
     )
   );
 
   let collateralInfoRes = await mirror.collaterallOracle.getCollateralAssetInfo(
-    "uluna",
+    randomCollateralDenom,
   );
   assert(collateralInfoRes.collateral_premium === '100');
 
