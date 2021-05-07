@@ -6,6 +6,7 @@ import { testFactory } from './testFactory';
 import { testLock } from './testLock';
 import { testGov } from './testGov';
 import { testMint } from './testMint';
+import { testStaking } from './testStaking';
 import { deployContracts } from './deploy';
 import { Mirror } from '../src/client';
 import { contractAddressesFile } from './lib';
@@ -14,8 +15,9 @@ const terra = new LocalTerra();
 const { test1, test2 } = terra.wallets;
 
 async function main() {
-  const { mirror, mirror2 } = await setup(true);
+  const { mirror, mirror2 } = await setup(true); // change to false to use previously deployed contracts
 
+  // asserts may fail if the tests are not perfomed on feshly deployed contracts
   console.log('--- TEST USER FLOW ---');
   await testUserFlow(mirror, mirror2);
   console.log('--- TEST FACTORY ---');
@@ -28,6 +30,8 @@ async function main() {
   await testGov(mirror);
   console.log('--- TEST MINT ---');
   await testMint(mirror);
+  console.log('--- TEST STAKING ---');
+  await testStaking(mirror);
 }
 
 async function setup(

@@ -5,8 +5,6 @@ import { execute, terra } from './lib';
 const { test1 } = terra.wallets;
 
 export async function testGov(mirror: Mirror) {
-  const mirrorToken = mirror.assets.MIR.token.contractAddress || '';
-
   console.log('Query config');
   const config = await mirror.gov.getConfig();
   const voterWeight = parseFloat(config.voter_weight);
