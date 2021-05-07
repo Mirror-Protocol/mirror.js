@@ -1,6 +1,4 @@
-import {
-  int,
-} from '@terra-money/terra.js';
+import { int } from '@terra-money/terra.js';
 import { Mirror } from '../src/client';
 import { strict as assert } from 'assert';
 import { UST } from '../src/utils/Asset';
@@ -9,11 +7,10 @@ import { execute, terra } from './lib';
 const { test1, test2 } = terra.wallets;
 
 export async function testUserFlow(mirror: Mirror, mirror2: Mirror) {
-
-  const mirrorToken = mirror.assets.MIR.token.contractAddress || "";
-  const appleToken = mirror.assets.mAPPL.token.contractAddress || "";
-  const mirrorPair = mirror.assets.MIR.pair.contractAddress || "";
-  const applePair = mirror.assets.mAPPL.pair.contractAddress || "";
+  const mirrorToken = mirror.assets.MIR.token.contractAddress || '';
+  const appleToken = mirror.assets.mAPPL.token.contractAddress || '';
+  const mirrorPair = mirror.assets.MIR.pair.contractAddress || '';
+  const applePair = mirror.assets.mAPPL.pair.contractAddress || '';
 
   // Feed oracle price
   console.log('Feed AAPL oracle price');
@@ -40,7 +37,7 @@ export async function testUserFlow(mirror: Mirror, mirror2: Mirror) {
       1.5
     )
   );
-  
+
   // Deposit UST
   console.log('Deposit UST');
   await execute(
@@ -87,11 +84,7 @@ export async function testUserFlow(mirror: Mirror, mirror2: Mirror) {
   console.log('Bond APPL LP token to staking contract');
   await execute(
     test1,
-    mirror.staking.bond(
-      appleToken,
-      189736659,
-      mirror.assets['mAPPL'].lpToken
-    )
+    mirror.staking.bond(appleToken, 189736659, mirror.assets['mAPPL'].lpToken)
   );
 
   const rewardInfo = await mirror.staking.getRewardInfo(
@@ -180,10 +173,6 @@ export async function testUserFlow(mirror: Mirror, mirror2: Mirror) {
   console.log('Stake MIR LP token');
   await execute(
     test1,
-    mirror.staking.bond(
-      mirrorToken,
-      189736659,
-      mirror.assets['MIR'].lpToken
-    )
+    mirror.staking.bond(mirrorToken, 189736659, mirror.assets['MIR'].lpToken)
   );
 }

@@ -5,7 +5,6 @@ import { execute, terra } from './lib';
 const { test1 } = terra.wallets;
 
 export async function testFactory(mirror: Mirror) {
-
   console.log('Whitelist new asset');
   const whitelistLogs = await execute(
     test1,
@@ -14,7 +13,7 @@ export async function testFactory(mirror: Mirror) {
       min_collateral_ratio: '1.5',
       weight: undefined,
       mint_period: undefined,
-      min_collateral_ratio_after_migration: undefined,
+      min_collateral_ratio_after_migration: undefined
     })
   );
   const newAsset = whitelistLogs['asset_token_addr'][0];
@@ -27,13 +26,7 @@ export async function testFactory(mirror: Mirror) {
   assert(assetRes.min_collateral_ratio_after_migration == undefined);
 
   console.log('Revoke asset');
-  await execute(
-    test1,
-    mirror.factory.revokeAsset(
-      newAsset,
-      '1.0'
-    )
-  );
+  await execute(test1, mirror.factory.revokeAsset(newAsset, '1.0'));
 
   console.log('Query revoked asset mint config - exepect end price');
   const revokedAssetRes = await mirror.mint.getAssetConfig(newAsset);
@@ -50,13 +43,18 @@ export async function testFactory(mirror: Mirror) {
   console.log('Whitelist preIPO asset');
   const preIpoWhitelistLogs = await execute(
     test1,
-    mirror.factory.whitelist('Test preIPO asset', 'TPREIPO', test1.key.accAddress, {
-      auction_discount: '0.3',
-      min_collateral_ratio: '100.0',
-      weight: undefined,
-      mint_period: 10,
-      min_collateral_ratio_after_migration: '2.0',
-    })
+    mirror.factory.whitelist(
+      'Test preIPO asset',
+      'TPREIPO',
+      test1.key.accAddress,
+      {
+        auction_discount: '0.3',
+        min_collateral_ratio: '100.0',
+        weight: undefined,
+        mint_period: 10,
+        min_collateral_ratio_after_migration: '2.0'
+      }
+    )
   );
   const preIpoAsset = preIpoWhitelistLogs['asset_token_addr'][0];
 
@@ -70,7 +68,12 @@ export async function testFactory(mirror: Mirror) {
   console.log('Migrate preIPO asset');
   const migrationLogs = await execute(
     test1,
-    mirror.factory.migrateAsset('Test postIPO asset', 'TPOSTIPO', preIpoAsset, '2.0')
+    mirror.factory.migrateAsset(
+      'Test postIPO asset',
+      'TPOSTIPO',
+      preIpoAsset,
+      '2.0'
+    )
   );
   const postIpoAsset = migrationLogs['asset_token_addr'][0];
 

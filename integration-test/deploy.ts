@@ -7,7 +7,7 @@ import {
   StdFee,
   MsgExecuteContract
 } from '@terra-money/terra.js';
-import {contractAddressesFile} from './lib';
+import { contractAddressesFile } from './lib';
 import * as fs from 'fs';
 import { Mirror } from '../src/client/Mirror';
 import {
@@ -40,8 +40,9 @@ const contractFiles: { [k: string]: string } = {
   terraswap_factory: 'integration-test/artifacts/terraswap_factory.wasm',
   terraswap_pair: 'integration-test/artifacts/terraswap_pair.wasm',
   terraswap_token: 'integration-test/artifacts/terraswap_token.wasm',
-  mirror_collateral_oracle: 'integration-test/artifacts/mirror_collateral_oracle.wasm',
-  mirror_lock: 'integration-test/artifacts/mirror_lock.wasm',
+  mirror_collateral_oracle:
+    'integration-test/artifacts/mirror_collateral_oracle.wasm',
+  mirror_lock: 'integration-test/artifacts/mirror_lock.wasm'
 };
 
 const codeIDs: {
@@ -66,6 +67,7 @@ export async function deployContracts(): Promise<{
   collateralOracle: AccAddress;
   lock: AccAddress;
 }> {
+  console.log('--- DEPLOY CONTRACTS ---');
   // upload all contracts
   for (const contract in contractFiles) {
     const storeCode = new MsgStoreCode(
@@ -101,10 +103,24 @@ export async function deployContracts(): Promise<{
     createCollector(gov, terraswapFactory, mirrorToken)
   );
   // instantiate mint contract with provisional collateral_oracle, staking, and lock contracts, due to circular depndency
-  const mint = await instantiate(createMint(test1.key.accAddress, oracle, collector, test1.key.accAddress, terraswapFactory, test1.key.accAddress, test1.key.accAddress));
-  const staking = await instantiate(createStaking(factory, mirrorToken, mint, oracle, terraswapFactory));
+  const mint = await instantiate(
+    createMint(
+      test1.key.accAddress,
+      oracle,
+      collector,
+      test1.key.accAddress,
+      terraswapFactory,
+      test1.key.accAddress,
+      test1.key.accAddress
+    )
+  );
+  const staking = await instantiate(
+    createStaking(factory, mirrorToken, mint, oracle, terraswapFactory)
+  );
   const community = await instantiate(createCommunity(gov, mirrorToken));
-  const collateralOracle = await instantiate(createCollateralOracle(mint, factory));
+  const collateralOracle = await instantiate(
+    createCollateralOracle(mint, factory)
+  );
   const lock = await instantiate(createLock(gov, mint));
 
   console.log('--- SET UP TEST ENVIRONMENT ---');
@@ -122,21 +138,19 @@ export async function deployContracts(): Promise<{
   });
 
   // Update mint contract with final config
-  console.log('Update mint config')
+  console.log('Update mint config');
   await execute(
-    mirror.mint.updateConfig(
-      {
-        owner: factory, // assign owner back to factory
-        oracle: undefined,
-        collector: undefined,
-        collateral_oracle: collateralOracle,
-        staking: staking,
-        terraswap_factory: undefined,
-        lock: lock,
-        token_code_id: undefined,
-        protocol_fee_rate: undefined
-      }
-    )
+    mirror.mint.updateConfig({
+      owner: factory, // assign owner back to factory
+      oracle: undefined,
+      collector: undefined,
+      collateral_oracle: collateralOracle,
+      staking: staking,
+      terraswap_factory: undefined,
+      lock: lock,
+      token_code_id: undefined,
+      protocol_fee_rate: undefined
+    })
   );
 
   // Create MIR-UST pair
@@ -197,7 +211,7 @@ export async function deployContracts(): Promise<{
       min_collateral_ratio: '1.5',
       weight: undefined,
       mint_period: undefined,
-      min_collateral_ratio_after_migration: undefined,
+      min_collateral_ratio_after_migration: undefined
     })
   );
 
@@ -221,7 +235,7 @@ export async function deployContracts(): Promise<{
     applePair,
     appleLpToken,
     collateralOracle,
-    lock,
+    lock
   };
 
   console.log('Saving contract addresses to: ' + contractAddressesFile);
@@ -253,7 +267,10 @@ const createMirrorToken = (factory: string) =>
       name: 'Mirror Token',
       symbol: 'MIR',
       decimals: 6,
-      initial_balances: [{ address: factory, amount: '60000000000' },{ address: test1.key.accAddress, amount: '60000000000' }] // give MIR to test account for testing
+      initial_balances: [
+        { address: factory, amount: '60000000000' },
+        { address: test1.key.accAddress, amount: '60000000000' }
+      ] // give MIR to test account for testing
     },
     false
   );
@@ -271,8 +288,8 @@ const createGov = (mirrorToken: string) =>
       effective_delay: 1000,
       expiration_period: 2000,
       proposal_deposit: '1000000',
-      voter_weight:'0.5',
-      snapshot_period: 500,
+      voter_weight: '0.5',
+      snapshot_period: 500
     },
     false
   );
@@ -302,7 +319,15 @@ const createOracle = (factory: string) =>
     false
   );
 
-const createMint = (owner: string, oracle: string, collector: string, collateralOracle: string, terraswapFactory: string, staking: string, lock: string) =>
+const createMint = (
+  owner: string,
+  oracle: string,
+  collector: string,
+  collateralOracle: string,
+  terraswapFactory: string,
+  staking: string,
+  lock: string
+) =>
   new MirrorMint({
     codeID: codeIDs['mirror_mint'],
     key: test1.key
@@ -322,7 +347,13 @@ const createMint = (owner: string, oracle: string, collector: string, collateral
     false
   );
 
-const createStaking = (factory: string, mirrorToken: string, mint: string, oracle: string, terraswapFactory: string) =>
+const createStaking = (
+  factory: string,
+  mirrorToken: string,
+  mint: string,
+  oracle: string,
+  terraswapFactory: string
+) =>
   new MirrorStaking({
     codeID: codeIDs['mirror_staking'],
     key: test1.key
@@ -369,10 +400,7 @@ const createCollector = (
     false
   );
 
-const createCollateralOracle = (
-  mint: string,
-  mirrorFactory: string
-) => 
+const createCollateralOracle = (mint: string, mirrorFactory: string) =>
   new MirrorCollateralOracle({
     codeID: codeIDs['mirror_collateral_oracle'],
     key: test1.key
@@ -386,10 +414,7 @@ const createCollateralOracle = (
     false
   );
 
-const createLock = (
-  gov: string,
-  mint_contract: string,
-) =>
+const createLock = (gov: string, mint_contract: string) =>
   new MirrorLock({
     codeID: codeIDs['mirror_lock'],
     key: test1.key

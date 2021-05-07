@@ -1,13 +1,12 @@
-import {
-  LocalTerra,
-} from '@terra-money/terra.js';
+import { LocalTerra } from '@terra-money/terra.js';
 import * as fs from 'fs';
-import { testUserFlow } from "./testUserFlow";
-import { testCollateralOracle } from "./testCollateralOracle";
-import { testFactory } from "./testFactory";
-import { testLock } from "./testLock";
-import { testGov } from "./testGov";
-import { deployContracts } from "./deploy";
+import { testUserFlow } from './testUserFlow';
+import { testCollateralOracle } from './testCollateralOracle';
+import { testFactory } from './testFactory';
+import { testLock } from './testLock';
+import { testGov } from './testGov';
+import { testMint } from './testMint';
+import { deployContracts } from './deploy';
 import { Mirror } from '../src/client';
 import { contractAddressesFile } from './lib';
 
@@ -15,25 +14,25 @@ const terra = new LocalTerra();
 const { test1, test2 } = terra.wallets;
 
 async function main() {
-  console.log('--- DEPLOY CONTRACTS ---')
-  const {
-    mirror,
-    mirror2
-  } = await setup(true);
+  const { mirror, mirror2 } = await setup(true);
 
-  console.log('--- TEST USER FLOW ---')
+  console.log('--- TEST USER FLOW ---');
   await testUserFlow(mirror, mirror2);
-  console.log('--- TEST FACTORY ---')
+  console.log('--- TEST FACTORY ---');
   await testFactory(mirror);
-  console.log('--- TEST COLLATERAL ORACLE ---')
+  console.log('--- TEST COLLATERAL ORACLE ---');
   await testCollateralOracle(mirror);
-  console.log('--- TEST LOCK ---')
+  console.log('--- TEST LOCK ---');
   await testLock(mirror);
-  console.log('--- TEST GOV ---')
+  console.log('--- TEST GOV ---');
   await testGov(mirror);
+  console.log('--- TEST MINT ---');
+  await testMint(mirror);
 }
 
-async function setup(deploy: boolean): Promise<{
+async function setup(
+  deploy: boolean
+): Promise<{
   mirror: Mirror;
   mirror2: Mirror;
 }> {
@@ -54,9 +53,9 @@ async function setup(deploy: boolean): Promise<{
     appleToken,
     collateralOracle,
     lock
-  } = deploy? 
-    await deployContracts() :
-    JSON.parse(fs.readFileSync(contractAddressesFile).toString());
+  } = deploy
+    ? await deployContracts()
+    : JSON.parse(fs.readFileSync(contractAddressesFile).toString());
 
   const mirror = new Mirror({
     lcd: terra,
@@ -122,7 +121,7 @@ async function setup(deploy: boolean): Promise<{
     }
   });
 
-  return {mirror, mirror2};
+  return { mirror, mirror2 };
 }
 
 main();
