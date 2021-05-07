@@ -22,7 +22,7 @@ export namespace MirrorFactory {
     min_collateral_ratio: string;
     weight?: number;
     mint_period?: number;
-    min_collateral_ratio_after_migration: string;
+    min_collateral_ratio_after_migration?: string;
   }
 
   export interface HandlePostInitialize {
@@ -197,9 +197,9 @@ export class MirrorFactory extends ContractClient {
           min_collateral_ratio: new Dec(params.min_collateral_ratio).toFixed(),
           weight: params.weight,
           mint_period: params.mint_period,
-          min_collateral_ratio_after_migration: new Dec(
-            params.min_collateral_ratio
-          ).toFixed()
+          min_collateral_ratio_after_migration: params.min_collateral_ratio_after_migration
+            ? new Dec(params.min_collateral_ratio_after_migration).toFixed()
+            : undefined
         }
       }
     });
