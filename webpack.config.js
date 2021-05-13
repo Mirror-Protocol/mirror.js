@@ -25,6 +25,9 @@ const commonConfig = {
       /wordlists\/(french|spanish|italian|korean|chinese_simplified|chinese_traditional|japanese)\.json$/
     ),
   ],
+  externals: {
+    '@terra-money/terra.js': 'Terra'
+  },
 };
 
 const webConfig = {
@@ -36,9 +39,16 @@ const webConfig = {
     library: 'Mirror',
     path: path.resolve(__dirname, 'dist'),
   },
+  resolve: {
+    ...commonConfig.resolve,
+    fallback: {
+      stream: require.resolve('stream-browserify'),
+      buffer: require.resolve('buffer'),
+    },
+  },
   plugins: [
     ...commonConfig.plugins,
-    // new BundleAnalyzerPlugin(),
+    new BundleAnalyzerPlugin(),
   ],
 };
 
