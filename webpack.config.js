@@ -48,7 +48,7 @@ const webConfig = {
   },
   plugins: [
     ...commonConfig.plugins,
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
   ],
 };
 
