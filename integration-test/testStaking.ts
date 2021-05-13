@@ -8,6 +8,7 @@ const { test1 } = terra.wallets;
 export async function testStaking(mirror: Mirror) {
   const appleToken = mirror.assets.mAPPL.token.contractAddress || '';
   const applePair = mirror.assets.mAPPL.pair.contractAddress || '';
+  const staking = mirror.staking.contractAddress || '';
 
   // Feed oracle price
   console.log('Feed AAPL oracle price');
@@ -41,14 +42,20 @@ export async function testStaking(mirror: Mirror) {
   const mintAmount = parseInt(openRes['amount'][0]);
 
   const poolRes = await mirror.assets.mAPPL.pair.getPool();
-  const poolRatio =
+  let poolRatio =
     parseInt(poolRes.assets[0].amount) / parseInt(poolRes.assets[1].amount);
-  const poolUst = Math.trunc(mintAmount * poolRatio);
+  if (isNaN(poolRatio)) {
+    poolRatio = 1;
+  }
+
+  const poolAsset = Math.trunc(mintAmount / 2) - 1;
+  const poolUst = Math.trunc(poolAsset * poolRatio);
+
   // Provide Liquidity
   console.log('Provide Liquidity UST-AAPL');
   const provRes = await execute(
     test1,
-    mirror.assets['mAPPL'].token.increaseAllowance(applePair, mintAmount),
+    mirror.assets['mAPPL'].token.increaseAllowance(applePair, poolAsset),
     mirror.assets['mAPPL'].pair.provideLiquidity([
       {
         info: { native_token: { denom: 'uusd' } },
@@ -56,7 +63,7 @@ export async function testStaking(mirror: Mirror) {
       },
       {
         info: { token: { contract_addr: appleToken } },
-        amount: mintAmount.toString()
+        amount: poolAsset.toString()
       }
     ])
   );
@@ -102,5 +109,32 @@ export async function testStaking(mirror: Mirror) {
   await execute(
     test1,
     mirror.staking.unbond(appleToken, rewardInfo.reward_infos[0].bond_amount)
+  );
+
+  console.log('Auto stake provide liquidity for UST-AAPL');
+  await execute(
+    test1,
+    mirror.assets['mAPPL'].token.increaseAllowance(staking, poolAsset)
+  );
+  const autoRes = await execute(
+    test1,
+    mirror.staking.autoStake(
+      {
+        info: { native_token: { denom: 'uusd' } },
+        amount: poolUst.toString()
+      },
+      {
+        info: { token: { contract_addr: appleToken } },
+        amount: poolAsset.toString()
+      }
+    )
+  );
+  const lpTokenAmount2 = autoRes['share'][0];
+
+  console.log('Query staking pool again');
+  const stakingPool2 = await mirror.staking.getPoolInfo(appleToken);
+  assert(
+    stakingPool2.total_bond_amount ==
+      (initialBondAmount + parseInt(lpTokenAmount2)).toString()
   );
 }

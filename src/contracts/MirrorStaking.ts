@@ -2,6 +2,7 @@
 import {
   AccAddress,
   Coins,
+  Coin,
   Numeric,
   MsgInstantiateContract,
   MsgExecuteContract,
@@ -9,6 +10,7 @@ import {
 } from '@terra-money/terra.js';
 import { ContractClient } from './ContractClient';
 import { EmptyObject } from '../utils/EmptyObject';
+import { Asset, AssetInfo, NativeToken, Token } from '../utils/Asset';
 import { TerraswapToken } from './TerraswapToken';
 
 export namespace MirrorStaking {
@@ -71,6 +73,13 @@ export namespace MirrorStaking {
     };
   }
 
+  export interface HandleAutoStake {
+    auto_stake: {
+      assets: [Asset<AssetInfo>, Asset<AssetInfo>];
+      slippage_tolerance?: string;
+    };
+  }
+
   export interface HookBond {
     bond: {
       asset_token: AccAddress;
@@ -120,6 +129,7 @@ export namespace MirrorStaking {
     pending_reward: string;
     short_pending_reward: string;
     premium_rate: string;
+    short_reward_weight: String;
     premium_updated_time: number;
   }
 
@@ -142,7 +152,8 @@ export namespace MirrorStaking {
     | HandleWithdraw
     | HandleAdjustPremium
     | HandleDecreaseShortToken
-    | HandleIncreaseShortToken;
+    | HandleIncreaseShortToken
+    | HandleAutoStake;
 
   export type HookMsg = HookBond | HookDepositReward;
 
@@ -283,6 +294,23 @@ export class MirrorStaking extends ContractClient {
         amount: new Int(amount).toString()
       }
     });
+  }
+
+  /// must increase allowance to staking contract before using it
+  public autoStake(
+    native_asset: Asset<NativeToken>,
+    token_asset: Asset<Token>,
+    slippage_tolerance?: string
+  ): MsgExecuteContract {
+    return this.createExecuteMsg(
+      {
+        auto_stake: {
+          assets: [native_asset, token_asset],
+          slippage_tolerance
+        }
+      },
+      [new Coin(native_asset.info.native_token.denom, native_asset.amount)]
+    );
   }
 
   public async getConfig(): Promise<MirrorStaking.ConfigResponse> {
