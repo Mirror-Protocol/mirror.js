@@ -205,6 +205,20 @@ export const DEFAULT_MIRROR_OPTIONS: MirrorOptions = {
       token: 'terra1zp3a6q6q4953cz376906g5qfmxnlg77hx3te45',
       pair: 'terra1yngadscckdtd68nzw5r5va36jccjmmasm7klpp',
       lpToken: 'terra1cmrl4txa7cwd7cygpp4yzu7xu8g7c772els2y8'
+    },
+    mSPY: {
+      symbol: 'mSPY',
+      name: 'SPDR S&P 500',
+      token: 'terra1aa00lpfexyycedfg5k2p60l9djcmw0ue5l8fhc',
+      pair: 'terra14hklnm2ssaexjwkcfhyyyzvpmhpwx6x6lpy39s',
+      lpToken: 'terra1jqqegd35rg2gjde54adpj3t6ecu0khfeaarzy9'
+    },
+    mCOIN: {
+      symbol: 'mCOIN',
+      name: 'Coinbase Global, Inc.',
+      token: 'terra18wayjpyq28gd970qzgjfmsjj7dmgdk039duhph',
+      pair: 'terra1h7t2yq00rxs8a78nyrnhlvp0ewu8vnfnx5efsl',
+      lpToken: 'terra1ktckr8v7judrr6wkwv476pwsv8mht0zqzw2t0h'
     }
   }
 };
@@ -384,6 +398,20 @@ export const DEFAULT_TEQUILA_MIRROR_OPTIONS: MirrorOptions = {
       token: 'terra1z0k7nx0vl85hwpv3e3hu2cyfkwq07fl7nqchvd',
       pair: 'terra1xg2393l4s7n4z2r0cnu4rr55mkpp942f4d3qzr',
       lpToken: 'terra1ud750vcv39hd467sj2kk6s6nn8zf5xhgggf7uq'
+    },
+    mSPY: {
+      symbol: 'mSPY',
+      name: 'SPDR S&P 500',
+      token: 'terra15t9afkpj0wnh8m74n8n2f8tspkn7r65vnru45s',
+      pair: 'terra10q4qsd2sfl4wc6nv0d77zud4ur40ygf5602pzd',
+      lpToken: 'terra1pef9fz8lkqajzuwp6ff6t33s86ndpkm3728cgc'
+    },
+    mCOIN: {
+      symbol: 'mCOIN',
+      name: 'Coinbase Global, Inc.',
+      token: 'terra1qre9crlfnulcg0m68qqywqqstplgvrzywsg3am',
+      pair: 'terra13qzses7zpsyrufx38h0kc3p87523cjgwmenj44',
+      lpToken: 'terra1gdglgpm84pdzuedc924wurhsqd0vs4nv4tpmh8'
     }
   }
 };
