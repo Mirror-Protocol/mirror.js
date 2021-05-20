@@ -27,10 +27,32 @@ export namespace MirrorCollateralOracle {
     };
   }
 
+  export interface TerraOracle {
+    terra_oracle: {
+      terra_oracle_query: string;
+    };
+  }
+  export interface Terraswap {
+    terraswap: {
+      terraswap_query: string;
+    };
+  }
+  export interface BandOracle {
+    band_oracle: {
+      band_oracle_query: string;
+    };
+  }
+  export interface FixedPrice {
+    fixed_price: {
+      price: string;
+    };
+  }
+  export type SourceType = TerraOracle | Terraswap | BandOracle | FixedPrice;
+
   export interface HandleRegisterCollateralAsset {
     register_collateral_asset: {
       asset: AssetInfo;
-      query_request: string;
+      price_source: SourceType;
       collateral_premium: string;
     };
   }
@@ -41,10 +63,10 @@ export namespace MirrorCollateralOracle {
     };
   }
 
-  export interface HandleUpdateCollateralQuery {
-    update_collateral_query: {
+  export interface HandleUpdateCollateralPriceSource {
+    update_collateral_price_source: {
       asset: AssetInfo;
-      query_request: string;
+      price_source: SourceType;
     };
   }
 
@@ -92,7 +114,7 @@ export namespace MirrorCollateralOracle {
   export interface CollateralInfoResponse {
     asset: AccAddress;
     collateral_premium: string;
-    query_request: string;
+    source_type: string;
     is_revoked: boolean;
   }
 
@@ -105,7 +127,7 @@ export namespace MirrorCollateralOracle {
     | HandleRegisterCollateralAsset
     | HandleRevokeCollateralAsset
     | HandleUpdateCollateralPremium
-    | HandleUpdateCollateralQuery;
+    | HandleUpdateCollateralPriceSource;
 
   export type QueryMsg =
     | QueryConfig
@@ -132,13 +154,13 @@ export class MirrorCollateralOracle extends ContractClient {
 
   public registerCollateralAsset(
     asset: AssetInfo,
-    query_request: string,
+    price_source: MirrorCollateralOracle.SourceType,
     collateral_premium: Numeric.Input
   ): MsgExecuteContract {
     return this.createExecuteMsg({
       register_collateral_asset: {
         asset,
-        query_request,
+        price_source,
         collateral_premium: new Dec(collateral_premium).toFixed()
       }
     });
@@ -164,14 +186,14 @@ export class MirrorCollateralOracle extends ContractClient {
     });
   }
 
-  public updateCollateralQuery(
+  public updateCollateralPriceSource(
     asset: AssetInfo,
-    query_request: string
+    price_source: MirrorCollateralOracle.SourceType
   ): MsgExecuteContract {
     return this.createExecuteMsg({
-      update_collateral_query: {
+      update_collateral_price_source: {
         asset,
-        query_request
+        price_source
       }
     });
   }

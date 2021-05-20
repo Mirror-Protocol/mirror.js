@@ -100,7 +100,7 @@ export async function testMint(mirror: Mirror) {
       test1,
       mirror.collaterallOracle.registerCollateralAsset(
         { token: { contract_addr: mirToken } },
-        query_request,
+        { terraswap: { terraswap_query: query_request } },
         0.5
       )
     );
