@@ -107,6 +107,7 @@ export namespace MirrorCollateralOracle {
   export interface CollateralPriceResponse {
     asset: AccAddress;
     rate: string;
+    last_updated: number;
     collateral_premium: string;
     is_revoked: boolean;
   }
