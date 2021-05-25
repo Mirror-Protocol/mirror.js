@@ -58,7 +58,7 @@ export async function testCollateralOracle(mirror: Mirror) {
     mirror.collaterallOracle.registerCollateralAsset(
       { native_token: { denom: randomCollateralDenom } },
       { terra_oracle: { terra_oracle_query: query_request } },
-      50.0
+      0.5
     )
   );
 
@@ -79,19 +79,19 @@ export async function testCollateralOracle(mirror: Mirror) {
   );
   assert(collateralPriceRes.is_revoked == true);
 
-  console.log('Update collateral premium');
+  console.log('Update collateral multiplier');
   await execute(
     test1,
     mirror.collaterallOracle.updateCollateralMultiplier(
       { native_token: { denom: randomCollateralDenom } },
-      100.0
+      1.0
     )
   );
 
   const collateralInfoRes = await mirror.collaterallOracle.getCollateralAssetInfo(
     randomCollateralDenom
   );
-  assert(collateralInfoRes.multiplier === '100');
+  assert(collateralInfoRes.multiplier === '1');
 
   console.log('Update config');
   await execute(
