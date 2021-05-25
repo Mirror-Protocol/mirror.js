@@ -53,7 +53,7 @@ export namespace MirrorCollateralOracle {
     register_collateral_asset: {
       asset: AssetInfo;
       price_source: SourceType;
-      collateral_premium: string;
+      multiplier: string;
     };
   }
 
@@ -70,10 +70,10 @@ export namespace MirrorCollateralOracle {
     };
   }
 
-  export interface HandleUpdateCollateralPremium {
-    update_collateral_premium: {
+  export interface HandleUpdateCollateralMultiplier {
+    update_collateral_multiplier: {
       asset: AssetInfo;
-      collateral_premium: string;
+      multiplier: string;
     };
   }
 
@@ -108,13 +108,13 @@ export namespace MirrorCollateralOracle {
     asset: AccAddress;
     rate: string;
     last_updated: number;
-    collateral_premium: string;
+    multiplier: string;
     is_revoked: boolean;
   }
 
   export interface CollateralInfoResponse {
     asset: AccAddress;
-    collateral_premium: string;
+    multiplier: string;
     source_type: string;
     is_revoked: boolean;
   }
@@ -127,7 +127,7 @@ export namespace MirrorCollateralOracle {
     | HandleUpdateConfig
     | HandleRegisterCollateralAsset
     | HandleRevokeCollateralAsset
-    | HandleUpdateCollateralPremium
+    | HandleUpdateCollateralMultiplier
     | HandleUpdateCollateralPriceSource;
 
   export type QueryMsg =
@@ -156,13 +156,13 @@ export class MirrorCollateralOracle extends ContractClient {
   public registerCollateralAsset(
     asset: AssetInfo,
     price_source: MirrorCollateralOracle.SourceType,
-    collateral_premium: Numeric.Input
+    multiplier: Numeric.Input
   ): MsgExecuteContract {
     return this.createExecuteMsg({
       register_collateral_asset: {
         asset,
         price_source,
-        collateral_premium: new Dec(collateral_premium).toFixed()
+        multiplier: new Dec(multiplier).toFixed()
       }
     });
   }
@@ -175,14 +175,14 @@ export class MirrorCollateralOracle extends ContractClient {
     });
   }
 
-  public updateCollateralPremium(
+  public updateCollateralMultiplier(
     asset: AssetInfo,
-    collateral_premium: Numeric.Input
+    multiplier: Numeric.Input
   ): MsgExecuteContract {
     return this.createExecuteMsg({
-      update_collateral_premium: {
+      update_collateral_multiplier: {
         asset,
-        collateral_premium: new Dec(collateral_premium).toFixed()
+        multiplier: new Dec(multiplier).toFixed()
       }
     });
   }

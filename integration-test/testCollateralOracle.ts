@@ -82,7 +82,7 @@ export async function testCollateralOracle(mirror: Mirror) {
   console.log('Update collateral premium');
   await execute(
     test1,
-    mirror.collaterallOracle.updateCollateralPremium(
+    mirror.collaterallOracle.updateCollateralMultiplier(
       { native_token: { denom: randomCollateralDenom } },
       100.0
     )
@@ -91,7 +91,7 @@ export async function testCollateralOracle(mirror: Mirror) {
   const collateralInfoRes = await mirror.collaterallOracle.getCollateralAssetInfo(
     randomCollateralDenom
   );
-  assert(collateralInfoRes.collateral_premium === '100');
+  assert(collateralInfoRes.multiplier === '100');
 
   console.log('Update config');
   await execute(
