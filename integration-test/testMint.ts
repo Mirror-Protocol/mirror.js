@@ -101,7 +101,7 @@ export async function testMint(mirror: Mirror) {
       mirror.collaterallOracle.registerCollateralAsset(
         { token: { contract_addr: mirToken } },
         { terraswap: { terraswap_query: query_request } },
-        0.5
+        2.0
       )
     );
   }
@@ -124,8 +124,8 @@ export async function testMint(mirror: Mirror) {
 
   const mirPositionIdx = mirOpenRes['position_idx'][0];
   assert(mirOpenRes['collateral_amount'][0] == '1000000' + mirToken);
-  const mint_amount = 1000000 * mir_price / 1000 * 0.5 / 1.5;
-  assert(mirOpenRes['mint_amount'][0] == Math.trunc(mint_amount) + appleToken); // 1000000 * mir_price / apple_price * multiplier / mcr
+  const mint_amount = (1000000 * mir_price / 1000) / (1.5 * 2);
+  assert(mirOpenRes['mint_amount'][0] == Math.trunc(mint_amount) + appleToken); // 1000000 * mir_price / apple_price / (mcr * multiplier)
 
   console.log('Query position');
   await mirror.mint.getPosition(mirPositionIdx);

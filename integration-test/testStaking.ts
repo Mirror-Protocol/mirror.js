@@ -134,7 +134,6 @@ export async function testStaking(mirror: Mirror) {
   console.log('Query staking pool again');
   const stakingPool2 = await mirror.staking.getPoolInfo(appleToken);
   assert(
-    stakingPool2.total_bond_amount ==
-      (initialBondAmount + parseInt(lpTokenAmount2)).toString()
+    stakingPool2.total_bond_amount == lpTokenAmount2
   );
 }

@@ -58,7 +58,7 @@ export async function testCollateralOracle(mirror: Mirror) {
     mirror.collaterallOracle.registerCollateralAsset(
       { native_token: { denom: randomCollateralDenom } },
       { terra_oracle: { terra_oracle_query: query_request } },
-      0.5
+      2.0
     )
   );
 
