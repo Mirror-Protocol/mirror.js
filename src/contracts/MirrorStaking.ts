@@ -67,7 +67,7 @@ export namespace MirrorStaking {
 
   export interface QueryRewardInfo {
     reward_info: {
-      staker: AccAddress;
+      staker_addr: AccAddress;
       asset_token?: AccAddress;
     };
   }
@@ -92,7 +92,7 @@ export namespace MirrorStaking {
   }
 
   export interface RewardInfoResponse {
-    staker: AccAddress;
+    staker_addr: AccAddress;
     reward_infos: Array<RewardInfoResponseItem>;
   }
 
@@ -224,12 +224,12 @@ export class MirrorStaking extends ContractClient {
   }
 
   public async getRewardInfo(
-    staker: AccAddress,
+    staker_addr: AccAddress,
     asset_token?: AccAddress
   ): Promise<MirrorStaking.RewardInfoResponse> {
     return this.query({
       reward_info: {
-        staker,
+        staker_addr,
         asset_token
       }
     });
