@@ -100,32 +100,14 @@ export async function testMint(mirror: Mirror) {
       test1,
       mirror.collaterallOracle.registerCollateralAsset(
         { token: { contract_addr: mirToken } },
-        query_request,
-        0.5
+        { terraswap: { terraswap_query: query_request } },
+        2.0
       )
     );
   }
 
-  console.log(
-    'Open position with MIR as collateral -- expect error, under minCR due to collateral premium'
-  );
-  await execute(
-    test1,
-    mirror.mint.openPosition(
-      {
-        info: { token: { contract_addr: mirToken } },
-        amount: int`1000000`.toString()
-      },
-      { token: { contract_addr: appleToken } },
-      1.5
-    )
-  ).catch((error) => {
-    assert(
-      error.response.data.error.includes(
-        'Can not open a position with low collateral ratio than minimum'
-      )
-    );
-  });
+  const mir_pool = await mirror.assets['MIR'].pair.getPool();
+  const mir_price = parseInt(mir_pool.assets[0].amount) / parseInt(mir_pool.assets[1].amount);
 
   console.log('Open position with MIR as collateral - expect success');
   const mirOpenRes = await execute(
@@ -136,12 +118,14 @@ export async function testMint(mirror: Mirror) {
         amount: int`1000000`.toString()
       },
       { token: { contract_addr: appleToken } },
-      2.0
+      1.5
     )
   );
+
   const mirPositionIdx = mirOpenRes['position_idx'][0];
   assert(mirOpenRes['collateral_amount'][0] == '1000000' + mirToken);
-  assert(mirOpenRes['mint_amount'][0] == '500000' + appleToken);
+  const mint_amount = (1000000 * mir_price / 1000) / (1.5 * 2);
+  assert(mirOpenRes['mint_amount'][0] == Math.trunc(mint_amount) + appleToken); // 1000000 * mir_price / apple_price / (mcr * multiplier)
 
   console.log('Query position');
   await mirror.mint.getPosition(mirPositionIdx);
