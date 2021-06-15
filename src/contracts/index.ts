@@ -1,3 +1,4 @@
+export * from './ContractClient';
 export * from './MirrorAirdrop';
 export * from './MirrorCollector';
 export * from './MirrorCommunity';
