@@ -35,7 +35,7 @@ export namespace MirrorLock {
 
   export interface HandleUnlockPositionFunds {
     unlock_position_funds: {
-      position_idx: string;
+      positions_idx: Array<string>;
     };
   }
 
@@ -105,10 +105,10 @@ export class MirrorLock extends ContractClient {
     });
   }
 
-  public unlockPositionFunds(position_idx: Numeric.Input): MsgExecuteContract {
+  public unlockPositionFunds(positions_idx: Array<string>): MsgExecuteContract {
     return this.createExecuteMsg({
       unlock_position_funds: {
-        position_idx: new Int(position_idx).toString()
+        positions_idx
       }
     });
   }

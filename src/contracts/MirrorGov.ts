@@ -144,6 +144,13 @@ export namespace MirrorGov {
     };
   }
 
+  export interface QueryShares {
+    shares: {
+      start_after?: AccAddress;
+      limit?: number;
+    };
+  }
+
   export interface ConfigResponse {
     owner: AccAddress;
     mirror_token: AccAddress;
@@ -212,6 +219,15 @@ export namespace MirrorGov {
     voters: Array<VotersResponseItem>;
   }
 
+  export interface SharesResponseItem {
+    staker: AccAddress;
+    share: string;
+  }
+
+  export interface SharesResponse {
+    stakers: Array<SharesResponseItem>;
+  }
+
   export type HandleMsg =
     | HandleUpdateConfig
     | HandleCastVote
@@ -234,7 +250,8 @@ export namespace MirrorGov {
     | QueryStaker
     | QueryPoll
     | QueryPolls
-    | QueryVoters;
+    | QueryVoters
+    | QueryShares;
 }
 
 function createHookMsg(msg: MirrorGov.HookMsg): string {
@@ -441,6 +458,18 @@ export class MirrorGov extends ContractClient {
     return this.query({
       voters: {
         poll_id,
+        start_after,
+        limit
+      }
+    });
+  }
+
+  public async getShares(
+    start_after?: AccAddress,
+    limit?: number
+  ): Promise<MirrorGov.SharesResponse> {
+    return this.query({
+      shares: {
         start_after,
         limit
       }

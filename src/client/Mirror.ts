@@ -13,7 +13,8 @@ import {
   MirrorLock,
   TerraswapFactory,
   TerraswapPair,
-  TerraswapToken
+  TerraswapToken,
+  MirrorShortReward
 } from '../contracts/index';
 
 export interface AssetOptions {
@@ -39,6 +40,7 @@ export interface MirrorOptions {
   lock: AccAddress;
   mirrorToken: AccAddress;
   terraswapFactory: AccAddress;
+  shortReward: AccAddress;
   assets: {
     [symbol: string]: AssetOptions;
   };
@@ -64,6 +66,7 @@ export const DEFAULT_MIRROR_OPTIONS: MirrorOptions = {
   lock: 'terra00',
   mirrorToken: 'terra15gwkyepfc6xgca5t5zefzwy42uts8l2m4g40k6',
   terraswapFactory: 'terra1ulgw0td86nvs4wtpsc80thv6xelk76ut7a7apj',
+  shortReward: 'terra00',
   assets: {
     MIR: {
       symbol: 'MIR',
@@ -259,6 +262,7 @@ export const DEFAULT_TEQUILA_MIRROR_OPTIONS: MirrorOptions = {
   mirrorToken: 'terra10llyp6v3j3her8u3ce66ragytu45kcmd9asj3u',
   terraswapFactory: 'terra18qpjm4zkvqnpjpw0zn0tdr8gdzvt8au35v45xf',
   airdrop: 'terra1p6nvyw7vz3fgpy4nyh3q3vc09e65sr97ejxn2p',
+  shortReward: 'terra00',
   assets: {
     MIR: {
       symbol: 'MIR',
@@ -453,6 +457,8 @@ export class Mirror {
 
   public terraswapFactory: TerraswapFactory;
 
+  public shortReward: MirrorShortReward;
+
   public assets: {
     [symbol: string]: {
       name: string;
@@ -480,7 +486,8 @@ export class Mirror {
       lock,
       mirrorToken,
       terraswapFactory,
-      assets
+      assets,
+      shortReward
     } = mirrorOptions;
 
     this.lcd = lcd;
@@ -544,6 +551,12 @@ export class Mirror {
 
     this.terraswapFactory = new TerraswapFactory({
       contractAddress: terraswapFactory,
+      lcd,
+      key
+    });
+
+    this.shortReward = new MirrorShortReward({
+      contractAddress: shortReward,
       lcd,
       key
     });

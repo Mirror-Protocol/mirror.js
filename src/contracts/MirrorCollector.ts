@@ -11,10 +11,29 @@ import { TerraswapToken } from './TerraswapToken';
 
 export namespace MirrorCollector {
   export interface InitMsg {
+    owner: AccAddress;
     distribution_contract: AccAddress;
     terraswap_factory: AccAddress;
     mirror_token: AccAddress;
     base_denom: string;
+    aust_token: AccAddress;
+    anchor_market: AccAddress;
+    bluna_token: AccAddress;
+    bluna_swap_denom: string;
+  }
+
+  export interface HandleUpdateConfig {
+    update_config: {
+      owner?: AccAddress;
+      distribution_contract?: AccAddress;
+      terraswap_factory?: AccAddress;
+      mirror_token?: AccAddress;
+      base_denom?: string;
+      aust_token?: AccAddress;
+      anchor_market?: AccAddress;
+      bluna_token?: AccAddress;
+      bluna_swap_denom?: string;
+    };
   }
 
   export interface HandleConvert {
@@ -32,13 +51,18 @@ export namespace MirrorCollector {
   }
 
   export interface ConfigResponse {
+    owner: AccAddress;
     distribution_contract: AccAddress;
     terraswap_factory: AccAddress;
     mirror_token: AccAddress;
     base_denom: string;
+    aust_token: AccAddress;
+    anchor_market: AccAddress;
+    bluna_token: AccAddress;
+    bluna_swap_denom: string;
   }
 
-  export type HandleMsg = HandleConvert | HandleDistribute;
+  export type HandleMsg = HandleConvert | HandleDistribute | HandleUpdateConfig;
   export type QueryMsg = QueryConfig;
 }
 
@@ -48,6 +72,14 @@ export class MirrorCollector extends ContractClient {
     migratable: boolean
   ): MsgInstantiateContract {
     return this.createInstantiateMsg(init_msg, {}, migratable);
+  }
+
+  public updateConfig(
+    config: MirrorCollector.HandleUpdateConfig['update_config']
+  ): MsgExecuteContract {
+    return this.createExecuteMsg({
+      update_config: config
+    });
   }
 
   public convert(asset_token: AccAddress): MsgExecuteContract {

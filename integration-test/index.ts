@@ -17,7 +17,7 @@ const { test1, test2 } = terra.wallets;
 async function main() {
   const { mirror, mirror2 } = await setup(true); // change to false to use previously deployed contracts
 
-  // asserts may fail if the tests are not perfomed on feshly deployed contracts
+  //asserts may fail if the tests are not perfomed on feshly deployed contracts
   console.log('--- TEST USER FLOW ---');
   await testUserFlow(mirror, mirror2);
   console.log('--- TEST FACTORY ---');
@@ -56,7 +56,8 @@ async function setup(
     applePair,
     appleToken,
     collateralOracle,
-    lock
+    lock,
+    shortReward
   } = deploy
     ? await deployContracts()
     : JSON.parse(fs.readFileSync(contractAddressesFile).toString());
@@ -90,7 +91,8 @@ async function setup(
         lpToken: appleLpToken,
         pair: applePair
       }
-    }
+    },
+    shortReward,
   });
 
   const mirror2 = new Mirror({
@@ -122,7 +124,8 @@ async function setup(
         lpToken: appleLpToken,
         pair: applePair
       }
-    }
+    },
+    shortReward,
   });
 
   return { mirror, mirror2 };

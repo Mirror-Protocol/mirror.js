@@ -12,3 +12,4 @@ export * from './TerraswapPair';
 export * from './TerraswapToken';
 export * from './MirrorCollateralOracle';
 export * from './MirrorLock';
+export * from './MirrorShortReward';

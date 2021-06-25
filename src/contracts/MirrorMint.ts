@@ -49,13 +49,18 @@ export namespace MirrorMint {
     };
   }
 
+  export interface IPOParams {
+    mint_end: number;
+    min_collateral_ratio_after_ipo: string;
+    pre_ipo_price: string;
+  }
+
   export interface HandleRegisterAsset {
     register_asset: {
       asset_token: AccAddress;
       auction_discount: string;
       min_collateral_ratio: string;
-      mint_end?: number;
-      min_collateral_ratio_after_migration?: string;
+      ipo_params?: IPOParams;
     };
   }
 
@@ -63,6 +68,12 @@ export namespace MirrorMint {
     register_migration: {
       asset_token: AccAddress;
       end_price: string;
+    };
+  }
+
+  export interface HandleTriggerIPO {
+    trigger_ipo: {
+      asset_token: AccAddress;
     };
   }
 
@@ -177,8 +188,7 @@ export namespace MirrorMint {
     auction_discount: string;
     min_collateral_ratio: string;
     end_price?: string;
-    mint_end?: number;
-    min_collateral_ratio_after_migration?: string;
+    ipo_params?: IPOParams;
   }
 
   export interface PositionResponse {
@@ -205,7 +215,8 @@ export namespace MirrorMint {
     | HandleOpenPosition
     | HandleDeposit
     | HandleWithdraw
-    | HandleMint;
+    | HandleMint
+    | HandleTriggerIPO;
 
   export type HookMsg = HookAuction | HookBurn | HookDeposit | HookOpenPosition;
 
@@ -267,18 +278,22 @@ export class MirrorMint extends ContractClient {
     asset_token: AccAddress,
     auction_discount: Numeric.Input,
     min_collateral_ratio: Numeric.Input,
-    mint_end?: number,
-    min_collateral_ratio_after_migration?: Numeric.Input
+    ipo_params?: MirrorMint.IPOParams
   ): MsgExecuteContract {
     return this.createExecuteMsg({
       register_asset: {
         asset_token,
         auction_discount: new Dec(auction_discount).toFixed(),
         min_collateral_ratio: new Dec(min_collateral_ratio).toFixed(),
-        mint_end,
-        min_collateral_ratio_after_migration: min_collateral_ratio_after_migration
-          ? new Dec(min_collateral_ratio_after_migration).toFixed()
-          : undefined
+        ipo_params
+      }
+    });
+  }
+
+  public triggerIPO(asset_token: AccAddress): MsgExecuteContract {
+    return this.createExecuteMsg({
+      trigger_ipo: {
+        asset_token
       }
     });
   }

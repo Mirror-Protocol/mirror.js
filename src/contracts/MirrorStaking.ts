@@ -22,12 +22,14 @@ export namespace MirrorStaking {
     terraswap_factory: AccAddress;
     base_denom: string;
     premium_min_update_interval: number;
+    short_reward_contract: AccAddress;
   }
 
   export interface HandleUpdateConfig {
     update_config: {
       owner?: AccAddress;
       premium_min_update_interval?: number;
+      short_reward_contract?: AccAddress;
     };
   }
 
@@ -117,6 +119,7 @@ export namespace MirrorStaking {
     terraswap_factory: AccAddress;
     base_denom: string;
     premium_min_update_interval: number;
+    short_reward_contract: AccAddress;
   }
 
   export interface PoolInfoResponse {

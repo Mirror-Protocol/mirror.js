@@ -22,7 +22,8 @@ export namespace MirrorFactory {
     min_collateral_ratio: string;
     weight?: number;
     mint_period?: number;
-    min_collateral_ratio_after_migration?: string;
+    min_collateral_ratio_after_ipo?: string;
+    pre_ipo_price?: string;
   }
 
   export interface HandlePostInitialize {
@@ -185,6 +186,7 @@ export class MirrorFactory extends ContractClient {
       weight?: number;
       mint_period?: number;
       min_collateral_ratio_after_migration?: Numeric.Input;
+      pre_ipo_price?: Numeric.Input;
     }
   ): MsgExecuteContract {
     return this.createExecuteMsg({
@@ -197,8 +199,12 @@ export class MirrorFactory extends ContractClient {
           min_collateral_ratio: new Dec(params.min_collateral_ratio).toFixed(),
           weight: params.weight,
           mint_period: params.mint_period,
-          min_collateral_ratio_after_migration: params.min_collateral_ratio_after_migration
-            ? new Dec(params.min_collateral_ratio_after_migration).toFixed()
+          min_collateral_ratio_after_ipo:
+            params.min_collateral_ratio_after_migration
+              ? new Dec(params.min_collateral_ratio_after_migration).toFixed()
+              : undefined,
+          pre_ipo_price: params.pre_ipo_price
+            ? new Dec(params.pre_ipo_price).toFixed()
             : undefined
         }
       }

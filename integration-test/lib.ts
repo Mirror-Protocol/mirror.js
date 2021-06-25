@@ -19,7 +19,7 @@ export async function execute(
     const tx = await wallet.createAndSignTx({
       msgs,
       gasPrices: { uluna: 0.015 },
-      gasAdjustment: 1.4
+      gasAdjustment: 1.5
     });
 
     const result = await terra.tx.broadcast(tx);

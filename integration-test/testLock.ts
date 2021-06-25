@@ -22,7 +22,6 @@ export async function testLock(mirror: Mirror) {
 
   // open a short position on mint contract, should lock the outcome of seling the asset
   console.log('Open short position on AAPL');
-
   const openRes = await execute(
     test1,
     mirror.mint.openPosition(
@@ -51,7 +50,7 @@ export async function testLock(mirror: Mirror) {
 
   // try to unlock funds
   console.log('TRY TO UNLOCK FUNDS - expect error');
-  await execute(test1, mirror.lock.unlockPositionFunds(positionIdx)).catch(
+  await execute(test1, mirror.lock.unlockPositionFunds([positionIdx])).catch(
     (error) => {
       assert(error.response.data.error.includes('Nothing to unlock:'));
     }

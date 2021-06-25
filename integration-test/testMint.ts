@@ -82,25 +82,11 @@ export async function testMint(mirror: Mirror) {
     console.info('MIR was already registered as collateral');
   } catch {
     console.log('Register MIR as collateral');
-    const mir_terraswap_price_query = {
-      pool: {}
-    };
-    const wasm_query = {
-      smart: {
-        contract_addr: mirPair,
-        msg: Buffer.from(JSON.stringify(mir_terraswap_price_query)).toString(
-          'base64'
-        )
-      }
-    };
-    const query_request = Buffer.from(JSON.stringify(wasm_query)).toString(
-      'base64'
-    );
     await execute(
       test1,
       mirror.collaterallOracle.registerCollateralAsset(
         { token: { contract_addr: mirToken } },
-        { terraswap: { terraswap_query: query_request } },
+        { terraswap: { terraswap_pair_addr: mirPair } },
         2.0
       )
     );

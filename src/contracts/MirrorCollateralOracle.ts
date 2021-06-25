@@ -14,7 +14,9 @@ export namespace MirrorCollateralOracle {
   export interface InitMsg {
     owner: AccAddress;
     mint_contract: AccAddress;
-    factory_contract: AccAddress;
+    mirror_oracle: AccAddress;
+    anchor_oracle: AccAddress;
+    band_oracle: AccAddress;
     base_denom: string;
   }
 
@@ -22,24 +24,31 @@ export namespace MirrorCollateralOracle {
     update_config: {
       owner?: AccAddress;
       mint_contract?: AccAddress;
-      factory_contract?: AccAddress;
+      mirror_oracle?: AccAddress;
+      anchor_oracle?: AccAddress;
+      band_oracle?: AccAddress;
       base_denom?: string;
     };
   }
 
-  export interface TerraOracle {
-    terra_oracle: {
-      terra_oracle_query: string;
-    };
+  export interface MirrorOracle {
+    mirror_oracle: EmptyObject;
+  }
+  export interface AnchorOracle {
+    anchor_oracle: EmptyObject;
+  }
+  export interface BandOracle {
+    band_oracle: EmptyObject;
   }
   export interface Terraswap {
     terraswap: {
-      terraswap_query: string;
+      terraswap_pair_addr: AccAddress;
+      intermediate_denom?: string;
     };
   }
-  export interface BandOracle {
-    band_oracle: {
-      band_oracle_query: string;
+  export interface AnchorMarket {
+    anchor_market: {
+      anchor_market_addr: AccAddress;
     };
   }
   export interface FixedPrice {
@@ -47,7 +56,19 @@ export namespace MirrorCollateralOracle {
       price: string;
     };
   }
-  export type SourceType = TerraOracle | Terraswap | BandOracle | FixedPrice;
+  export interface Native {
+    native: {
+      native_denom: string;
+    };
+  }
+  export type SourceType =
+    | MirrorOracle
+    | AnchorOracle
+    | AnchorMarket
+    | Native
+    | Terraswap
+    | BandOracle
+    | FixedPrice;
 
   export interface HandleRegisterCollateralAsset {
     register_collateral_asset: {
@@ -100,7 +121,9 @@ export namespace MirrorCollateralOracle {
   export interface ConfigResponse {
     owner: AccAddress;
     mint_contract: AccAddress;
-    factory_contract: AccAddress;
+    mirror_oracle: AccAddress;
+    anchor_oracle: AccAddress;
+    band_oracle: AccAddress;
     base_denom: string;
   }
 

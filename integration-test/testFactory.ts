@@ -22,8 +22,7 @@ export async function testFactory(mirror: Mirror) {
   const assetRes = await mirror.mint.getAssetConfig(newAsset);
   assert(assetRes.auction_discount == '0.3');
   assert(assetRes.min_collateral_ratio == '1.5');
-  assert(assetRes.mint_end == undefined);
-  assert(assetRes.min_collateral_ratio_after_migration == undefined);
+  assert(assetRes.ipo_params == undefined);
 
   console.log('Revoke asset');
   await execute(test1, mirror.factory.revokeAsset(newAsset, '1.0'));
@@ -62,8 +61,7 @@ export async function testFactory(mirror: Mirror) {
   const preIpoAssetRes = await mirror.mint.getAssetConfig(preIpoAsset);
   assert(preIpoAssetRes.auction_discount == '0.3');
   assert(preIpoAssetRes.min_collateral_ratio == '100');
-  assert(preIpoAssetRes.mint_end != undefined);
-  assert(preIpoAssetRes.min_collateral_ratio_after_migration == '2');
+  assert(preIpoAssetRes.ipo_params != undefined);
 
   console.log('Migrate preIPO asset');
   const migrationLogs = await execute(
@@ -81,8 +79,7 @@ export async function testFactory(mirror: Mirror) {
   const postIpoAssetRes = await mirror.mint.getAssetConfig(postIpoAsset);
   assert(postIpoAssetRes.auction_discount == '0.3');
   assert(postIpoAssetRes.min_collateral_ratio == '2');
-  assert(postIpoAssetRes.mint_end == undefined);
-  assert(postIpoAssetRes.min_collateral_ratio_after_migration == undefined);
+  assert(postIpoAssetRes.ipo_params == undefined);
 
   console.log('Query migrated preIPO mint config');
   const preIpoMigratedAssetRes = await mirror.mint.getAssetConfig(preIpoAsset);
