@@ -6,7 +6,6 @@ import {
   MsgInstantiateContract,
   MsgExecuteContract
 } from '@terra-money/terra.js';
-import { AssetInfo } from '../utils/Asset';
 import { ContractClient } from './ContractClient';
 import { EmptyObject } from '../utils/EmptyObject';
 

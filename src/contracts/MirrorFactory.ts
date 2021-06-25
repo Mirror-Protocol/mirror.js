@@ -20,6 +20,10 @@ export namespace MirrorFactory {
   export interface Params {
     auction_discount: string;
     min_collateral_ratio: string;
+    weight?: number;
+    mint_period?: number;
+    min_collateral_ratio_after_ipo?: string;
+    pre_ipo_price?: string;
   }
 
   export interface HandlePostInitialize {
@@ -69,6 +73,13 @@ export namespace MirrorFactory {
     distribute: EmptyObject;
   }
 
+  export interface HandleRevokeAsset {
+    revoke_asset: {
+      asset_token: AccAddress;
+      end_price: string;
+    };
+  }
+
   export interface HandleMigrateAsset {
     migrate_asset: {
       name: string;
@@ -96,6 +107,7 @@ export namespace MirrorFactory {
     terraswap_factory: AccAddress;
     token_code_id: number;
     base_denom: string;
+    genesis_time: number;
     // [start_elapsed, end_elapsed, distribution_amount]
     distribution_schedule: Array<[number, number, string]>;
   }
@@ -112,7 +124,8 @@ export namespace MirrorFactory {
     | HandleWhitelist
     | HandlePassCommand
     | HandleDistribute
-    | HandleMigrateAsset;
+    | HandleMigrateAsset
+    | HandleRevokeAsset;
 
   export type QueryMsg = QueryConfig | QueryDistributionInfo;
 }
@@ -170,6 +183,10 @@ export class MirrorFactory extends ContractClient {
     params: {
       auction_discount: Numeric.Input;
       min_collateral_ratio: Numeric.Input;
+      weight?: number;
+      mint_period?: number;
+      min_collateral_ratio_after_migration?: Numeric.Input;
+      pre_ipo_price?: Numeric.Input;
     }
   ): MsgExecuteContract {
     return this.createExecuteMsg({
@@ -179,7 +196,16 @@ export class MirrorFactory extends ContractClient {
         oracle_feeder,
         params: {
           auction_discount: new Dec(params.auction_discount).toFixed(),
-          min_collateral_ratio: new Dec(params.min_collateral_ratio).toFixed()
+          min_collateral_ratio: new Dec(params.min_collateral_ratio).toFixed(),
+          weight: params.weight,
+          mint_period: params.mint_period,
+          min_collateral_ratio_after_ipo:
+            params.min_collateral_ratio_after_migration
+              ? new Dec(params.min_collateral_ratio_after_migration).toFixed()
+              : undefined,
+          pre_ipo_price: params.pre_ipo_price
+            ? new Dec(params.pre_ipo_price).toFixed()
+            : undefined
         }
       }
     });
@@ -196,6 +222,18 @@ export class MirrorFactory extends ContractClient {
         name,
         symbol,
         from_token,
+        end_price: new Dec(end_price).toString()
+      }
+    });
+  }
+
+  public revokeAsset(
+    asset_token: AccAddress,
+    end_price: Numeric.Input
+  ): MsgExecuteContract {
+    return this.createExecuteMsg({
+      revoke_asset: {
+        asset_token,
         end_price: new Dec(end_price).toString()
       }
     });
@@ -222,9 +260,7 @@ export class MirrorFactory extends ContractClient {
     });
   }
 
-  public async getDistributionInfo(): Promise<
-    MirrorFactory.DistributionInfoResponse
-  > {
+  public async getDistributionInfo(): Promise<MirrorFactory.DistributionInfoResponse> {
     return this.query({
       distribution_info: {}
     });

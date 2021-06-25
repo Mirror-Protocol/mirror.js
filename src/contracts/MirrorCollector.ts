@@ -11,10 +11,29 @@ import { TerraswapToken } from './TerraswapToken';
 
 export namespace MirrorCollector {
   export interface InitMsg {
+    owner: AccAddress;
     distribution_contract: AccAddress;
     terraswap_factory: AccAddress;
     mirror_token: AccAddress;
     base_denom: string;
+    aust_token: AccAddress;
+    anchor_market: AccAddress;
+    bluna_token: AccAddress;
+    bluna_swap_denom: string;
+  }
+
+  export interface HandleUpdateConfig {
+    update_config: {
+      owner?: AccAddress;
+      distribution_contract?: AccAddress;
+      terraswap_factory?: AccAddress;
+      mirror_token?: AccAddress;
+      base_denom?: string;
+      aust_token?: AccAddress;
+      anchor_market?: AccAddress;
+      bluna_token?: AccAddress;
+      bluna_swap_denom?: string;
+    };
   }
 
   export interface HandleConvert {
@@ -27,28 +46,24 @@ export namespace MirrorCollector {
     distribute: EmptyObject;
   }
 
-  export interface HookDepositReward {
-    deposit_reward: EmptyObject;
-  }
-
   export interface QueryConfig {
     config: EmptyObject;
   }
 
   export interface ConfigResponse {
+    owner: AccAddress;
     distribution_contract: AccAddress;
     terraswap_factory: AccAddress;
     mirror_token: AccAddress;
     base_denom: string;
+    aust_token: AccAddress;
+    anchor_market: AccAddress;
+    bluna_token: AccAddress;
+    bluna_swap_denom: string;
   }
 
-  export type HandleMsg = HandleConvert | HandleDistribute;
-  export type HookMsg = HookDepositReward;
+  export type HandleMsg = HandleConvert | HandleDistribute | HandleUpdateConfig;
   export type QueryMsg = QueryConfig;
-}
-
-function createHookMsg(msg: MirrorCollector.HookMsg): string {
-  return Buffer.from(JSON.stringify(msg)).toString('base64');
 }
 
 export class MirrorCollector extends ContractClient {
@@ -57,6 +72,14 @@ export class MirrorCollector extends ContractClient {
     migratable: boolean
   ): MsgInstantiateContract {
     return this.createInstantiateMsg(init_msg, {}, migratable);
+  }
+
+  public updateConfig(
+    config: MirrorCollector.HandleUpdateConfig['update_config']
+  ): MsgExecuteContract {
+    return this.createExecuteMsg({
+      update_config: config
+    });
   }
 
   public convert(asset_token: AccAddress): MsgExecuteContract {
@@ -83,13 +106,7 @@ export class MirrorCollector extends ContractClient {
       );
     }
 
-    return asset_token.send(
-      this.contractAddress,
-      amount,
-      createHookMsg({
-        deposit_reward: {}
-      })
-    );
+    return asset_token.send(this.contractAddress, amount, undefined);
   }
 
   public async getConfig(): Promise<MirrorCollector.ConfigResponse> {

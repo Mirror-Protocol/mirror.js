@@ -1,6 +1,6 @@
 {
   "name": "@mirror-protocol/mirror.js",
-  "version": "1.1.8",
+  "version": "2.0.0",
   "description": "The JavaScript SDK for Mirror Protocol",
   "license": "Apache-2.0",
   "author": "Mirror Protocol",
@@ -43,7 +43,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "post-checkout": "npm i"
+      "post-checkout": "npm ci"
     }
   },
   "prettier": {

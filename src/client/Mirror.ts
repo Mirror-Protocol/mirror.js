@@ -8,10 +8,13 @@ import {
   MirrorGov,
   MirrorMint,
   MirrorOracle,
+  MirrorCollateralOracle,
   MirrorStaking,
+  MirrorLock,
   TerraswapFactory,
   TerraswapPair,
-  TerraswapToken
+  TerraswapToken,
+  MirrorShortReward
 } from '../contracts/index';
 
 export interface AssetOptions {
@@ -32,9 +35,12 @@ export interface MirrorOptions {
   gov: AccAddress;
   mint: AccAddress;
   oracle: AccAddress;
+  collateralOracle: AccAddress;
   staking: AccAddress;
+  lock: AccAddress;
   mirrorToken: AccAddress;
   terraswapFactory: AccAddress;
+  shortReward: AccAddress;
   assets: {
     [symbol: string]: AssetOptions;
   };
@@ -55,9 +61,12 @@ export const DEFAULT_MIRROR_OPTIONS: MirrorOptions = {
   gov: 'terra1wh39swv7nq36pnefnupttm2nr96kz7jjddyt2x',
   mint: 'terra1wfz7h3aqf4cjmjcvc6s8lxdhh7k30nkczyf0mj',
   oracle: 'terra1t6xe0txzywdg85n6k8c960cuwgh6l8esw6lau9',
+  collateralOracle: 'terra00',
   staking: 'terra17f7zu97865jmknk7p2glqvxzhduk78772ezac5',
+  lock: 'terra00',
   mirrorToken: 'terra15gwkyepfc6xgca5t5zefzwy42uts8l2m4g40k6',
   terraswapFactory: 'terra1ulgw0td86nvs4wtpsc80thv6xelk76ut7a7apj',
+  shortReward: 'terra00',
   assets: {
     MIR: {
       symbol: 'MIR',
@@ -247,10 +256,13 @@ export const DEFAULT_TEQUILA_MIRROR_OPTIONS: MirrorOptions = {
   gov: 'terra12r5ghc6ppewcdcs3hkewrz24ey6xl7mmpk478s',
   mint: 'terra1s9ehcjv0dqj2gsl72xrpp0ga5fql7fj7y3kq3w',
   oracle: 'terra1uvxhec74deupp47enh7z5pk55f3cvcz8nj4ww9',
+  collateralOracle: 'terra00',
   staking: 'terra1a06dgl27rhujjphsn4drl242ufws267qxypptx',
+  lock: 'terra00',
   mirrorToken: 'terra10llyp6v3j3her8u3ce66ragytu45kcmd9asj3u',
   terraswapFactory: 'terra18qpjm4zkvqnpjpw0zn0tdr8gdzvt8au35v45xf',
   airdrop: 'terra1p6nvyw7vz3fgpy4nyh3q3vc09e65sr97ejxn2p',
+  shortReward: 'terra00',
   assets: {
     MIR: {
       symbol: 'MIR',
@@ -435,11 +447,17 @@ export class Mirror {
 
   public oracle: MirrorOracle;
 
+  public collaterallOracle: MirrorCollateralOracle;
+
   public staking: MirrorStaking;
+
+  public lock: MirrorLock;
 
   public mirrorToken: TerraswapToken;
 
   public terraswapFactory: TerraswapFactory;
+
+  public shortReward: MirrorShortReward;
 
   public assets: {
     [symbol: string]: {
@@ -463,10 +481,13 @@ export class Mirror {
       gov,
       mint,
       oracle,
+      collateralOracle,
       staking,
+      lock,
       mirrorToken,
       terraswapFactory,
-      assets
+      assets,
+      shortReward
     } = mirrorOptions;
 
     this.lcd = lcd;
@@ -507,8 +528,18 @@ export class Mirror {
       lcd,
       key
     });
+    this.collaterallOracle = new MirrorCollateralOracle({
+      contractAddress: collateralOracle,
+      lcd,
+      key
+    });
     this.staking = new MirrorStaking({
       contractAddress: staking,
+      lcd,
+      key
+    });
+    this.lock = new MirrorLock({
+      contractAddress: lock,
       lcd,
       key
     });
@@ -520,6 +551,12 @@ export class Mirror {
 
     this.terraswapFactory = new TerraswapFactory({
       contractAddress: terraswapFactory,
+      lcd,
+      key
+    });
+
+    this.shortReward = new MirrorShortReward({
+      contractAddress: shortReward,
       lcd,
       key
     });

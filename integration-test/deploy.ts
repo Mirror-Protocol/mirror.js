@@ -7,6 +7,7 @@ import {
   StdFee,
   MsgExecuteContract
 } from '@terra-money/terra.js';
+import { contractAddressesFile } from './lib';
 import * as fs from 'fs';
 import { Mirror } from '../src/client/Mirror';
 import {
@@ -18,7 +19,10 @@ import {
   MirrorStaking,
   TerraswapToken,
   TerraswapFactory,
-  TerraswapPair
+  TerraswapPair,
+  MirrorCollateralOracle,
+  MirrorLock,
+  MirrorShortReward
 } from '../src/contracts';
 import { UST } from '../src/utils/Asset';
 import { MirrorCommunity } from '../src/contracts/MirrorCommunity';
@@ -36,7 +40,11 @@ const contractFiles: { [k: string]: string } = {
   mirror_staking: 'integration-test/artifacts/mirror_staking.wasm',
   terraswap_factory: 'integration-test/artifacts/terraswap_factory.wasm',
   terraswap_pair: 'integration-test/artifacts/terraswap_pair.wasm',
-  terraswap_token: 'integration-test/artifacts/terraswap_token.wasm'
+  terraswap_token: 'integration-test/artifacts/terraswap_token.wasm',
+  mirror_collateral_oracle:
+    'integration-test/artifacts/mirror_collateral_oracle.wasm',
+  mirror_lock: 'integration-test/artifacts/mirror_lock.wasm',
+  mirror_short_reward: 'integration-test/artifacts/mirror_short_reward.wasm'
 };
 
 const codeIDs: {
@@ -58,20 +66,26 @@ export async function deployContracts(): Promise<{
   appleToken: AccAddress;
   applePair: AccAddress;
   appleLpToken: AccAddress;
+  collateralOracle: AccAddress;
+  lock: AccAddress;
+  short_reward: AccAddress;
 }> {
+  console.log('--- DEPLOY CONTRACTS ---');
   // upload all contracts
   for (const contract in contractFiles) {
     const storeCode = new MsgStoreCode(
       test1.key.accAddress,
       fs.readFileSync(contractFiles[contract]).toString('base64')
     );
-
+    
     const storeCodeTx = await test1.createAndSignTx({
-      msgs: [storeCode]
+      msgs: [storeCode],
+      gasPrices: { uluna: 0.015 },
+      gasAdjustment: 1.4
     });
-
+    
     const storeCodeTxResult = await terra.tx.broadcast(storeCodeTx);
-
+  
     if (isTxError(storeCodeTxResult)) {
       throw new Error(`couldn't store code for ${contract}`);
     }
@@ -84,24 +98,44 @@ export async function deployContracts(): Promise<{
     console.log(`Uploaded ${contract} - code id: ${codeId}`);
   }
 
-  // Factory Instantiation
+  // instanciate all contracts
   const factory = await instantiate(createFactory());
   const mirrorToken = await instantiate(createMirrorToken(factory));
   const gov = await instantiate(createGov(mirrorToken));
   const oracle = await instantiate(createOracle(factory));
   const terraswapFactory = await instantiate(createTerraswapFactory());
+  const short_reward = await instantiate(createShortReward());
   const collector = await instantiate(
-    createCollector(gov, terraswapFactory, mirrorToken)
+    createCollector(gov, terraswapFactory, mirrorToken, "terra1fmcjjt6yc9wqup2r06urnrd928jhrde6gcld6n", "terra1fmcjjt6yc9wqup2r06urnrd928jhrde6gcld6n", "terra1fmcjjt6yc9wqup2r06urnrd928jhrde6gcld6n", "terra1fmcjjt6yc9wqup2r06urnrd928jhrde6gcld6n")
   );
-  const mint = await instantiate(createMint(factory, oracle, collector));
-  const staking = await instantiate(createStaking(factory, mirrorToken));
+  // instantiate mint contract with provisional collateral_oracle, staking, and lock contracts, due to circular depndency
+  const staking = await instantiate(
+    createStaking(factory, mirrorToken, "terra1fmcjjt6yc9wqup2r06urnrd928jhrde6gcld6n", oracle, terraswapFactory, short_reward)
+  );
+  const mint = await instantiate(
+    createMint(
+      test1.key.accAddress,
+      oracle,
+      collector,
+      test1.key.accAddress,
+      terraswapFactory,
+      staking,
+      test1.key.accAddress
+    )
+  );
   const community = await instantiate(createCommunity(gov, mirrorToken));
+  const collateralOracle = await instantiate(
+    createCollateralOracle(mint, oracle, "terra1fmcjjt6yc9wqup2r06urnrd928jhrde6gcld6n", "terra1fmcjjt6yc9wqup2r06urnrd928jhrde6gcld6n")
+  );
+  const lock = await instantiate(createLock(gov, mint));
 
+  console.log('--- SET UP TEST ENVIRONMENT ---');
   const mirror = new Mirror({
     factory,
     mirrorToken,
     gov,
     oracle,
+    collateralOracle,
     mint,
     staking,
     terraswapFactory,
@@ -109,8 +143,24 @@ export async function deployContracts(): Promise<{
     key: test1.key
   });
 
+  // Update mint contract with final config
+  console.log('Update mint config');
+  await execute(
+    mirror.mint.updateConfig({
+      owner: factory, // assign owner back to factory
+      oracle: undefined,
+      collector: undefined,
+      collateral_oracle: collateralOracle,
+      staking: staking,
+      terraswap_factory: undefined,
+      lock: lock,
+      token_code_id: undefined,
+      protocol_fee_rate: undefined
+    })
+  );
+
   // Create MIR-UST pair
-  console.log('CREATE TERRASWAP_PAIR for MIR-UST');
+  console.log('Create terraswap pair for MIR-UST');
   const mirrorPairCreationLogs = await execute(
     mirror.terraswapFactory.createPair([
       UST,
@@ -143,7 +193,7 @@ export async function deployContracts(): Promise<{
   };
 
   // PostInitailize factory
-  console.log('POST_INITIALZE FACTORY');
+  console.log('Post-initialize factory');
   await execute(
     mirror.factory.postInitialize(
       test1.key.accAddress,
@@ -157,14 +207,17 @@ export async function deployContracts(): Promise<{
   );
 
   // Whitelist MIR
-  console.log('WHITELIST MIRROR');
+  console.log('Whitelist MIR');
   await execute(mirror.factory.terraswapCreationHook(mirrorToken));
 
-  console.log('WHITELIST AAPL');
+  console.log('Whitelist AAPL');
   const whitelistAAPLLogs = await execute(
     mirror.factory.whitelist('APPLE Derivative', 'AAPL', test1.key.accAddress, {
       auction_discount: '0.2',
-      min_collateral_ratio: '1.5'
+      min_collateral_ratio: '1.5',
+      weight: undefined,
+      mint_period: undefined,
+      min_collateral_ratio_after_migration: undefined
     })
   );
 
@@ -172,13 +225,7 @@ export async function deployContracts(): Promise<{
   const applePair = whitelistAAPLLogs['pair_contract_addr'][0];
   const appleLpToken = whitelistAAPLLogs['liquidity_token_addr'][0];
 
-  await execute(
-    mirror.factory.updateConfig({
-      owner: gov
-    })
-  );
-
-  return {
+  const res = {
     gov,
     factory,
     terraswapFactory,
@@ -192,8 +239,16 @@ export async function deployContracts(): Promise<{
     mirrorPair,
     appleToken,
     applePair,
-    appleLpToken
+    appleLpToken,
+    collateralOracle,
+    lock,
+    short_reward
   };
+
+  console.log('Saving contract addresses to: ' + contractAddressesFile);
+  fs.writeFileSync(contractAddressesFile, JSON.stringify(res));
+
+  return res;
 }
 
 const createFactory = () =>
@@ -219,7 +274,10 @@ const createMirrorToken = (factory: string) =>
       name: 'Mirror Token',
       symbol: 'MIR',
       decimals: 6,
-      initial_balances: [{ address: factory, amount: '60000000000' }]
+      initial_balances: [
+        { address: factory, amount: '60000000000' },
+        { address: test1.key.accAddress, amount: '60000000000' }
+      ] // give MIR to test account for testing
     },
     false
   );
@@ -236,7 +294,9 @@ const createGov = (mirrorToken: string) =>
       voting_period: 1000,
       effective_delay: 1000,
       expiration_period: 2000,
-      proposal_deposit: '1000000'
+      proposal_deposit: '1000000',
+      voter_weight: '0.5',
+      snapshot_period: 500
     },
     false
   );
@@ -266,30 +326,55 @@ const createOracle = (factory: string) =>
     false
   );
 
-const createMint = (factory: string, oracle: string, collector: string) =>
+const createMint = (
+  owner: string,
+  oracle: string,
+  collector: string,
+  collateralOracle: string,
+  terraswapFactory: string,
+  staking: string,
+  lock: string
+) =>
   new MirrorMint({
     codeID: codeIDs['mirror_mint'],
     key: test1.key
   }).init(
     {
-      owner: factory,
+      owner: owner,
       oracle: oracle,
       collector: collector,
       base_denom: UST.native_token.denom,
       token_code_id: codeIDs['terraswap_token'],
-      protocol_fee_rate: '0.015'
+      protocol_fee_rate: '0.015',
+      collateral_oracle: collateralOracle,
+      staking: staking,
+      lock: lock,
+      terraswap_factory: terraswapFactory
     },
     false
   );
 
-const createStaking = (factory: string, mirrorToken: string) =>
+const createStaking = (
+  factory: string,
+  mirrorToken: string,
+  mint: string,
+  oracle: string,
+  terraswapFactory: string,
+  short_reward: string,
+) =>
   new MirrorStaking({
     codeID: codeIDs['mirror_staking'],
     key: test1.key
   }).init(
     {
       owner: factory,
-      mirror_token: mirrorToken
+      mirror_token: mirrorToken,
+      mint_contract: mint,
+      oracle_contract: oracle,
+      terraswap_factory: terraswapFactory,
+      base_denom: UST.native_token.denom,
+      premium_min_update_interval: 100,
+      short_reward_contract: short_reward,
     },
     false
   );
@@ -309,17 +394,61 @@ const createTerraswapFactory = () =>
 const createCollector = (
   gov: string,
   terraswapFactory: string,
-  mirrorToken: string
+  mirrorToken: string,
+  austToken: string,
+  anchorMarket: string,
+  blunaToken: string,
+  blunaSwapDenom: string
 ) =>
   new MirrorCollector({
     codeID: codeIDs['mirror_collector'],
     key: test1.key
   }).init(
     {
+      owner: test1.key.accAddress,
       distribution_contract: gov,
       terraswap_factory: terraswapFactory,
       mirror_token: mirrorToken,
-      base_denom: UST.native_token.denom
+      base_denom: UST.native_token.denom,
+      aust_token: austToken,
+      anchor_market: anchorMarket,
+      bluna_token: blunaToken,
+      bluna_swap_denom: blunaSwapDenom,
+    },
+    false
+  );
+
+const createShortReward = () => new MirrorShortReward({
+    codeID: codeIDs['mirror_short_reward'],
+    key: test1.key
+  }).init();
+
+const createCollateralOracle = (mint: string, mirrorOracle: string, anchorOracle: string, bandOracle: string) =>
+  new MirrorCollateralOracle({
+    codeID: codeIDs['mirror_collateral_oracle'],
+    key: test1.key
+  }).init(
+    {
+      owner: test1.key.accAddress,
+      mint_contract: mint,
+      base_denom: UST.native_token.denom,
+      mirror_oracle: mirrorOracle,
+      anchor_oracle: anchorOracle,
+      band_oracle: bandOracle,
+    },
+    false
+  );
+
+const createLock = (gov: string, mint_contract: string) =>
+  new MirrorLock({
+    codeID: codeIDs['mirror_lock'],
+    key: test1.key
+  }).init(
+    {
+      owner: gov,
+      mint_contract,
+      base_denom: UST.native_token.denom,
+      lockup_period: 10000
     },
     false
   );
