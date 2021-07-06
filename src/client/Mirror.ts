@@ -447,7 +447,7 @@ export class Mirror {
 
   public oracle: MirrorOracle;
 
-  public collaterallOracle: MirrorCollateralOracle;
+  public collateralOracle: MirrorCollateralOracle;
 
   public staking: MirrorStaking;
 
@@ -528,7 +528,7 @@ export class Mirror {
       lcd,
       key
     });
-    this.collaterallOracle = new MirrorCollateralOracle({
+    this.collateralOracle = new MirrorCollateralOracle({
       contractAddress: collateralOracle,
       lcd,
       key
