@@ -49,7 +49,7 @@ export interface MirrorOptions {
 export const DEFAULT_MIRROR_OPTIONS: MirrorOptions = {
   lcd: new LCDClient({
     URL: 'https://lcd.terra.dev',
-    chainID: 'localterra',
+    chainID: 'columbus-4',
     gasPrices: [new Coin('ukrw', '1.8')],
     gasAdjustment: '1.2'
   }),
@@ -61,12 +61,12 @@ export const DEFAULT_MIRROR_OPTIONS: MirrorOptions = {
   gov: 'terra1wh39swv7nq36pnefnupttm2nr96kz7jjddyt2x',
   mint: 'terra1wfz7h3aqf4cjmjcvc6s8lxdhh7k30nkczyf0mj',
   oracle: 'terra1t6xe0txzywdg85n6k8c960cuwgh6l8esw6lau9',
-  collateralOracle: 'terra00',
+  collateralOracle: 'terra1pmlh0j5gpzh2wsmyd3cuk39cgh2gfwk6h5wy9j',
   staking: 'terra17f7zu97865jmknk7p2glqvxzhduk78772ezac5',
-  lock: 'terra00',
+  lock: 'terra169urmlm8wcltyjsrn7gedheh7dker69ujmerv2',
   mirrorToken: 'terra15gwkyepfc6xgca5t5zefzwy42uts8l2m4g40k6',
   terraswapFactory: 'terra1ulgw0td86nvs4wtpsc80thv6xelk76ut7a7apj',
-  shortReward: 'terra00',
+  shortReward: 'terra16mlzdwqq5qs6a23250lq0fftke8v80sapc5kye',
   assets: {
     MIR: {
       symbol: 'MIR',
@@ -256,13 +256,13 @@ export const DEFAULT_TEQUILA_MIRROR_OPTIONS: MirrorOptions = {
   gov: 'terra12r5ghc6ppewcdcs3hkewrz24ey6xl7mmpk478s',
   mint: 'terra1s9ehcjv0dqj2gsl72xrpp0ga5fql7fj7y3kq3w',
   oracle: 'terra1uvxhec74deupp47enh7z5pk55f3cvcz8nj4ww9',
-  collateralOracle: 'terra00',
+  collateralOracle: 'terra1q3ls6u2glsazdeu7dxggk8d04elnvmsg0ung6n',
   staking: 'terra1a06dgl27rhujjphsn4drl242ufws267qxypptx',
-  lock: 'terra00',
+  lock: 'terra1pcxghd4dyf950mcs0kmlp7lvnrjsnl6qlfldwj',
   mirrorToken: 'terra10llyp6v3j3her8u3ce66ragytu45kcmd9asj3u',
   terraswapFactory: 'terra18qpjm4zkvqnpjpw0zn0tdr8gdzvt8au35v45xf',
   airdrop: 'terra1p6nvyw7vz3fgpy4nyh3q3vc09e65sr97ejxn2p',
-  shortReward: 'terra00',
+  shortReward: 'terra1mjt2xsux948p8088vl0ggdvtg4t8fkjr33xdca',
   assets: {
     MIR: {
       symbol: 'MIR',
