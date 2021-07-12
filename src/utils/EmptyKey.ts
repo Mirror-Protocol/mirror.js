@@ -2,7 +2,7 @@ import { Key } from '@terra-money/terra.js';
 
 export class EmptyKey extends Key {
   constructor() {
-    super(Buffer.from(''));
+    super(undefined);
   }
 
   // eslint-disable-next-line class-methods-use-this
