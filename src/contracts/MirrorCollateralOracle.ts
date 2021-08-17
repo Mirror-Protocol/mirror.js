@@ -162,10 +162,9 @@ export namespace MirrorCollateralOracle {
 
 export class MirrorCollateralOracle extends ContractClient {
   public init(
-    init_msg: MirrorCollateralOracle.InitMsg,
-    migratable: boolean
+    init_msg: MirrorCollateralOracle.InitMsg
   ): MsgInstantiateContract {
-    return this.createInstantiateMsg(init_msg, {}, migratable);
+    return this.createInstantiateMsg(init_msg, {});
   }
 
   public updateConfig(

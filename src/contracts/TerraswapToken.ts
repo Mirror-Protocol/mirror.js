@@ -217,11 +217,8 @@ export namespace TerraswapToken {
 }
 
 export class TerraswapToken extends ContractClient {
-  public init(
-    init_msg: TerraswapToken.InitMsg,
-    migratable: boolean
-  ): MsgInstantiateContract {
-    return this.createInstantiateMsg(init_msg, {}, migratable);
+  public init(init_msg: TerraswapToken.InitMsg): MsgInstantiateContract {
+    return this.createInstantiateMsg(init_msg, {});
   }
 
   public transfer(

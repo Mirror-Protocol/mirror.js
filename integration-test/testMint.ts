@@ -78,13 +78,13 @@ export async function testMint(mirror: Mirror) {
   assert(poolInfoRes2.total_short_amount == initialShortAmount.toString());
 
   try {
-    await mirror.collaterallOracle.getCollateralAssetInfo(mirToken);
+    await mirror.collateralOracle.getCollateralAssetInfo(mirToken);
     console.info('MIR was already registered as collateral');
   } catch {
     console.log('Register MIR as collateral');
     await execute(
       test1,
-      mirror.collaterallOracle.registerCollateralAsset(
+      mirror.collateralOracle.registerCollateralAsset(
         { token: { contract_addr: mirToken } },
         { terraswap: { terraswap_pair_addr: mirPair } },
         2.0

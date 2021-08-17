@@ -45,11 +45,8 @@ export namespace MirrorCommunity {
 }
 
 export class MirrorCommunity extends ContractClient {
-  public init(
-    init_msg: MirrorCommunity.InitMsg,
-    migratable: boolean
-  ): MsgInstantiateContract {
-    return this.createInstantiateMsg(init_msg, {}, migratable);
+  public init(init_msg: MirrorCommunity.InitMsg): MsgInstantiateContract {
+    return this.createInstantiateMsg(init_msg, {});
   }
 
   public updateConfig(

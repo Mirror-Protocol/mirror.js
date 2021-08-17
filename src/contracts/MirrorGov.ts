@@ -259,11 +259,8 @@ function createHookMsg(msg: MirrorGov.HookMsg): string {
 }
 
 export class MirrorGov extends ContractClient {
-  public init(
-    init_msg: MirrorGov.InitMsg,
-    migratable: boolean
-  ): MsgInstantiateContract {
-    return this.createInstantiateMsg(init_msg, {}, migratable);
+  public init(init_msg: MirrorGov.InitMsg): MsgInstantiateContract {
+    return this.createInstantiateMsg(init_msg, {});
   }
 
   public updateConfig(

@@ -17,7 +17,7 @@ export namespace MirrorShortReward {
 
 export class MirrorShortReward extends ContractClient {
   public init(): MsgInstantiateContract {
-    return this.createInstantiateMsg({}, {}, false);
+    return this.createInstantiateMsg({}, {});
   }
 
   public async getShortRewardWeight(

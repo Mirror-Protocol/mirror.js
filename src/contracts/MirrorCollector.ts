@@ -67,11 +67,8 @@ export namespace MirrorCollector {
 }
 
 export class MirrorCollector extends ContractClient {
-  public init(
-    init_msg: MirrorCollector.InitMsg,
-    migratable: boolean
-  ): MsgInstantiateContract {
-    return this.createInstantiateMsg(init_msg, {}, migratable);
+  public init(init_msg: MirrorCollector.InitMsg): MsgInstantiateContract {
+    return this.createInstantiateMsg(init_msg, {});
   }
 
   public updateConfig(

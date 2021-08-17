@@ -93,11 +93,8 @@ export namespace MirrorOracle {
 }
 
 export class MirrorOracle extends ContractClient {
-  public init(
-    init_msg: MirrorOracle.InitMsg,
-    migratable: boolean
-  ): MsgInstantiateContract {
-    return this.createInstantiateMsg(init_msg, {}, migratable);
+  public init(init_msg: MirrorOracle.InitMsg): MsgInstantiateContract {
+    return this.createInstantiateMsg(init_msg, {});
   }
 
   public updateConfig(

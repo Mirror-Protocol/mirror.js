@@ -77,15 +77,15 @@ export async function deployContracts(): Promise<{
       test1.key.accAddress,
       fs.readFileSync(contractFiles[contract]).toString('base64')
     );
-    
+
     const storeCodeTx = await test1.createAndSignTx({
       msgs: [storeCode],
       gasPrices: { uluna: 0.015 },
       gasAdjustment: 1.4
     });
-    
+
     const storeCodeTxResult = await terra.tx.broadcast(storeCodeTx);
-  
+
     if (isTxError(storeCodeTxResult)) {
       throw new Error(`couldn't store code for ${contract}`);
     }
@@ -261,8 +261,7 @@ const createFactory = () =>
         [10, 20, '20000000000'],
         [20, 300, '30000000000']
       ]
-    },
-    false
+    }
   );
 
 const createMirrorToken = (factory: string) =>
@@ -278,8 +277,7 @@ const createMirrorToken = (factory: string) =>
         { address: factory, amount: '60000000000' },
         { address: test1.key.accAddress, amount: '60000000000' }
       ] // give MIR to test account for testing
-    },
-    false
+    }
   );
 
 const createGov = (mirrorToken: string) =>
@@ -297,8 +295,7 @@ const createGov = (mirrorToken: string) =>
       proposal_deposit: '1000000',
       voter_weight: '0.5',
       snapshot_period: 500
-    },
-    false
+    }
   );
 
 const createCommunity = (gov: string, mirrorToken: string) =>
@@ -310,8 +307,7 @@ const createCommunity = (gov: string, mirrorToken: string) =>
       owner: gov,
       mirror_token: mirrorToken,
       spend_limit: '10000000000'
-    },
-    false
+    }
   );
 
 const createOracle = (factory: string) =>
@@ -322,8 +318,7 @@ const createOracle = (factory: string) =>
     {
       owner: factory,
       base_asset: UST.native_token.denom
-    },
-    false
+    }
   );
 
 const createMint = (
@@ -350,8 +345,7 @@ const createMint = (
       staking: staking,
       lock: lock,
       terraswap_factory: terraswapFactory
-    },
-    false
+    }
   );
 
 const createStaking = (
@@ -375,8 +369,7 @@ const createStaking = (
       base_denom: UST.native_token.denom,
       premium_min_update_interval: 100,
       short_reward_contract: short_reward,
-    },
-    false
+    }
   );
 
 const createTerraswapFactory = () =>
@@ -387,8 +380,7 @@ const createTerraswapFactory = () =>
     {
       pair_code_id: codeIDs['terraswap_pair'],
       token_code_id: codeIDs['terraswap_token']
-    },
-    false
+    }
   );
 
 const createCollector = (
@@ -414,14 +406,13 @@ const createCollector = (
       anchor_market: anchorMarket,
       bluna_token: blunaToken,
       bluna_swap_denom: blunaSwapDenom,
-    },
-    false
+    }
   );
 
 const createShortReward = () => new MirrorShortReward({
-    codeID: codeIDs['mirror_short_reward'],
-    key: test1.key
-  }).init();
+  codeID: codeIDs['mirror_short_reward'],
+  key: test1.key
+}).init();
 
 const createCollateralOracle = (mint: string, mirrorOracle: string, anchorOracle: string, bandOracle: string) =>
   new MirrorCollateralOracle({
@@ -435,8 +426,7 @@ const createCollateralOracle = (mint: string, mirrorOracle: string, anchorOracle
       mirror_oracle: mirrorOracle,
       anchor_oracle: anchorOracle,
       band_oracle: bandOracle,
-    },
-    false
+    }
   );
 
 const createLock = (gov: string, mint_contract: string) =>
@@ -449,8 +439,7 @@ const createLock = (gov: string, mint_contract: string) =>
       mint_contract,
       base_denom: UST.native_token.denom,
       lockup_period: 10000
-    },
-    false
+    }
   );
 
 async function instantiate(msg: MsgInstantiateContract): Promise<string> {
