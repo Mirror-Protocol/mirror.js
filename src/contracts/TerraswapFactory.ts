@@ -76,11 +76,8 @@ export namespace TerraswapFactory {
 }
 
 export class TerraswapFactory extends ContractClient {
-  public init(
-    init_msg: TerraswapFactory.InitMsg,
-    migratable: boolean
-  ): MsgInstantiateContract {
-    return this.createInstantiateMsg(init_msg, {}, migratable);
+  public init(init_msg: TerraswapFactory.InitMsg): MsgInstantiateContract {
+    return this.createInstantiateMsg(init_msg, {});
   }
 
   public updateConfig(

@@ -119,11 +119,8 @@ export class TerraswapPair extends ContractClient {
     });
   }
 
-  public init(
-    init_msg: TerraswapPair.InitMsg,
-    migratable: boolean
-  ): MsgInstantiateContract {
-    return this.createInstantiateMsg(init_msg, {}, migratable);
+  public init(init_msg: TerraswapPair.InitMsg): MsgInstantiateContract {
+    return this.createInstantiateMsg(init_msg, {});
   }
 
   /// CONTRACT - If providing asset is not native token,

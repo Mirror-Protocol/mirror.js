@@ -241,11 +241,8 @@ export class MirrorMint extends ContractClient {
     });
   }
 
-  public init(
-    init_msg: MirrorMint.InitMsg,
-    migratable: boolean
-  ): MsgInstantiateContract {
-    return this.createInstantiateMsg(init_msg, {}, migratable);
+  public init(init_msg: MirrorMint.InitMsg): MsgInstantiateContract {
+    return this.createInstantiateMsg(init_msg, {});
   }
 
   public updateConfig(

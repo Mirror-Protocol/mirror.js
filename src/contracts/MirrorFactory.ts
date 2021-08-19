@@ -131,11 +131,8 @@ export namespace MirrorFactory {
 }
 
 export class MirrorFactory extends ContractClient {
-  public init(
-    init_msg: MirrorFactory.InitMsg,
-    migratable: boolean
-  ): MsgInstantiateContract {
-    return this.createInstantiateMsg(init_msg, {}, migratable);
+  public init(init_msg: MirrorFactory.InitMsg): MsgInstantiateContract {
+    return this.createInstantiateMsg(init_msg, {});
   }
 
   public postInitialize(

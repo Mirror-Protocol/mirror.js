@@ -78,11 +78,8 @@ export namespace MirrorLock {
 }
 
 export class MirrorLock extends ContractClient {
-  public init(
-    init_msg: MirrorLock.InitMsg,
-    migratable: boolean
-  ): MsgInstantiateContract {
-    return this.createInstantiateMsg(init_msg, {}, migratable);
+  public init(init_msg: MirrorLock.InitMsg): MsgInstantiateContract {
+    return this.createInstantiateMsg(init_msg, {});
   }
 
   public updateConfig(

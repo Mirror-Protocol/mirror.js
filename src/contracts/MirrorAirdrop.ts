@@ -94,11 +94,8 @@ export namespace MirrorAirdrop {
 }
 
 export class MirrorAirdrop extends ContractClient {
-  public init(
-    init_msg: MirrorAirdrop.InitMsg,
-    migratable: boolean
-  ): MsgInstantiateContract {
-    return this.createInstantiateMsg(init_msg, {}, migratable);
+  public init(init_msg: MirrorAirdrop.InitMsg): MsgInstantiateContract {
+    return this.createInstantiateMsg(init_msg, {});
   }
 
   public updateConfig(

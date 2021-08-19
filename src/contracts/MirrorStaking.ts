@@ -168,11 +168,8 @@ function createHookMsg(msg: MirrorStaking.HookMsg): string {
 }
 
 export class MirrorStaking extends ContractClient {
-  public init(
-    init_msg: MirrorStaking.InitMsg,
-    migratable: boolean
-  ): MsgInstantiateContract {
-    return this.createInstantiateMsg(init_msg, {}, migratable);
+  public init(init_msg: MirrorStaking.InitMsg): MsgInstantiateContract {
+    return this.createInstantiateMsg(init_msg, {});
   }
 
   public updateConfig(
