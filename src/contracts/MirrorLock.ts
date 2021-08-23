@@ -65,7 +65,8 @@ export namespace MirrorLock {
   export interface PositionLockInfoResponse {
     idx: string;
     receiver: AccAddress;
-    locked_funds: Array<[number, string]>;
+    locked_amount: string;
+    unlock_time: number;
   }
 
   export type HandleMsg =
