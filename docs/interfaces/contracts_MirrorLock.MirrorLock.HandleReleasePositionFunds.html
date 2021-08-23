@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>HookDepositReward | Mirror.js</title>
+	<title>HandleReleasePositionFunds | Mirror.js</title>
 	<meta name="description" content="Documentation for Mirror.js">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -53,16 +53,16 @@
 					<a href="../modules.html">Mirror.js</a>
 				</li>
 				<li>
-					<a href="../modules/contracts_mirrorcollector.html">contracts/MirrorCollector</a>
+					<a href="../modules/contracts_MirrorLock.html">contracts/MirrorLock</a>
 				</li>
 				<li>
-					<a href="../modules/contracts_mirrorcollector.mirrorcollector.html">MirrorCollector</a>
+					<a href="../modules/contracts_MirrorLock.MirrorLock.html">MirrorLock</a>
 				</li>
 				<li>
-					<a href="contracts_mirrorcollector.mirrorcollector.hookdepositreward.html">HookDepositReward</a>
+					<a href="contracts_MirrorLock.MirrorLock.HandleReleasePositionFunds.html">HandleReleasePositionFunds</a>
 				</li>
 			</ul>
-			<h1>Interface HookDepositReward</h1>
+			<h1>Interface HandleReleasePositionFunds</h1>
 		</div>
 	</div>
 </header>
@@ -73,7 +73,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">HookDepositReward</span>
+						<span class="target">HandleReleasePositionFunds</span>
 					</li>
 				</ul>
 			</section>
@@ -84,7 +84,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="contracts_mirrorcollector.mirrorcollector.hookdepositreward.html#deposit_reward" class="tsd-kind-icon">deposit_<wbr>reward</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="contracts_MirrorLock.MirrorLock.HandleReleasePositionFunds.html#release_position_funds" class="tsd-kind-icon">release_<wbr>position_<wbr>funds</a></li>
 							</ul>
 						</section>
 					</div>
@@ -93,14 +93,22 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="deposit_reward" class="tsd-anchor"></a>
-					<h3>deposit_<wbr>reward</h3>
-					<div class="tsd-signature tsd-kind-icon">deposit_<wbr>reward<span class="tsd-signature-symbol">:</span> <a href="../modules/utils_emptyobject.html#emptyobject" class="tsd-signature-type" data-tsd-kind="Type alias">EmptyObject</a></div>
+					<a name="release_position_funds" class="tsd-anchor"></a>
+					<h3>release_<wbr>position_<wbr>funds</h3>
+					<div class="tsd-signature tsd-kind-icon">release_<wbr>position_<wbr>funds<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>position_idx<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/6862923/src/contracts/MirrorCollector.ts#L31">contracts/MirrorCollector.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/Mirror-Protocol/mirror.js/blob/d4133ec/src/contracts/MirrorLock.ts#L43">contracts/MirrorLock.ts:43</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>position_<wbr>idx<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+							</li>
+						</ul>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -108,100 +116,115 @@
 			<nav class="tsd-navigation primary">
 				<ul>
 					<li class=" ">
-						<a href="../modules.html">Exports</a>
+						<a href="../modules.html">Modules</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/client_mirror.html">client/<wbr>Mirror</a>
+						<a href="../modules/client_Mirror.html">client/<wbr>Mirror</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/contracts_contractclient.html">contracts/<wbr>Contract<wbr>Client</a>
+						<a href="../modules/contracts_ContractClient.html">contracts/<wbr>Contract<wbr>Client</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/contracts_mirrorairdrop.html">contracts/<wbr>Mirror<wbr>Airdrop</a>
+						<a href="../modules/contracts_MirrorAirdrop.html">contracts/<wbr>Mirror<wbr>Airdrop</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/contracts_MirrorCollateralOracle.html">contracts/<wbr>Mirror<wbr>Collateral<wbr>Oracle</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/contracts_MirrorCollector.html">contracts/<wbr>Mirror<wbr>Collector</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/contracts_MirrorCommunity.html">contracts/<wbr>Mirror<wbr>Community</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/contracts_MirrorFactory.html">contracts/<wbr>Mirror<wbr>Factory</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/contracts_MirrorGov.html">contracts/<wbr>Mirror<wbr>Gov</a>
 					</li>
 					<li class="current tsd-kind-module">
-						<a href="../modules/contracts_mirrorcollector.html">contracts/<wbr>Mirror<wbr>Collector</a>
+						<a href="../modules/contracts_MirrorLock.html">contracts/<wbr>Mirror<wbr>Lock</a>
 						<ul>
 							<li class="current tsd-kind-namespace tsd-parent-kind-module">
-								<a href="../modules/contracts_mirrorcollector.mirrorcollector.html">Mirror<wbr>Collector</a>
+								<a href="../modules/contracts_MirrorLock.MirrorLock.html">Mirror<wbr>Lock</a>
 							</li>
 						</ul>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/contracts_mirrorcommunity.html">contracts/<wbr>Mirror<wbr>Community</a>
+						<a href="../modules/contracts_MirrorMint.html">contracts/<wbr>Mirror<wbr>Mint</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/contracts_mirrorfactory.html">contracts/<wbr>Mirror<wbr>Factory</a>
+						<a href="../modules/contracts_MirrorOracle.html">contracts/<wbr>Mirror<wbr>Oracle</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/contracts_mirrorgov.html">contracts/<wbr>Mirror<wbr>Gov</a>
+						<a href="../modules/contracts_MirrorShortReward.html">contracts/<wbr>Mirror<wbr>Short<wbr>Reward</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/contracts_mirrormint.html">contracts/<wbr>Mirror<wbr>Mint</a>
+						<a href="../modules/contracts_MirrorStaking.html">contracts/<wbr>Mirror<wbr>Staking</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/contracts_mirrororacle.html">contracts/<wbr>Mirror<wbr>Oracle</a>
+						<a href="../modules/contracts_TerraswapFactory.html">contracts/<wbr>Terraswap<wbr>Factory</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/contracts_mirrorstaking.html">contracts/<wbr>Mirror<wbr>Staking</a>
+						<a href="../modules/contracts_TerraswapPair.html">contracts/<wbr>Terraswap<wbr>Pair</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/contracts_terraswapfactory.html">contracts/<wbr>Terraswap<wbr>Factory</a>
+						<a href="../modules/contracts_TerraswapToken.html">contracts/<wbr>Terraswap<wbr>Token</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/contracts_terraswappair.html">contracts/<wbr>Terraswap<wbr>Pair</a>
+						<a href="../modules/utils_Asset.html">utils/<wbr>Asset</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/contracts_terraswaptoken.html">contracts/<wbr>Terraswap<wbr>Token</a>
+						<a href="../modules/utils_EmptyKey.html">utils/<wbr>Empty<wbr>Key</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/utils_asset.html">utils/<wbr>Asset</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/utils_emptykey.html">utils/<wbr>Empty<wbr>Key</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/utils_emptyobject.html">utils/<wbr>Empty<wbr>Object</a>
+						<a href="../modules/utils_EmptyObject.html">utils/<wbr>Empty<wbr>Object</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="contracts_mirrorcollector.mirrorcollector.configresponse.html" class="tsd-kind-icon">Config<wbr>Response</a>
+						<a href="contracts_MirrorLock.MirrorLock.ConfigResponse.html" class="tsd-kind-icon">Config<wbr>Response</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="contracts_mirrorcollector.mirrorcollector.handleconvert.html" class="tsd-kind-icon">Handle<wbr>Convert</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="contracts_mirrorcollector.mirrorcollector.handledistribute.html" class="tsd-kind-icon">Handle<wbr>Distribute</a>
+						<a href="contracts_MirrorLock.MirrorLock.HandleLockPositionFundsHook.html" class="tsd-kind-icon">Handle<wbr>Lock<wbr>Position<wbr>Funds<wbr>Hook</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="contracts_mirrorcollector.mirrorcollector.hookdepositreward.html" class="tsd-kind-icon">Hook<wbr>Deposit<wbr>Reward</a>
+						<a href="contracts_MirrorLock.MirrorLock.HandleReleasePositionFunds.html" class="tsd-kind-icon">Handle<wbr>Release<wbr>Position<wbr>Funds</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="contracts_mirrorcollector.mirrorcollector.hookdepositreward.html#deposit_reward" class="tsd-kind-icon">deposit_<wbr>reward</a>
+								<a href="contracts_MirrorLock.MirrorLock.HandleReleasePositionFunds.html#release_position_funds" class="tsd-kind-icon">release_<wbr>position_<wbr>funds</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="contracts_mirrorcollector.mirrorcollector.initmsg.html" class="tsd-kind-icon">Init<wbr>Msg</a>
+						<a href="contracts_MirrorLock.MirrorLock.HandleUnlockPositionFunds.html" class="tsd-kind-icon">Handle<wbr>Unlock<wbr>Position<wbr>Funds</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="contracts_mirrorcollector.mirrorcollector.queryconfig.html" class="tsd-kind-icon">Query<wbr>Config</a>
+						<a href="contracts_MirrorLock.MirrorLock.HandleUpdateConfig.html" class="tsd-kind-icon">Handle<wbr>Update<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
+						<a href="contracts_MirrorLock.MirrorLock.InitMsg.html" class="tsd-kind-icon">Init<wbr>Msg</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
+						<a href="contracts_MirrorLock.MirrorLock.PositionLockInfoResponse.html" class="tsd-kind-icon">Position<wbr>Lock<wbr>Info<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
+						<a href="contracts_MirrorLock.MirrorLock.QueryConfig.html" class="tsd-kind-icon">Query<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
+						<a href="contracts_MirrorLock.MirrorLock.QueryPositionLockInfo.html" class="tsd-kind-icon">Query<wbr>Position<wbr>Lock<wbr>Info</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace">
-						<a href="../modules/contracts_mirrorcollector.mirrorcollector.html#handlemsg" class="tsd-kind-icon">Handle<wbr>Msg</a>
+						<a href="../modules/contracts_MirrorLock.MirrorLock.html#HandleMsg" class="tsd-kind-icon">Handle<wbr>Msg</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace">
-						<a href="../modules/contracts_mirrorcollector.mirrorcollector.html#hookmsg" class="tsd-kind-icon">Hook<wbr>Msg</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace">
-						<a href="../modules/contracts_mirrorcollector.mirrorcollector.html#querymsg" class="tsd-kind-icon">Query<wbr>Msg</a>
+						<a href="../modules/contracts_MirrorLock.MirrorLock.html#QueryMsg" class="tsd-kind-icon">Query<wbr>Msg</a>
 					</li>
 				</ul>
 			</nav>
