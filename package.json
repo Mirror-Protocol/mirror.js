@@ -1,6 +1,6 @@
 {
   "name": "@mirror-protocol/mirror.js",
-  "version": "2.1.0-beta.0",
+  "version": "2.1.0",
   "description": "The JavaScript SDK for Mirror Protocol",
   "license": "Apache-2.0",
   "author": "Mirror Protocol",
@@ -53,7 +53,7 @@
     "arrowParens": "always"
   },
   "devDependencies": {
-    "@terra-money/terra.js": "^2.0.1",
+    "@terra-money/terra.js": "^2.0.8",
     "@types/jest": "^26.0.24",
     "@types/node": "^15.14.7",
     "@typescript-eslint/eslint-plugin": "^4.29.2",
