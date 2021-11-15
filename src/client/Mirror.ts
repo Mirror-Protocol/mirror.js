@@ -260,6 +260,13 @@ export const DEFAULT_MIRROR_OPTIONS: MirrorOptions = {
       token: 'terra1u43zu5amjlsgty5j64445fr9yglhm53m576ugh',
       pair: 'terra1u3pknaazmmudfwxsclcfg3zy74s3zd3anc5m52',
       lpToken: 'terra1mv3pgkzs4krcennqj442jscg6jv84cejrs50n2'
+    },
+    mAMD: {
+      symbol: 'mAMD',
+      name: 'Advanced Micro Devices, Inc.',
+      token: 'terra18ej5nsuu867fkx4tuy2aglpvqjrkcrjjslap3z',
+      pair: 'terra18cxcwv0theanknfztzww8ft9pzfgkmf2xrqy23',
+      lpToken: 'terra1m8mr9u3su46ezxwf7z7xnvm0jsapl2jd8vgefh'
     }
   }
 };
@@ -478,6 +485,13 @@ export const DEFAULT_BOMBAY_MIRROR_OPTIONS: MirrorOptions = {
       token: 'terra18qs6704f4ujnwus9x9vxcxrrm0du0f232kpnd6',
       pair: 'terra1znqeqnumtmpwgdltfw72v2298m3lrg7m447f2q',
       lpToken: 'terra1d6l7vk5ktugx9qm6nmtd2hv7kleg9xqce0ncps'
+    },
+    mAMD: {
+      symbol: 'mAMD',
+      name: 'Advanced Micro Devices, Inc.',
+      token: 'terra1ftefjmtpnk2fctsa8xkv8naven65z5qtgq83nu',
+      pair: 'terra12q2ehzn8jah7mfez9d0f7ztsu3vdf0g3mxzztq',
+      lpToken: 'terra1lu2eg3hghmkd0s5jdsnr24mg5cremf0e8dpz4l'
     }
   }
 };
