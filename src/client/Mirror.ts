@@ -46,11 +46,15 @@ export interface MirrorOptions {
   };
 }
 
+/**
+ * Mirror Mainnet Contracts
+ * @see {@link https://github.com/Mirror-Protocol/whitelist/blob/master/columbus.json}
+ */
 export const DEFAULT_MIRROR_OPTIONS: MirrorOptions = {
   lcd: new LCDClient({
     URL: 'https://lcd.terra.dev',
-    chainID: 'columbus-4',
-    gasPrices: [new Coin('ukrw', '1.8')],
+    chainID: 'columbus-5',
+    gasPrices: [new Coin('uusd', '0.15')],
     gasAdjustment: '1.2'
   }),
   key: new EmptyKey(),
@@ -102,6 +106,13 @@ export const DEFAULT_MIRROR_OPTIONS: MirrorOptions = {
       token: 'terra165nd2qmrtszehcfrntlplzern7zl4ahtlhd5t2',
       pair: 'terra1vkvmvnmex90wanque26mjvay2mdtf0rz57fm6d',
       lpToken: 'terra1q7m2qsj3nzlz5ng25z5q5w5qcqldclfe3ljup9'
+    },
+    mARKK: {
+      symbol: 'mARKK',
+      name: 'ARK Innovation ETF',
+      token: 'terra1qqfx5jph0rsmkur2zgzyqnfucra45rtjae5vh6',
+      pair: 'terra1a5cc08jt5knh0yx64pg6dtym4c4l8t63rhlag3',
+      lpToken: 'terra1veqh8yc55mhw0ttjr5h6g9a6r9nylmrc0nzhr7'
     },
     mBABA: {
       symbol: 'mBABA',
@@ -155,9 +166,9 @@ export const DEFAULT_MIRROR_OPTIONS: MirrorOptions = {
     mIAU: {
       symbol: 'mIAU',
       name: 'iShares Gold Trust',
-      token: 'terra15hp9pr8y4qsvqvxf3m4xeptlk7l8h60634gqec',
-      pair: 'terra1q2cg4sauyedt8syvarc8hcajw6u94ah40yp342',
-      lpToken: 'terra1jl4vkz3fllvj6fchnj2trrm9argtqxq6335ews'
+      token: 'terra10h7ry7apm55h4ez502dqdv9gr53juu85nkd4aq',
+      pair: 'terra15kkctr4eug9txq7v6ks6026yd4zjkrm3mc0nkp',
+      lpToken: 'terra1ndlx5ndkknvmgj6s5ggmdlhjjsz0w6wrnwn5cf'
     },
     mMSFT: {
       symbol: 'mMSFT',
@@ -211,9 +222,9 @@ export const DEFAULT_MIRROR_OPTIONS: MirrorOptions = {
     mVIXY: {
       symbol: 'mVIXY',
       name: 'ProShares VIX Short-Term Futures ETF',
-      token: 'terra1zp3a6q6q4953cz376906g5qfmxnlg77hx3te45',
-      pair: 'terra1yngadscckdtd68nzw5r5va36jccjmmasm7klpp',
-      lpToken: 'terra1cmrl4txa7cwd7cygpp4yzu7xu8g7c772els2y8'
+      token: 'terra19cmt6vzvhnnnfsmccaaxzy2uaj06zjktu6yzjx',
+      pair: 'terra1krny2jc0tpkzeqfmswm7ss8smtddxqm3mxxsjm',
+      lpToken: 'terra1ekd58y58vq4gmxlzpc27dwuhw7wmms928ftuep'
     },
     mSPY: {
       symbol: 'mSPY',
@@ -228,25 +239,40 @@ export const DEFAULT_MIRROR_OPTIONS: MirrorOptions = {
       token: 'terra18wayjpyq28gd970qzgjfmsjj7dmgdk039duhph',
       pair: 'terra1h7t2yq00rxs8a78nyrnhlvp0ewu8vnfnx5efsl',
       lpToken: 'terra1ktckr8v7judrr6wkwv476pwsv8mht0zqzw2t0h'
+    },
+    mDOT: {
+      symbol: 'mCOIN',
+      name: 'Polkadot',
+      token: 'terra19ya4jpvjvvtggepvmmj6ftmwly3p7way0tt08r',
+      pair: 'terra17rvtq0mjagh37kcmm4lmpz95ukxwhcrrltgnvc',
+      lpToken: 'terra1p60datmmf25wgssguv65ltds3z6ea3me74nm2e'
+    },
+    mHOOD: {
+      symbol: 'mHOOD',
+      name: 'Robinhood Markets, Inc.',
+      token: 'terra18yqdfzfhnguerz9du5mnvxsh5kxlknqhcxzjfr',
+      pair: 'terra1lr6rglgd50xxzqe6l5axaqp9d5ae3xf69z3qna',
+      lpToken: 'terra1s0dgcsdy9kgunnf3gnwl40uwy9rxtmc39mhy2m'
+    },
+    mSQ: {
+      symbol: 'mSQ',
+      name: 'Square, Inc.',
+      token: 'terra1u43zu5amjlsgty5j64445fr9yglhm53m576ugh',
+      pair: 'terra1u3pknaazmmudfwxsclcfg3zy74s3zd3anc5m52',
+      lpToken: 'terra1mv3pgkzs4krcennqj442jscg6jv84cejrs50n2'
     }
   }
 };
 
 /**
- * Mirror Tequila Contracts
- * @see {@link https://github.com/Mirror-Protocol/whitelist/blob/master/tequila.json}
+ * Mirror Bombay Contracts
+ * @see {@link https://github.com/Mirror-Protocol/whitelist/blob/master/bombay.json}
  */
-export const DEFAULT_TEQUILA_MIRROR_OPTIONS: MirrorOptions = {
+export const DEFAULT_BOMBAY_MIRROR_OPTIONS: MirrorOptions = {
   lcd: new LCDClient({
-    URL: 'https://tequila-lcd.terra.dev',
-    chainID: 'tequila-0004',
-    gasPrices: [
-      new Coin('uluna', '0.15'),
-      new Coin('usdr', '0.1018'),
-      new Coin('uusd', '0.15'),
-      new Coin('ukrw', '178.05'),
-      new Coin('umnt', '431.6259')
-    ],
+    URL: 'https://bombay-lcd.terra.dev',
+    chainID: 'bombay-12',
+    gasPrices: [new Coin('uusd', '0.15')],
     gasAdjustment: '1.2'
   }),
   key: new EmptyKey(),
@@ -298,6 +324,13 @@ export const DEFAULT_TEQUILA_MIRROR_OPTIONS: MirrorOptions = {
       token: 'terra12saaecsqwxj04fn0jsv4jmdyp6gylptf5tksge',
       pair: 'terra1xs3vy9zs8agmnzyn7z9s7kqk392uu2h3x3l6er',
       lpToken: 'terra1kgvcrtupc8y4dgc9n08ud99ckdxp08j59zgccf'
+    },
+    mARKK: {
+      symbol: 'mARKK',
+      name: 'ARK Innovation ETF',
+      token: 'terra1qk0cd8576fqf33paf40xy3rt82p7yluwtxz7qx',
+      pair: 'terra1t3xljlc82tmc0xjpfcrnu44phg2s4mt5rt3llm',
+      lpToken: 'terra1plwkt2fj8n9xkfdp9z6f5sp6r63vx2s22mznls'
     },
     mBABA: {
       symbol: 'mBABA',
@@ -351,9 +384,9 @@ export const DEFAULT_TEQUILA_MIRROR_OPTIONS: MirrorOptions = {
     mIAU: {
       symbol: 'mIAU',
       name: 'iShares Gold Trust',
-      token: 'terra19dl29dpykvzej8rg86mjqg8h63s9cqvkknpclr',
-      pair: 'terra1tq6w7rl4ryrk458k57dstelx54eylph5zwnpf9',
-      lpToken: 'terra193c2xvuzswct8qtsg4e6qhe3hyt3l6fac9cy79'
+      token: 'terra1p50j2k5vyw3q2tgywqvxyz59z8csh9p7x8dk5m',
+      pair: 'terra1rtz5mn38pnj924nr97yzax4g849qj4d4m8r7wk',
+      lpToken: 'terra1wj8cm3h7fe369nl8j4ddukesfuy9l3hr4hjw22'
     },
     mMSFT: {
       symbol: 'mMSFT',
@@ -407,9 +440,9 @@ export const DEFAULT_TEQUILA_MIRROR_OPTIONS: MirrorOptions = {
     mVIXY: {
       symbol: 'mVIXY',
       name: 'ProShares VIX Short-Term Futures ETF',
-      token: 'terra1z0k7nx0vl85hwpv3e3hu2cyfkwq07fl7nqchvd',
-      pair: 'terra1xg2393l4s7n4z2r0cnu4rr55mkpp942f4d3qzr',
-      lpToken: 'terra1ud750vcv39hd467sj2kk6s6nn8zf5xhgggf7uq'
+      token: 'terra18gphn8r437p2xmjpw7a79hgsglf5y4t0x7s5ee',
+      pair: 'terra1tfkksph7p9qkean66kc87u2kalu0pw9um9ep2y',
+      lpToken: 'terra1h9zrywpukj2wvu5dfsm7tcxk8mwzzyrxenshsn'
     },
     mSPY: {
       symbol: 'mSPY',
@@ -424,6 +457,27 @@ export const DEFAULT_TEQUILA_MIRROR_OPTIONS: MirrorOptions = {
       token: 'terra1qre9crlfnulcg0m68qqywqqstplgvrzywsg3am',
       pair: 'terra13qzses7zpsyrufx38h0kc3p87523cjgwmenj44',
       lpToken: 'terra1gdglgpm84pdzuedc924wurhsqd0vs4nv4tpmh8'
+    },
+    mDOT: {
+      symbol: 'mCOIN',
+      name: 'Polkadot',
+      token: 'terra1fs6c6y65c65kkjanjwvmnrfvnm2s58ph88t9ky',
+      pair: 'terra1722gzus7s6prj24wnzsqfkn0t8k7hc4p847tlw',
+      lpToken: 'terra1xrjygqshp9shcgfm4vj89mezxev36fk4na3ft2'
+    },
+    mHOOD: {
+      symbol: 'mHOOD',
+      name: 'Robinhood Markets, Inc.',
+      token: 'terra179na3xcvjastpptnh9g6lnf75hqqjnsv9mqm3j',
+      pair: 'terra1mqlaqzf5psn7qxadl6ar6eqlx9ghuday79f7p4',
+      lpToken: 'terra1talyz8k43me4c4qc4lyu37l45e4aw8rayshwv3'
+    },
+    mSQ: {
+      symbol: 'mSQ',
+      name: 'Square, Inc.',
+      token: 'terra18qs6704f4ujnwus9x9vxcxrrm0du0f232kpnd6',
+      pair: 'terra1znqeqnumtmpwgdltfw72v2298m3lrg7m447f2q',
+      lpToken: 'terra1d6l7vk5ktugx9qm6nmtd2hv7kleg9xqce0ncps'
     }
   }
 };

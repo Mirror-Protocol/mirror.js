@@ -89,7 +89,7 @@
 				<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">LCDClient</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@terra-money/terra.js&#039;</span><span style="color: #000000">;</span>
 <span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Mirror</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@mirror-protocol/mirror.js&#039;</span><span style="color: #000000">;</span>
 
-<span style="color: #008000">// default -- uses Columbus-4 core contract addresses</span>
+<span style="color: #008000">// default -- uses Columbus-5 core contract addresses</span>
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">mirror</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Mirror</span><span style="color: #000000">();</span>
 
 <span style="color: #008000">// optional -- specify contract addresses and assets</span>
@@ -154,7 +154,7 @@
 <span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">tx</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">wallet</span><span style="color: #000000">.</span><span style="color: #795E26">createAndSignTx</span><span style="color: #000000">({</span>
 <span style="color: #000000">    </span><span style="color: #001080">msgs:</span><span style="color: #000000"> [</span>
 <span style="color: #000000">      </span><span style="color: #001080">mirror</span><span style="color: #000000">.</span><span style="color: #001080">staking</span><span style="color: #000000">.</span><span style="color: #795E26">bond</span><span style="color: #000000">(</span>
-<span style="color: #000000">        </span><span style="color: #001080">mAAPL</span><span style="color: #000000">.</span><span style="color: #001080">pair</span><span style="color: #000000">.</span><span style="color: #001080">contractAddress</span><span style="color: #000000">,</span>
+<span style="color: #000000">        </span><span style="color: #001080">mAAPL</span><span style="color: #000000">.</span><span style="color: #001080">token</span><span style="color: #000000">.</span><span style="color: #001080">contractAddress</span><span style="color: #000000">,</span>
 <span style="color: #000000">        </span><span style="color: #098658">500_000_000</span><span style="color: #000000">,</span>
 <span style="color: #000000">        </span><span style="color: #001080">mAAPL</span><span style="color: #000000">.</span><span style="color: #001080">lpToken</span>
 <span style="color: #000000">      )</span>

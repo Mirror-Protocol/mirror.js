@@ -36,7 +36,7 @@ To create the Mirror object:
 import { LCDClient } from '@terra-money/terra.js';
 import { Mirror } from '@mirror-protocol/mirror.js';
 
-// default -- uses Columbus-4 core contract addresses
+// default -- uses Columbus-5 core contract addresses
 const mirror = new Mirror();
 
 // optional -- specify contract addresses and assets
@@ -106,7 +106,7 @@ async function stakeLPTokens() {
   const tx = await wallet.createAndSignTx({
     msgs: [
       mirror.staking.bond(
-        mAAPL.pair.contractAddress,
+        mAAPL.token.contractAddress,
         500_000_000,
         mAAPL.lpToken
       )
