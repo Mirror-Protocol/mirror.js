@@ -22,7 +22,7 @@ const commonConfig = {
   },
   plugins: [
     new webpack.IgnorePlugin(
-      /wordlists\/(french|spanish|italian|korean|chinese_simplified|chinese_traditional|japanese)\.json$/
+      { resourceRegExp: /wordlists\/(french|spanish|italian|korean|chinese_simplified|chinese_traditional|japanese)\.json$/}
     ),
   ],
   externals: {
