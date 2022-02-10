@@ -1,5 +1,5 @@
 import { AccAddress, Key, LCDClient, Coin } from '@terra-money/terra.js';
-import { EmptyKey } from '../utils/EmptyKey';
+import { EmptyKey } from 'utils';
 import {
   MirrorAirdrop,
   MirrorCollector,
@@ -241,7 +241,7 @@ export const DEFAULT_MIRROR_OPTIONS: MirrorOptions = {
       lpToken: 'terra1ktckr8v7judrr6wkwv476pwsv8mht0zqzw2t0h'
     },
     mDOT: {
-      symbol: 'mCOIN',
+      symbol: 'mDOT',
       name: 'Polkadot',
       token: 'terra19ya4jpvjvvtggepvmmj6ftmwly3p7way0tt08r',
       pair: 'terra17rvtq0mjagh37kcmm4lmpz95ukxwhcrrltgnvc',
@@ -466,7 +466,7 @@ export const DEFAULT_BOMBAY_MIRROR_OPTIONS: MirrorOptions = {
       lpToken: 'terra1gdglgpm84pdzuedc924wurhsqd0vs4nv4tpmh8'
     },
     mDOT: {
-      symbol: 'mCOIN',
+      symbol: 'mDOT',
       name: 'Polkadot',
       token: 'terra1fs6c6y65c65kkjanjwvmnrfvnm2s58ph88t9ky',
       pair: 'terra1722gzus7s6prj24wnzsqfkn0t8k7hc4p847tlw',
