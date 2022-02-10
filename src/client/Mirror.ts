@@ -473,7 +473,7 @@ export const DEFAULT_BOMBAY_MIRROR_OPTIONS: MirrorOptions = {
       lpToken: 'terra1gdglgpm84pdzuedc924wurhsqd0vs4nv4tpmh8'
     },
     mDOT: {
-      symbol: 'mCOIN',
+      symbol: 'mDOT',
       name: 'Polkadot',
       token: 'terra1fs6c6y65c65kkjanjwvmnrfvnm2s58ph88t9ky',
       pair: 'terra1722gzus7s6prj24wnzsqfkn0t8k7hc4p847tlw',
