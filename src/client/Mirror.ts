@@ -240,8 +240,15 @@ export const DEFAULT_MIRROR_OPTIONS: MirrorOptions = {
       pair: 'terra1h7t2yq00rxs8a78nyrnhlvp0ewu8vnfnx5efsl',
       lpToken: 'terra1ktckr8v7judrr6wkwv476pwsv8mht0zqzw2t0h'
     },
+    mDIS: {
+      symbol: 'mDIS',
+      name: 'The Walt Disney Company',
+      token: 'terra149755r3y0rve30e209awkhn5cxgkn5c8ju9pm5',
+      pair: 'terra1u79vnslyaxprhmeqla6lj7dkcecg800ssclhu6',
+      lpToken: 'terra13sjghs2r7seamgr4g9c4p2eeacknggetsrhcar'
+    },
     mDOT: {
-      symbol: 'mCOIN',
+      symbol: 'mDOT',
       name: 'Polkadot',
       token: 'terra19ya4jpvjvvtggepvmmj6ftmwly3p7way0tt08r',
       pair: 'terra17rvtq0mjagh37kcmm4lmpz95ukxwhcrrltgnvc',
@@ -466,7 +473,7 @@ export const DEFAULT_BOMBAY_MIRROR_OPTIONS: MirrorOptions = {
       lpToken: 'terra1gdglgpm84pdzuedc924wurhsqd0vs4nv4tpmh8'
     },
     mDOT: {
-      symbol: 'mCOIN',
+      symbol: 'mDOT',
       name: 'Polkadot',
       token: 'terra1fs6c6y65c65kkjanjwvmnrfvnm2s58ph88t9ky',
       pair: 'terra1722gzus7s6prj24wnzsqfkn0t8k7hc4p847tlw',
